@@ -1,0 +1,16 @@
+{
+  "name": "@bigfatsoftware/electronics",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "parcel watch index.html"
+  },
+  "main": "index.js",
+  "repository": "git@github.com:tangoabcdelta/psychic-engine.git",
+  "author": "Your Name <you@example.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@bigfatsoftware/components": "1.0.0"
+
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "@bigfatsoftware/components",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:tangoabcdelta/psychic-engine.git",
+  "author": "Your Name <you@example.com>",
+  "license": "MIT"
+}
