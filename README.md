@@ -32,6 +32,7 @@ yarn add eslint-config-airbnb eslint-plugin-import --dev -W
 
 
 
+```bash
 echo "# psychic-engine" >> README.md
 git init
 git add README.md
@@ -39,3 +40,8 @@ git commit -m "first commit"
 git branch -M main
 git remote add origin git@github.com:tangoabcdelta/psychic-engine.git
 git push -u origin main
+```
+
+
+yarn run v1.22.10
+info Commands available from binary scripts: JSONStream, acorn, ansi-to-html, atob, brfs, browserslist, conventional-changelog-writer, conventional-commits-parser, conventional-recommended-bump, cssesc, envinfo, escodegen, esgenerate, eslint, esparse, esvalidate, get-pkg-repo, git-raw-commits, git-semver-tags, handlebars, import-local-fixture, is-ci, js-yaml, jsesc, json5, lerna, lint, loose-envify, miller-rabin, mime, mkdirp, node-gyp, node-which, nopt, parcel, parser, prettier, purgecss, quote-stream, regjsparser, replace-in-file, rimraf, semver, sha.js, sl-log-transformer, sshpk-conv, sshpk-sign, sshpk-verify, svgo, terser, tsc, tsserver, uglifyjs, uncss, uuid
