@@ -9,7 +9,7 @@
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "changelog": "git-release-notes $(git describe --tags --abbrev=0 $(git describe --tags --abbrev=0)^)..$(git describe --tags --abbrev=0) scripts/changelog.md"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "repository": "git@github.com:tangoabcdelta/psychic-engine.git",
   "author": "Your Name <you@example.com>",
