@@ -7,7 +7,7 @@
   "scripts": {
     "start": "lerna run start",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
-    "changelog": "git-release-notes $(git describe --tags --abbrev=0 $(git describe --tags --abbrev=0)^)..$(git describe --tags --abbrev=0) scripts/changelog.md"
+    "changelog": "git-release-notes $(git describe --tags --abbrev=0 $(git describe --tags --abbrev=0)^)..$(git describe --tags --abbrev=0) scripts/changelog.md >> changelog.$(git describe --tags --abbrev=0).md"
   },
   "version": "1.0.2",
   "main": "index.js",
