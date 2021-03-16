@@ -1,0 +1,8 @@
+body {
+  margin: 0;
+  font-family: "Arial", sans-serif;
+}
+main {
+  padding: 0 16px;
+  min-height: 200vh;
+}

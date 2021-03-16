@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "Charles Augustus Magnussen",
+  "version": "0.0.1",
+  "description": "The CAM",
+  "icons": {
+     "48": "DGIMP.logo.PNG"
+  },
+  "content_scripts": [{
+     "matches": ["<all_urls>"],
+     "js": [
+        "Readability.js",
+        "getsetgo.js",
+        "lib/compatibility.js",
+        "lib/firebase-app.js",
+        "lib/firebase-analytics.js",
+        "lib/firebase-auth.js",
+        "lib/firebase-firestore.js",
+        "save.to.firebase.js"
+    ]
+  }]
+}

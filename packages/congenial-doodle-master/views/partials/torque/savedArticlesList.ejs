@@ -1,0 +1,40 @@
+<center>
+  <table border="15" bgcolor="#ff00ff" cellspacing="2" cellpadding="2" align="center">
+    <thead>
+      <tr>
+        <th>Sl no.</th>
+        <th>Date Added</th>
+        <th>MD5</th>
+        <th>Link</th>
+        <th>...</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% values.forEach(function(value, index) { %>
+      <tr>
+        <td><%= index %></td>
+        <td><%=  (new Date(value.date)).toLocaleString() %></td>
+        <td><code><%= value.hashKey %></code></td>
+        <td>
+          <em>
+            <a href="<%- value.url %>"><%= (value.url).substr(0, 40) %>...</a>
+          </em>
+        </td>
+        <td>
+          <br>
+          <textarea rows="4" cols="50">
+            <%- value.url %>
+          </textarea>
+        </td>
+        <td>
+          <form method="post" action="/🚗/download">
+            <input type="hidden" name="hashKey" id="hashKey" value="<%= value.hashKey %>" />
+            <input type="submit" value="download" />
+          </form>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</center>

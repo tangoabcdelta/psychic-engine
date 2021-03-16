@@ -1,0 +1,9 @@
+node_modules
+secret
+testdata
+documentation
+extensions/
+extensions/.git
+shell
+sample responses
+db

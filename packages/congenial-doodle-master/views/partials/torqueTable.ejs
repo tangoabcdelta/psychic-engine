@@ -1,0 +1,39 @@
+<script>
+  "file name: torqueTable.ejs";
+</script>
+
+
+      
+<pre>
+  <%- values %>
+</pre>
+
+
+<table class="table table-inverse">
+<thead>
+  <tr>
+    <th>Sl no.</th>
+    <th>Name</th>
+    <th>Value</th>
+    <th>...</th>
+  </tr>
+</thead>
+
+<tbody>
+  <% values.forEach(function(value, index) { %>
+  <tr>
+    <td><%= index %></td>
+    <td><%= value.hashKey %></td>
+    <td>
+      <textarea rows="10" cols="50">
+        <%- value.html %>
+      </textarea>
+    </td>
+    <td>
+      <span>Inspect</span>
+      <script type="text/javascript"></script>
+    </td>
+  </tr>
+  <% }); %>
+</tbody>
+</table>

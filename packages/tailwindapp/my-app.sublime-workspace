@@ -1,0 +1,447 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"book",
+				"bookmarkTreeNodes\t⟠"
+			],
+			[
+				"quer",
+				"querySelector\t( selectors: DOMString ): Element Document"
+			],
+			[
+				"inner",
+				"innerHTML\t⟠"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "my-app.sublime-project",
+			"settings":
+			{
+				"buffer_size": 1591,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/deveedutta/Documents/Projects/etc/bigfat-ext/manifest.json",
+			"settings":
+			{
+				"buffer_size": 1452,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 2387,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "{\n        \"name\": \"Yarn Start\",\n        \"shell\": \"true\",\n        \"cmd\": [\"yarn\",\"start\"],\n        \"working_dir\": \"${project_path}\",\n        \"path\": \"/home/deveedutta/.nvm/versions/node/v15.0.1/bin/\"\n    },",
+			"settings":
+			{
+				"buffer_size": 205,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"theme",
+				"UI: Select Color Scheme"
+			],
+			[
+				"them",
+				"UI: Select Theme"
+			],
+			[
+				"ip",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 150.0,
+		"history":
+		[
+			"ls",
+			"pwd",
+			"cmd",
+			"ls",
+			"view.settings().get('tab_size')",
+			"view.settings().get('*')",
+			"view.settings().get",
+			"view.settings()",
+			"name",
+			"yarn global add parcel-bundler"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/deveedutta/Documents/Projects/etc/my-app"
+	],
+	"file_history":
+	[
+		"/home/deveedutta/Documents/Projects/etc/my-app/my-app.sublime-project",
+		"/home/deveedutta/Documents/Projects/etc/my-app/src/App.test.tsx",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/README.md",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/src/override/bundle.js",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/src/browser_action/popup.js",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/src/override/override.html",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/package.json",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/manifest.json",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/src/override/e9fba17b3e86409bf0d2.css",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/src/override/jquery.dataTables.min.js",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/.git/config",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/bigfat-ext.sublime-project",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/.gitignore",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/node_modules/public-encrypt/test/test_rsa_pubkey.pem",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/src/override/e9fba17b3e86409bf0d2.module.css",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/dist/e9fba17b3e86409bf0d2.2d30c45c.css.map",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/.cache/b1/5e07d330aef67a7368a6a7a2208887.json",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/src/override/jquery.min.js",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/untitled.sublime-project",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/js/jquery/package.json",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/bigfat-ext.sublime-workspace",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/untitled.sublime-workspace",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/src/page_action/page_action.html",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/src/browser_action/popup.html",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/src/options_custom/utils/utils.mjs",
+		"/home/deveedutta/Documents/Projects/etc/bigfat-ext/src/options_custom/index.html.backup",
+		"/tmp/kite_tutorial.py"
+	],
+	"find":
+	{
+		"height": 31.0
+	},
+	"find_in_files":
+	{
+		"height": 113.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "my-app.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1591,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/home/deveedutta/Documents/Projects/etc/bigfat-ext/manifest.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1452,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "README.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2387,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1587,
+								1587
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1093.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 205,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								205,
+								205
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 43.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 150.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "my-app.sublime-project",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"overrid",
+				"src/override/override.html"
+			],
+			[
+				"pack",
+				"package.json"
+			],
+			[
+				"override",
+				"src/override/override.html"
+			],
+			[
+				"pac",
+				"package.json"
+			],
+			[
+				"read",
+				"README.md"
+			],
+			[
+				"manife",
+				"manifest.json"
+			],
+			[
+				"popup",
+				"src/browser_action/popup.js"
+			],
+			[
+				"project",
+				"bigfat-ext.sublime-project"
+			],
+			[
+				"gitign",
+				".gitignore"
+			],
+			[
+				"st_rsa_pubkey.pem",
+				"node_modules/public-encrypt/test/test_rsa_pubkey.pem"
+			],
+			[
+				"pak",
+				"js/jquery/package.json"
+			],
+			[
+				"r",
+				"README.md"
+			],
+			[
+				"git",
+				".gitignore"
+			],
+			[
+				"page_action.html",
+				"src/page_action/page_action.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 274.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

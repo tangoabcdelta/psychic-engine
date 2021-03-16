@@ -1,0 +1,68 @@
+{
+  "name": "Big Fat Software Inc.",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "This extension was created with the awesome extensionizr.com",
+  "homepage_url": "http://bigfatsoftwareinc.wordpress.com/",
+  "update_url": "https://clients2.google.com/service/update2/crx",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "background": {
+    "scripts": [
+      "src/assets/js/jquery.min.js",
+      "src/assets/js/store.js",
+      "src/assets/js/background.js"
+    ],
+    "persistent": true
+  },
+  "externally_connectable": {
+    "matches": [
+      "*://*.google.com/*",
+      "*://*.amazon.com/*",
+      "*://*.flipkart.com/*",
+      "*://*.myntra.com/*"
+    ]
+  },
+  "options_page": "src/options_custom/index.html",
+  "browser_action": {
+    "default_title": "Bookmarks - Big Fat Software Inc.",
+    "default_icon": "icons/icon16.png",
+    "default_popup": "src/browser_action/popup.html"
+  },
+  "chrome_url_overrides": {
+    "newtab": "src/override/override.html"
+  },
+  "permissions": [
+    "activeTab",
+    "bookmarks",
+    "clipboardRead",
+    "contextMenus",
+    "cookies",
+    "history",
+    "idle",
+    "notifications",
+    "tabs",
+    "geolocation",
+    "unlimitedStorage",
+    "https://*/*"
+  ],
+  "omnibox": {
+    "keyword": "extensionizr"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*/*"],
+      "css": ["src/assets/css/default.css"],
+      "js": [
+        "src/assets/js/jquery.min.js",
+        "src/assets/js/inject.mjs",
+        "src/assets/js/store.js"
+      ]
+    }
+  ],
+  "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'"
+}

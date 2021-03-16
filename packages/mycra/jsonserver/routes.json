@@ -1,0 +1,14 @@
+{
+  "/api/v1/users/:appId/preferences": "/preferences/:appId",
+  "/supplies/supplies/": "/supplies-supplies/",
+  "/supplies/filters": "/supplies-fitlers/",
+  "/supplies-config/": "/supplies/config/",
+  "/supplies/config/:configId": "/supplies-config/:configId",
+  "/supplies/master_data": "/supplies-master-data/",
+  "/supplies/mock_data": "/supplies-mock-data/",
+  "/supplies/supplies/:id": "/supplies-supplies/:id",
+  "/supplies/users/": "/supplies-users/",
+  "/supplies/users/:id": "/supplies-supplies/:id",
+  "/api/employees/": "/employees/",
+  "/api/employees/EN1022/": "/employees/"
+}

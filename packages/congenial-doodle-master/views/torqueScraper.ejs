@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <%- include('partials/head'); %>
+  <body>
+    <%- include('partials/header'); %>
+    <% if (askForConfig) { %>
+
+      <form method="post" action="/🚗/submit/config">
+        <label for="firebaseConfig">firebaseConfig:</label>
+        <br>
+        <textarea rows="5" cols="40" autofill="true" type="text" id="firebaseConfig" name="firebaseConfig" placeholder="firebaseConfig in JSON format"></textarea>
+        <br>
+        <label for="serviceAccountKey">serviceAccountKey:</label>
+        <br>
+        <textarea rows="5" cols="40" autofill="true" type="text" id="serviceAccountKey" name="serviceAccountKey" placeholder="serviceAccountKey in JSON format"></textarea>
+        <br>
+        <br>
+        <br>
+        <input type="submit" value="Submit">
+        <br><br><br>
+      </form>
+
+
+    <% } else { %>
+      <form method="post" action="/🚗">
+        <label for="url">URL:</label>
+        <br>
+        <input autofill="true" type="text" id="url" name="url" placeholder="e.g. http://example.com/" value="http://example.com/">
+        <br>
+        <br>
+        <br>
+        <input type="submit" value="Submit">
+        <br><br><br>
+      </form>
+
+
+
+      <%- include('partials/torque/savedArticlesList'); %>
+
+      <noscript>
+        <xmp> <%- values %>;</xmp>
+      </noscript> 
+    <% }%>
+    <%- include('partials/vaporwave'); %>    
+  </body>
+</html>

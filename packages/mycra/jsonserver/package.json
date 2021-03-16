@@ -1,0 +1,20 @@
+{
+  "name": "jsonserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "main": "json-server --watch index.js --middlewares ./middleware.js --routes routes.json --port 3004",
+    "server": "json-server --watch index.js --port 3005",
+    "static": "json-server --watch db.json --port 3006",
+    "withmiddleware": "json-server --watch db.json --middlewares ./middleware.js --port 3007"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "faker": "^5.1.0",
+    "lodash": "^4.17.20"
+  }
+}

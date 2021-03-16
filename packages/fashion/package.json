@@ -13,6 +13,7 @@
   "author": "Your Name <you@example.com>",
   "license": "MIT",
   "dependencies": {
-    "@bigfatsoftware/components": "1.0.0"
+    "@bigfatsoftware/components": "1.0.0",
+    "tailwindcss": "1.4.6"
   }
 }

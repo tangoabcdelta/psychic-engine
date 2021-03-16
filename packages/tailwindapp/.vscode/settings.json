@@ -1,0 +1,82 @@
+{
+  "files.associations": {
+    "*.jsx": "javascriptreact",
+    "*.md": "mdx",
+    ".quokka": "json",
+    "*.ejs": "html"
+  },
+  "files.exclude": {
+    "USE_GITIGNORE": true
+  },
+  "json.schemas": [
+    {
+      "fileMatch": ["*.js", "*.json", "*.jsonc"],
+      "schema": {
+        "allowTrailingCommas": false
+      }
+    }
+  ],
+  "workbench.editor.enablePreview": false,
+  "editor.multiCursorModifier": "alt",
+  "editor.renderWhitespace": "all",
+  "editor.minimap.enabled": true,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": true,
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "explorer.confirmDelete": false,
+  "window.zoomLevel": 1,
+  "editor.fontSize": 14,
+  "[Log]": {
+    "editor.fontSize": 11
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/coverage": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.build": true,
+    "**/.gh-pages": true
+  },
+  "terminal.integrated.fontSize": 11,
+  "workbench.statusBar.visible": true,
+  "workbench.sideBar.location": "left",
+  "files.autoSave": "off",
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#fbed80",
+    "activityBar.activeBorder": "#06b9a5",
+    "activityBar.background": "#fbed80",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#06b9a5",
+    "activityBarBadge.foreground": "#15202b",
+    "statusBar.background": "#f9e64f",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#f7df1e",
+    "titleBar.activeBackground": "#f9e64f",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#f9e64f99",
+    "titleBar.inactiveForeground": "#15202b99"
+  },
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "\/dist\/css"
+    }
+  ],
+  "liveSassCompile.settings.generateMap": true,
+  "liveSassCompile.settings.autoprefix": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "peacock.color": "#f9e64f",
+  "markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited": true,
+  "markdown-preview-enhanced.enableExtendedTableSyntax": true,
+  "markdown.preview.openMarkdownLinks": "inEditor",
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

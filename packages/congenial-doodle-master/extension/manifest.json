@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "Charles Augustus Magnussen",
+  "version": "0.0.1",
+  "description": "The CAM",
+  "icons": {
+     "48": "DGIMP.logo.PNG"
+  },
+  "content_scripts": [{
+     "matches": ["<all_urls>"],
+     "js": [
+        "getsetgo.js"
+    ]
+  }],
+  "permissions": [
+    "storage",
+    "tabs",
+    "webNavigation"
+  ]
+}

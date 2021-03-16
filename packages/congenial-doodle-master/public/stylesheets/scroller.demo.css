@@ -1,0 +1,18 @@
+#outer {
+    width: 900px;
+    margin: 10px auto;
+    height: 400px;
+    overflow: hidden;
+    background: white;
+    padding: 50px 10px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px 2px #aaa;
+    border-radius: 3px;
+}
+#inner {
+    background-image: url('../images/pattern.bg.jpeg');
+    width: 10000px;
+    height: 300px;
+    box-shadow: 0 0 10px 2px #ccc;
+    border-radius: 3px;
+}

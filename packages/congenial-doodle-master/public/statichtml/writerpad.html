@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Writer Pad</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="Keywords" content="">
+        <meta name="Description" content="">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    </head>
+    <body>
+        <output id="output"></output> 
+        <script>
+            window._private = {
+                svgroot: null
+            };
+            function submit(event) {
+                event.preventDefault();
+                debugger;
+            }
+            
+            function formSubmit(event) {
+                var contentBox;
+                var output;
+                var yourTextGoesHere;
+                var generatedSVG;
+                var generatedImage;
+                var computedStyle;
+                var dataWindow;
+                var downloadLink;
+                
+                output = document.getElementById('output');
+                contentBox = document.getElementById('contentBox');
+                yourTextGoesHere = document.getElementById('yourTextGoesHere');
+                yourTextGoesHere.value = Math.random();
+                // console.log('event.defaultPrevented', event.defaultPrevented);
+                event.preventDefault();
+                // console.log('event.defaultPrevented', event.defaultPrevented);
+                // debugger;
+                
+                
+                // fastest
+                // https://jsperf.com/innerhtml-vs-removechild/191
+                while(output.firstChild) {
+                    output.removeChild(output.firstChild);
+                }
+                contentBox.innerHTML = yourTextGoesHere.value   ;
+                computedStyle = window.getComputedStyle(contentBox);
+                generatedSVG = createSVG({
+                    height: contentBox.offsetHeight,
+                    width: contentBox.offsetWidth,
+                    value: yourTextGoesHere.value
+                });
+                
+                generatedImage = getImageFromSVG(generatedSVG);
+                downloadLink = createDownloadLink(generatedImage, {
+                    filename: yourTextGoesHere.value
+                });
+                output.appendChild(generatedImage);
+                output.appendChild(downloadLink);
+            }
+            
+            function createDownloadLink(image, options) {
+                var a = document.createElement('a');
+                a.setAttribute('download', options.filename || 'download');
+                a.href = image.src;
+                a.innerHTML = 'Download';
+                //a.style.display = 'none';
+                document.body.appendChild(a);
+                window.setTimeout(function(){
+                    a.click();
+                }, 0)
+                return a;
+            }
+            
+            function blobExperiment() {
+                 dataWindow = window.open('blank','dataWindow');
+                // any kind of extension (.txt,.cpp,.cs,.bat)
+                var filename = "hello.txt";
+                var content = "What's up , hello world";
+                var blob = new Blob([content], {
+                 type: "text/plain;charset=utf-8"
+                });
+                saveAs(blob, filename);
+            }
+            
+            function createSVG(options) {
+                if (window.svgroot) {
+                    return svgroot;
+                }
+                
+                
+                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svg.setAttribute('xmlns','http://www.w3.org/2000/svg');
+                svg.setAttribute('width', options.width || 500);
+                svg.setAttribute('height', options.height || 500);
+                
+                const rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+                rect.setAttribute('x', 0);
+                rect.setAttribute('y', 0);
+                rect.setAttribute('width', options.width || 500);
+                rect.setAttribute('height', options.height || 500);
+                rect.style.fill = "#eee";
+                
+                (function addFiveLines(){
+                    let i = 5;
+                    while (i--) {
+                        let path = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+                        path.setAttribute('x', 0);
+                        path.setAttribute('y', 2 + (i * 10));
+                        
+                    }
+                    
+                })()
+                
+
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                // const text = document.createTextNode(options.value);
+                text.setAttribute('x', 0);
+                text.setAttribute('y', 50);
+                text.setAttribute('font-size', 50);
+                text.setAttribute('width', options.width || 500);
+                text.setAttribute('height', options.height || 500);
+                text.innerHTML = options.value || '';
+                text.style.fill = "#000";
+                
+                // rect
+                svg.appendChild(rect);
+                svg.appendChild(text);
+                
+                window.svgroot = svg;
+                return window.svgroot;
+            }
+            
+            function getImageFromSVG(svg, callback) {
+                var image;
+                image = new Image();
+                image.src = 'data:image/svg+xml,' + svg.outerHTML;
+                image.onload = function() {
+                    if(callback) {
+                        callback.call(this, this);
+                    }
+                }
+                return image;
+            }
+            
+            window.addEventListener('error', function(event){
+                document.getElementById('output').innerHTML = JSON.stringify(event);
+            });
+            
+        </script>
+        <style>
+            article {
+                margin: 0 auto;
+                width: 500px;
+            }
+            content {
+                font-size: 52px;
+                font: sans-serif;
+                height: 500px;
+                width: 500px;
+            }
+        </style>
+        <article>
+            <header>
+            </header>
+            <content id="contentBox">
+                Here goes your font...
+            </content>
+           <form onsubmit="formSubmit(event)">
+                <style>
+                    textarea {
+                        width: 100%;
+                        min-height: 80px;
+                        margin: 20px auto;
+                    }
+                </style>
+                <textarea id="yourTextGoesHere" value="Here goes your text...">
+                    Here goes your text...
+                </textarea>
+                <input type="submit" value="Submit" />
+                <input type="button" value="Create" onclick="submit(event)"/>
+                <input type="reset" value="Clear" />
+            </form>
+            
+        </article>
+        <script>
+        
+           
+            
+        </script>
+
+    </body>
+</html>

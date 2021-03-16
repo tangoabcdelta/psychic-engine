@@ -1,0 +1,24 @@
+{
+	"formName": "Upload cars data to firebase",
+	"formDescription": "Fill this form to create a new entry in the cars database",
+	"totalNumberOfFields": "20",
+	"editable": true,
+	"fields": [{
+		"fieldName": "CarManufacturer",
+		"fieldType": "Text",
+		"maxLength": "30",
+		"fieldId": "carMake",
+		"placeholder": "Enter the car manufacturer/'s name here",
+		"defaultValue": null,
+		"validations": [{
+			"notNull": {
+				"set": true,
+				"errorMessage": "Field can not be set to empty"
+			},
+			"mandatory": {
+			}
+			
+		}]
+	}],
+
+}

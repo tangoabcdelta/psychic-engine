@@ -1,0 +1,47 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+h1 {
+  text-transform: capitalize;
+}
+
+something {
+  color:blue;
+  white-space: pre;
+}
+
+body {
+  background: rgb(2,0,36);
+  background: linear-gradient(#302027 0%, #ff1a7b 35%, #7b1968 100%);
+}
+
+    ul li {
+        list-style: none;
+        1padding: 10px;
+        display: flex;
+    }
+    ul li a {
+        display: inline-block;
+        text-decoration: none;
+        color: #000;
+        padding: 30px;
+        margin: 0 5px;
+        background-color: #ddd;
+    }
+
+    ul li a:hover {
+        color: blue;
+    }
+
+    ul li:hover {
+        1background-color: #eee;  
+    }
+    ul li:hover a {
+        1color: orange;
+    }

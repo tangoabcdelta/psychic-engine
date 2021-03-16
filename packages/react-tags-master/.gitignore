@@ -1,0 +1,8 @@
+.DS_Store
+.nyc_output
+node_modules
+npm-debug.log
+dist
+example/bundle.js
+example/bundle.js.map
+coverage

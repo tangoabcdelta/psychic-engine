@@ -1,0 +1,175 @@
+
+h1, h2, h3, h4, h5 {
+  text-transform: uppercase;
+  line-height: 1em;
+  font-weight: 900;
+  font-family: sans-serif;
+}
+
+h1 {  font-size: 140px;     }
+h2 {  font-size: 80px;    }
+h3 {  font-size: 60px;    }
+h4 {  font-size: 40px;    }
+h5 {  font-size: 20px;    }
+
+
+h1 {
+  font-style: italic;
+  text-align: center;
+}
+
+
+nav {
+  background: #000;
+  overflow: hidden;
+  padding: 5px 20px;
+}
+
+  nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-basis: 100%;
+  }
+    nav ul li {
+      flex-grow: 1;
+      1display: inline-block;
+      1margin: 5px 20px;
+      color: #fff;
+      font-size: 20px;
+      background: #111;
+      list-style: none;
+      padding: 2px 10px;
+      text-align: center;
+      
+    }
+    nav ul li:hover {
+      
+    }
+
+      nav ul li a {
+        text-decoration: none;
+        display: inline-block;
+        line-height: 1.5em;
+        border-radius: 5px;
+        font-family: sans-serif;
+        1padding: 2px 10px;
+      }
+      nav ul li a:hover {
+        1text-decoration: underline;
+        background: #333;
+      }
+
+
+
+
+.emboss-text {
+  text-transform: uppercase;
+  font-weight: 900;
+  padding: 20px;
+  position: relative;
+  letter-spacing: 5px;
+  color:rgb(207,207,207);
+  background: #222222;
+
+  text-shadow: 
+      /*3D layers*/
+    0px 0px 1px rgb(167,167,167),
+    0px 1px 1px rgb(167,167,167),
+    0px 2px 1px rgb(167,167,167),
+
+    1px 1px 1px rgb(167,167,167),
+    1px 2px 1px rgb(167,167,167),
+    1px 3px 1px rgb(167,167,167),
+
+    2px 2px 1px rgb(167,167,167),
+    2px 3px 1px rgb(167,167,167),
+    2px 4px 1px rgb(167,167,167),
+
+    1px 10px 30px rgba(0,0,0,0.8),
+    1px 10px 70px rgba(0,0,0,0.8),
+    0px 5px 5px   rgba(0,0,0,0.8),
+    -5px 5px 20px rgba(0,0,0,0.8),
+    5px 5px 20px  rgba(0,0,0,0.8),
+
+    1px 1px 120px rgba(255,255,255,0.5);
+    1animation: cycle 3s linear infinite;
+}
+
+
+
+@keyframes cycle {
+  0% { text-shadow: 0px 0px 100px rgba(11,124,199,0.9);}
+  20% { text-shadow: 0px 0px 100px rgba(168,11,199,0.9);}
+  40% { text-shadow: 0px 0px 100px rgba(11,199,96,0.9);}
+  60% { text-shadow: 0px 0px 100px rgba(199,11,11,0.9);}
+  80% { text-shadow: 0px 0px 100px rgba(199,96,11,0.9);}
+}
+
+.emboss-text::after {
+  1content: "Music Fest";
+  1font-size: 180px;
+  letter-spacing: 5px;
+  font-family: dock11;
+  position: absolute;
+  top:0;
+  left:0;
+  text-shadow: 0px 0px 100px rgba(11,124,199,0.5);
+  animation: cycle 2s linear infinite;
+}
+
+.emboss-80s {
+  color: transparent;
+  background: linear-gradient(#2354a1 0%, #4fa0cb 31%, #76c7de 32%, #c1e3ef 34%, #ff2b95 35%, #ff20ac 60%, #b42bab 64%, #6b46a7 100%); 
+  background-clip: text;
+  position: relative;
+}
+
+.emboss-80s:before {
+  position: relative;
+}
+
+.emboss-80s:after {
+  display: none;
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  1content: "WELCOME";
+  z-index: 1;
+  text-shadow: 1px 1px 2px #fff;
+}
+
+
+
+#wave-container {
+  1height: 100px;
+  1background: #fff;
+  overflow: hidden;
+  position: relative;
+}
+#wave-container svg {
+  margin-bottom: -1px;
+}
+#wave-container #sun {
+  height: 350px;
+  width: 350px;
+  border-radius: 50%;
+  background-image: linear-gradient(#ff1994 0%, #bb1a78 100%);
+  position: absolute;
+  right: 40%;
+  top: -50px;
+  z-index: 1;
+}
+
+#perspective {
+  perspective: 50px;  
+  background: #273036;
+  height: 200px;
+  overflow: hidden;
+}
+
+#perspective .skewthis {
+  transform-style: preserve-3d;
+    transform: rotateX(20deg);
+}

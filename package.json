@@ -1,11 +1,13 @@
 {
   "name": "psychic-engine",
+  "org": "@bigfatsoftware",
   "private": true,
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "start": "lerna run start",
+    "start": "lerna run start --stream",
+    "start:server": "cd ./packages/server && yarn start",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "changelog": "git-release-notes $(git describe --tags --abbrev=0 $(git describe --tags --abbrev=0)^)..$(git describe --tags --abbrev=0) scripts/changelog.md >> changelog.$(git describe --tags --abbrev=0).md"
   },

@@ -1,0 +1,5 @@
+{
+  "babel": false,
+  "node": "~/.nvm/versions/node/v15.0.1/bin/node",
+  "recycle": true
+}

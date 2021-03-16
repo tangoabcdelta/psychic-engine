@@ -1,0 +1,67 @@
+{
+    "build_systems":[{
+        "cmd": [
+            "/home/deveedutta/.nvm/versions/node/v15.0.1/bin/yarn",
+            "start"
+        ],
+        "shell": "true"
+    }],
+    "folders":
+    [
+        {
+            "path": ".",
+            "follow_symlinks": true
+        }
+    ],
+    "settings": {
+        "ignored_packages": [
+            "Vintage"
+        ],
+        "translate_tabs_to_spaces": true,
+        "tab_size": 2,
+        "use_tab_stops": true,
+        "detect_indentation": true,
+        "indent_to_bracket": true,
+        "word_wrap": true,
+        "wrap_width": 80,
+        "indent_subsequent_lines": true,
+        "auto_match_enabled": true,
+        "always_show_minimap_viewport": true,
+        "match_brackets": true,
+        "match_brackets_angle": true,
+        "draw_white_space": "all",
+        "trim_trailing_white_space_on_save": true,
+        "shift_tab_unindent": true,
+        "folder_exclude_patterns": [
+            ".svn",
+            ".git",
+            ".hg",
+            "CVS",
+            "node_modules",
+            ".vscode"
+        ],
+        "rulers": [80, 100],
+        "file_exclude_patterns": [
+            "*.pyc",
+            "*.pyo",
+            "*.exe",
+            "*.dll",
+            "*.obj",
+            "*.o",
+            "*.a",
+            "*.lib",
+            "*.so",
+            "*.dylib",
+            "*.ncb",
+            "*.sdf",
+            "*.suo",
+            "*.pdb",
+            "*.idb",
+            ".DS_Store",
+            "*.class",
+            "*.psd",
+            "*.db",
+            "*.sublime-workspace"
+        ]
+    }
+}

@@ -1,0 +1,111 @@
+{
+  "name": "tdp-et-al",
+  "version": "0.1.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "private": true,
+  "main": "./src/index.js",
+  "types": "./node_modules/@types/react/index.d.ts",
+  "dependencies": {
+    "axios": "0.21.1",
+    "bootstrap": "^4.5.3",
+    "classnames": "^2.2.6",
+    "headroom.js": "^0.12.0",
+    "lodash": "^4.17.20",
+    "moment": "^2.29.1",
+    "nouislider": "^14.6.3",
+    "os-utils": "^0.0.14",
+    "react": "^17.0.1",
+    "react-datetime": "^3.0.4",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.1",
+    "react-toastify": "^6.1.0",
+    "reactstrap": "^8.7.1",
+    "recharts": "^1.8.5",
+    "sass": "^1.29.0",
+    "styled-components": "^5.2.1",
+    "web-vitals": "^0.2.4"
+  },
+  "scripts": {
+    "start": "env-cmd -f .env.local react-scripts start",
+    "start-old": "react-scripts start",
+    "start-local": "env-cmd -f .env.local react-scripts start",
+    "build": "react-scripts build",
+    "build:dev": "NODE_ENV=dev && react-scripts build",
+    "build:prod": "env-cmd -f .env.prod react-scripts build",
+    "build:custom": "set \"REACT_APP_GIPHY_URL=http://www.gifbase.com\" && react-scripts build",
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 6006 -s public --no-dll",
+    "build-storybook": "build-storybook -s public --no-dll",
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+    "lint": "eslint ./src",
+    "test": "react-scripts test",
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
+    "test:cypress": "npx cypress run --spec 'cypress/integration/*'",
+    "test:jest": "npx jest",
+    "cypress:open": "cypress open",
+    "server:main": "json-server --watch ./jsonserver/index.js --middlewares ./jsonserver/middleware.js --routes ./jsonserver/routes.json --port 3004",
+    "server:aux": "json-server --watch ./jsonserver/index.js --port 3005",
+    "server:static": "json-server --watch ./jsonserver/db.json --port 3006",
+    "server:withmiddleware": "json-server --watch ./jsonserver/db.json --middlewares ./jsonserver/middleware.js --port 3007",
+    "changelog-preview": "git-release-notes $(git describe --tags --abbrev=0 $(git describe --tags --abbrev=0)^)..$(git describe --tags --abbrev=0) scripts/changelog.md",
+    "changelog": "git-release-notes $(git describe --tags --abbrev=0 $(git describe --tags --abbrev=0)^)..$(git describe --tags --abbrev=0) scripts/changelog.md >> changelog.$(git describe --tags --abbrev=0).md",
+    "deps-revision": "depcruise --exclude \"^node_modules\" --output-type dot src | dot -T svg > dependencygraph.$(git describe --tags --abbrev=0).svg",
+    "deps": "depcruise --exclude \"^node_modules\" --output-type dot src | dot -T svg > dependencygraph.svg"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not ie <= 11",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@storybook/addon-actions": "^6.0.28",
+    "@storybook/addon-essentials": "^6.0.28",
+    "@storybook/addon-links": "^6.0.28",
+    "@storybook/node-logger": "^6.0.28",
+    "@storybook/preset-create-react-app": "^3.1.4",
+    "@storybook/react": "^6.0.28",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/googlemaps": "3.39.2",
+    "@types/markerclustererplus": "2.1.33",
+    "@types/react": "16.9.19",
+    "babel-loader": "^8.1.0",
+    "cypress": "^6.0.0",
+    "dependency-cruiser": "9.23.1",
+    "env-cmd": "^10.1.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "faker": "^5.1.0",
+    "git-release-notes": "5.0.0",
+    "gulp": "4.0.2",
+    "gulp-append-prepend": "1.0.8",
+    "jquery": "3.4.1",
+    "parcel-bundler": "^1.12.4",
+    "react-is": "^17.0.1",
+    "sass-loader": "^10.1.0",
+    "typescript": "3.7.5"
+  },
+  "plugins": [
+    [
+      "@babel/plugin-proposal-class-properties",
+      {
+        "loose": true
+      }
+    ]
+  ]
+}

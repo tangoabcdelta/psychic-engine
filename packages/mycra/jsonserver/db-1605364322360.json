@@ -1,0 +1,634 @@
+{
+  "people": [
+    {
+      "id": 0,
+      "name": "Wanda Turner",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/to_soham/128.jpg"
+    },
+    {
+      "id": 1,
+      "name": "Miss Sherman Mayert",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/jay_wilburn/128.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Jim Hansen",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/salimianoff/128.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Woodrow Anderson",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/0therplanet/128.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Vanessa Beatty",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/ovall/128.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Diana Hagenes Jr.",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/jennyshen/128.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Hazel Emmerich",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/hai_ninh_nguyen/128.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Margie Kuphal",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/samscouto/128.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Janis Fay",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/victor_haydin/128.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Nellie Ward",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/marklamb/128.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Conrad Kub II",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/haydn_woods/128.jpg"
+    },
+    {
+      "id": 11,
+      "name": "Dr. Eileen Buckridge",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/areus/128.jpg"
+    },
+    {
+      "id": 12,
+      "name": "Cheryl Heidenreich",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/hafeeskhan/128.jpg"
+    },
+    {
+      "id": 13,
+      "name": "Tonya Marvin",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/tumski/128.jpg"
+    },
+    {
+      "id": 14,
+      "name": "Terrell Runte",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/isacosta/128.jpg"
+    },
+    {
+      "id": 15,
+      "name": "Mabel Green",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/1markiz/128.jpg"
+    },
+    {
+      "id": 16,
+      "name": "Franklin Leuschke V",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/ionuss/128.jpg"
+    },
+    {
+      "id": 17,
+      "name": "Raymond Dach",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/iamkeithmason/128.jpg"
+    },
+    {
+      "id": 18,
+      "name": "Shaun Cassin",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/2fockus/128.jpg"
+    },
+    {
+      "id": 19,
+      "name": "Denise Swaniawski",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/ralph_lam/128.jpg"
+    },
+    {
+      "id": 20,
+      "name": "Johnnie Hintz",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/hasslunsford/128.jpg"
+    },
+    {
+      "id": 21,
+      "name": "Cameron Jenkins",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/wim1k/128.jpg"
+    },
+    {
+      "id": 22,
+      "name": "Dawn Beahan",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/dpmachado/128.jpg"
+    },
+    {
+      "id": 23,
+      "name": "Muriel Herman DVM",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/ryandownie/128.jpg"
+    },
+    {
+      "id": 24,
+      "name": "Brenda Stamm",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/sandywoodruff/128.jpg"
+    },
+    {
+      "id": 25,
+      "name": "Elaine Fay",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/woodsman001/128.jpg"
+    },
+    {
+      "id": 26,
+      "name": "Mrs. Tina Schroeder",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/cynthiasavard/128.jpg"
+    },
+    {
+      "id": 27,
+      "name": "Jasmine Wisozk",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/edobene/128.jpg"
+    },
+    {
+      "id": 28,
+      "name": "Miss Randal Grimes",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/jghyllebert/128.jpg"
+    },
+    {
+      "id": 29,
+      "name": "Barbara Homenick",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/fronx/128.jpg"
+    },
+    {
+      "id": 30,
+      "name": "Alonzo Swift",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/ssbb_me/128.jpg"
+    },
+    {
+      "id": 31,
+      "name": "Marie Stiedemann",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/gregkilian/128.jpg"
+    },
+    {
+      "id": 32,
+      "name": "Diane Kuvalis",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/overra/128.jpg"
+    },
+    {
+      "id": 33,
+      "name": "Florence McDermott",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/markwienands/128.jpg"
+    },
+    {
+      "id": 34,
+      "name": "Brandy Kshlerin",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/increase/128.jpg"
+    },
+    {
+      "id": 35,
+      "name": "April Bednar",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/arishi_/128.jpg"
+    },
+    {
+      "id": 36,
+      "name": "Abraham Sipes",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/xilantra/128.jpg"
+    },
+    {
+      "id": 37,
+      "name": "Sadie Renner",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/timgthomas/128.jpg"
+    },
+    {
+      "id": 38,
+      "name": "Teri Gleichner",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/tristanlegros/128.jpg"
+    },
+    {
+      "id": 39,
+      "name": "Jeff Miller",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/jydesign/128.jpg"
+    },
+    {
+      "id": 40,
+      "name": "Donald Spencer PhD",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/aroon_sharma/128.jpg"
+    },
+    {
+      "id": 41,
+      "name": "Dewey Mosciski",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/wintopia/128.jpg"
+    },
+    {
+      "id": 42,
+      "name": "Mr. Chad Hegmann",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/bu7921/128.jpg"
+    },
+    {
+      "id": 43,
+      "name": "Albert Lemke",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/charlesrpratt/128.jpg"
+    },
+    {
+      "id": 44,
+      "name": "Terry McKenzie",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/bruno_mart/128.jpg"
+    },
+    {
+      "id": 45,
+      "name": "Raul Satterfield",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/dansowter/128.jpg"
+    },
+    {
+      "id": 46,
+      "name": "Velma Graham Jr.",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/jacksonlatka/128.jpg"
+    },
+    {
+      "id": 47,
+      "name": "Arlene Wisoky",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/surgeonist/128.jpg"
+    },
+    {
+      "id": 48,
+      "name": "Virginia Parker",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/emsgulam/128.jpg"
+    },
+    {
+      "id": 49,
+      "name": "Sean Shanahan",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/soyjavi/128.jpg"
+    },
+    {
+      "id": 50,
+      "name": "Joseph Pagac",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/seyedhossein1/128.jpg"
+    },
+    {
+      "id": 51,
+      "name": "Ms. Bryant Lueilwitz",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/antongenkin/128.jpg"
+    },
+    {
+      "id": 52,
+      "name": "Blake Rippin",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/jagan123/128.jpg"
+    },
+    {
+      "id": 53,
+      "name": "Sonja Rohan",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/logorado/128.jpg"
+    },
+    {
+      "id": 54,
+      "name": "Ms. Carroll Goldner",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/divya/128.jpg"
+    },
+    {
+      "id": 55,
+      "name": "Myra Heller",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/jasonmarkjones/128.jpg"
+    },
+    {
+      "id": 56,
+      "name": "Ms. Francis Rice",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/lingeswaran/128.jpg"
+    },
+    {
+      "id": 57,
+      "name": "Patricia Pfeffer",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/nelsonjoyce/128.jpg"
+    },
+    {
+      "id": 58,
+      "name": "Dustin Sawayn",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/gregkilian/128.jpg"
+    },
+    {
+      "id": 59,
+      "name": "Joy Feeney MD",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/nickfratter/128.jpg"
+    },
+    {
+      "id": 60,
+      "name": "Andrew Wunsch",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/johndezember/128.jpg"
+    },
+    {
+      "id": 61,
+      "name": "Kelvin Collier IV",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/mufaddal_mw/128.jpg"
+    },
+    {
+      "id": 62,
+      "name": "Cecelia Donnelly",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/michalhron/128.jpg"
+    },
+    {
+      "id": 63,
+      "name": "Kathryn Walsh DVM",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/joreira/128.jpg"
+    },
+    {
+      "id": 64,
+      "name": "Terence Reichert V",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/xilantra/128.jpg"
+    },
+    {
+      "id": 65,
+      "name": "Ismael Vandervort",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/nitinhayaran/128.jpg"
+    },
+    {
+      "id": 66,
+      "name": "Emanuel Rath",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/byrnecore/128.jpg"
+    },
+    {
+      "id": 67,
+      "name": "Lloyd Ledner",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/nicoleglynn/128.jpg"
+    },
+    {
+      "id": 68,
+      "name": "Cindy Lowe",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/anatolinicolae/128.jpg"
+    },
+    {
+      "id": 69,
+      "name": "Bradford Rosenbaum II",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/nathalie_fs/128.jpg"
+    },
+    {
+      "id": 70,
+      "name": "Kelli Boehm",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/ateneupopular/128.jpg"
+    },
+    {
+      "id": 71,
+      "name": "Garry McGlynn",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/danmartin70/128.jpg"
+    },
+    {
+      "id": 72,
+      "name": "Marco Douglas",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/iamjdeleon/128.jpg"
+    },
+    {
+      "id": 73,
+      "name": "Eduardo Hammes",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/gmourier/128.jpg"
+    },
+    {
+      "id": 74,
+      "name": "Carl Treutel",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/hjartstrorn/128.jpg"
+    },
+    {
+      "id": 75,
+      "name": "Donald Williamson",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/ankitind/128.jpg"
+    },
+    {
+      "id": 76,
+      "name": "Lorena Abernathy",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/tumski/128.jpg"
+    },
+    {
+      "id": 77,
+      "name": "Melissa Upton",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/levisan/128.jpg"
+    },
+    {
+      "id": 78,
+      "name": "Laura Koss MD",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/jervo/128.jpg"
+    },
+    {
+      "id": 79,
+      "name": "Sophia Durgan IV",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/poormini/128.jpg"
+    },
+    {
+      "id": 80,
+      "name": "Sherri Hyatt",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/Elt_n/128.jpg"
+    },
+    {
+      "id": 81,
+      "name": "Mr. Alexandra Powlowski",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/osvaldas/128.jpg"
+    },
+    {
+      "id": 82,
+      "name": "Malcolm Turner",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/christianoliff/128.jpg"
+    },
+    {
+      "id": 83,
+      "name": "Earl Feeney",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/wintopia/128.jpg"
+    },
+    {
+      "id": 84,
+      "name": "Ms. Dwight Tillman",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/ashocka18/128.jpg"
+    },
+    {
+      "id": 85,
+      "name": "Miss Jo MacGyver",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/fluidbrush/128.jpg"
+    },
+    {
+      "id": 86,
+      "name": "Ethel Volkman",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/bluesix/128.jpg"
+    },
+    {
+      "id": 87,
+      "name": "Rickey Kovacek",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg"
+    },
+    {
+      "id": 88,
+      "name": "Paul Schamberger III",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/alterchuca/128.jpg"
+    },
+    {
+      "id": 89,
+      "name": "Angelina Medhurst",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/chris_frees/128.jpg"
+    },
+    {
+      "id": 90,
+      "name": "Antonio Nienow",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/kojourin/128.jpg"
+    },
+    {
+      "id": 91,
+      "name": "Otis Bergnaum",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/pifagor/128.jpg"
+    },
+    {
+      "id": 92,
+      "name": "Kerry Goyette",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/phillapier/128.jpg"
+    },
+    {
+      "id": 93,
+      "name": "Kelvin Hessel",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/yassiryahya/128.jpg"
+    },
+    {
+      "id": 94,
+      "name": "Ms. Luz Wilderman",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/vigobronx/128.jpg"
+    },
+    {
+      "id": 95,
+      "name": "Miss Eloise Moore",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/juangomezw/128.jpg"
+    },
+    {
+      "id": 96,
+      "name": "Belinda Dibbert",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/mauriolg/128.jpg"
+    },
+    {
+      "id": 97,
+      "name": "Constance Torphy MD",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/apriendeau/128.jpg"
+    },
+    {
+      "id": 98,
+      "name": "Erika Hackett",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/gregkilian/128.jpg"
+    },
+    {
+      "id": 99,
+      "name": "Sherri Upton",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/guillemboti/128.jpg"
+    }
+  ],
+  "demands": {
+    "master-data": [
+      {
+        "display_name": "Lynch and Sons",
+        "total": 89699
+      },
+      {
+        "display_name": "O'Kon, Kovacek and Mraz",
+        "total": 42558
+      },
+      {
+        "display_name": "Considine - Batz",
+        "total": 76967
+      },
+      {
+        "display_name": "Effertz Inc",
+        "total": 17128
+      },
+      {
+        "display_name": "Stracke, Zieme and Spinka",
+        "total": 84680
+      },
+      {
+        "display_name": "Hegmann, Rempel and Schaefer",
+        "total": 4624
+      },
+      {
+        "display_name": "Muller - Okuneva",
+        "total": 92425
+      },
+      {
+        "display_name": "Ward - Bogan",
+        "total": 7404
+      },
+      {
+        "display_name": "Crooks, Torp and Lesch",
+        "total": 53730
+      },
+      {
+        "display_name": "Cartwright - Schinner",
+        "total": 95779
+      }
+    ],
+    "requisitions": []
+  },
+  "supplies": [
+    {
+      "id": 1,
+      "candidate_name": "Ms. Alexander Boehm",
+      "candidate_email": "Colton_Little@yahoo.com",
+      "candidate_phone": "+919876543210",
+      "experience": 6,
+      "salary": 443349
+    },
+    {
+      "id": 2,
+      "candidate_name": "Mr. Lola Harvey",
+      "candidate_email": "Tyree.Bailey93@yahoo.com",
+      "candidate_phone": "+919876543210",
+      "experience": 9,
+      "salary": 133482
+    },
+    {
+      "id": 3,
+      "candidate_name": "Mr. Madeline Welch",
+      "candidate_email": "Ayden.Quigley87@hotmail.com",
+      "candidate_phone": "+919876543210",
+      "experience": 6,
+      "salary": 681766
+    },
+    {
+      "id": 4,
+      "candidate_name": "Mark Adams",
+      "candidate_email": "Brandyn31@yahoo.com",
+      "candidate_phone": "+919876543210",
+      "experience": 9,
+      "salary": 1180397
+    },
+    {
+      "id": 5,
+      "candidate_name": "Levi Wilkinson",
+      "candidate_email": "Delphia.Harvey@hotmail.com",
+      "candidate_phone": "+919876543210",
+      "experience": 1,
+      "salary": 1347414
+    }
+  ],
+  "supplies-supplies": [
+    {
+      "id": 1,
+      "candidate_name": "Alberta Lynch I",
+      "candidate_email": "Wilton53@yahoo.com",
+      "candidate_phone": "+919876543210",
+      "experience": 7,
+      "salary": 1579592
+    },
+    {
+      "id": 2,
+      "candidate_name": "Veronica Cruickshank",
+      "candidate_email": "Kenneth_Mueller@hotmail.com",
+      "candidate_phone": "+919876543210",
+      "experience": 8,
+      "salary": 858996
+    },
+    {
+      "id": 3,
+      "candidate_name": "Inez Carroll III",
+      "candidate_email": "Shanelle32@hotmail.com",
+      "candidate_phone": "+919876543210",
+      "experience": 5,
+      "salary": 396283
+    },
+    {
+      "id": 4,
+      "candidate_name": "Melissa Shields",
+      "candidate_email": "Meghan_Price55@gmail.com",
+      "candidate_phone": "+919876543210",
+      "experience": 5,
+      "salary": 877748
+    },
+    {
+      "id": 5,
+      "candidate_name": "Merle Bergnaum",
+      "candidate_email": "Andre.Shanahan@gmail.com",
+      "candidate_phone": "+919876543210",
+      "experience": 5,
+      "salary": 1105329
+    }
+  ],
+  "supplies-config": []
+}

@@ -1,0 +1,102 @@
+import { Page } from '../components/Page';
+import { Section } from '../components/Section';
+
+<Page>
+<Section>
+
+# API Reference
+
+## `useComments`
+
+Fetches comments from Hasura backend specified in `hasuraUrl` on mount and
+whenever `config.limit` or `config.offset` change.
+
+### Parameters
+
+- **hasuraUrl**: URL of your Hasura instance. Your comments will be stored
+  there.
+- **postId**: Comments will be fetched for the post with identifier `postId`
+- **config**: Configurable offset and limit for the GraphQL query to Hasura. See
+  [`UseCommentsConfig`](#use-comments-config)
+
+### TypeScript Signature
+
+```ts
+const useComments: (
+  hasuraUrl: string,
+  postId: string,
+  config?: UseCommentsConfig | undefined
+) => UseComentsResult;
+```
+
+### Returns `UseComentsResult`
+
+```ts
+interface UseComentsResult {
+  comments: Comment[];
+  addComment: ({
+    content,
+    author,
+  }: Pick<Comment, 'content' | 'author'>) => void;
+  refetch: () => void;
+  count: number;
+  loading: boolean;
+  error: UseCommentsError | null;
+}
+```
+
+## `Comment`
+
+```ts
+export interface Comment {
+  post_id: string;
+  author: string;
+  content: string;
+  created_at: string;
+  status?: CommentStatus;
+}
+```
+
+## `UseCommentsConfig`
+
+Allows to implement pagination for the comments.
+[Learn more about implementing pagination](recipes/#pagination).
+
+```ts
+export interface UseCommentsConfig {
+  limit?: number;
+  offset?: number;
+}
+```
+
+## `CommentStatus`
+
+When user is adding a new comment it will be in one of four states:
+
+- `sending` — add comment request is still pending.
+- `added` — the comment was successfully added and is visible for other people.
+- `delivered-awaiting-approval` — the comment was successfully added, but it's
+  not yet visible for other people. You can make comments to require approval
+  before being visible to others. Read more about it
+  [here](recipes/#comments-with-approval).
+- `failed` — adding a comment was unsuccessful.
+
+```ts
+export declare type CommentStatus =
+  | 'sending'
+  | 'added'
+  | 'delivered-awaiting-approval'
+  | 'failed';
+```
+
+## `UseCommentsError`
+
+```ts
+interface UseCommentsError {
+  error: string;
+  details: string;
+}
+```
+
+</Section>
+</Page>

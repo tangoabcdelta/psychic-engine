@@ -1,0 +1,73 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "standard",
+    "plugin:jest/recommended"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "react-hooks",
+    "jest",
+    "jest-formatting"
+  ],
+  "rules": {
+    "@typescript-eslint/member-delimiter-style": [
+      "error",
+      {
+        "multiline": {
+          "delimiter": "none",
+          "requireLast": false
+        },
+        "singleline": {
+          "delimiter": "comma",
+          "requireLast": false
+        }
+      }
+    ],
+    "@typescript-eslint/explicit-member-accessibility": ["off"],
+    "@typescript-eslint/explicit-function-return-type": ["off"],
+    "@typescript-eslint/no-explicit-any": ["off"],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "jest/consistent-test-it": [
+      "error",
+      {
+        "fn": "it"
+      }
+    ],
+    "jest-formatting/padding-before-test-blocks": 2,
+    "jest-formatting/padding-before-describe-blocks": 2,
+    "react/prop-types": 0,
+    "prefer-const": "warn",
+    "no-var": "warn",
+    "space-before-function-paren": ["error", {
+      "anonymous": "never",
+      "named": "never",
+      "asyncArrow": "always"
+    }]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

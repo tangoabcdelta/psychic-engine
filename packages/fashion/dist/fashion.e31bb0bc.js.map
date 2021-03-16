@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.js"],"names":["console","log","module","exports","FOO"],"mappings":"AAAAA,OAAO,CAACC,GAAR,CAAY,qBAAZ;AAGAC,MAAM,CAACC,OAAP,GAAiB;AACfC,EAAAA,GAAG,EAAE;AADU,CAAjB","file":"fashion.e31bb0bc.js","sourceRoot":"..","sourcesContent":["console.log('hello: form recruit');\n\n\nmodule.exports = {\n  FOO: \"bar\"\n};\n"]}
