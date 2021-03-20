@@ -31,3 +31,5 @@ debug.log*
 ./packages/fashion/package/.cache
 ./packages/fashion/package/.cache/*
 ./packages/**/.cache
+
+./**/node_modules

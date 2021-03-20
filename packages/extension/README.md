@@ -25,7 +25,6 @@ To create an annotated tag in git run the following command in terminal:
     # to push a single tag
     git push origin <tag>
 
-
 ## Sublime DOCUMENTATION
 
 ### Sublime Projects
@@ -33,7 +32,9 @@ To create an annotated tag in git run the following command in terminal:
 As a general rule, the .sublime-project file would be checked into version control, while the .sublime-workspace file would not.
 
 ### Project Format
+
 `.sublime-project` files are `JSON`, and support three top level sections:
+
 - `folders`, for the included folders,
 - `settings`, for file-setting overrides, and
 - `build_systems`, for project specific build systems.
@@ -44,9 +45,11 @@ As a general rule, the .sublime-project file would be checked into version contr
 - http://sublimetext.info/docs/en/reference/build_systems.html
 
 An example:
+
 ```json
 {
-  "folders": [{
+  "folders": [
+    {
       "path": "src",
       "folder_exclude_patterns": ["backup"],
       "follow_symlinks": true
@@ -60,7 +63,8 @@ An example:
   "settings": {
     "tab_size": 8
   },
-  "build_systems": [{
+  "build_systems": [
+    {
       "name": "List",
       "shell_cmd": "ls -l"
     },
@@ -97,15 +101,23 @@ An example:
       "file_patterns": ["*.ext"]
     },
     {
-      "cmd": ["g++", "-std=gnu++11", "${file}", "-o", "${file_path}/${file_base_name}"],
+      "cmd": [
+        "g++",
+        "-std=gnu++11",
+        "${file}",
+        "-o",
+        "${file_path}/${file_base_name}"
+      ],
       "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
       "working_dir": "${file_path}",
       "selector": "source.c, source.c++",
 
-      "variants": [{
-        "name": "Run",
-        "cmd": ["${file_path}/${file_base_name}"]
-      }]
+      "variants": [
+        {
+          "name": "Run",
+          "cmd": ["${file_path}/${file_base_name}"]
+        }
+      ]
     },
     {
       "cmd": ["c:/Python32/python.exe", "-u", "$file"],
@@ -133,11 +145,9 @@ An example:
       "shell_cmd": "gradle",
       "working_dir": "${project_path}"
     }
-
   ]
 }
 ```
-
 
 ### Page Action
 

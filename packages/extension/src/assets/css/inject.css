@@ -50,6 +50,7 @@ body {
     #fbff27
   );
   background-size: 400% 400%;
+  background-attachment: fixed;
   animation: gradient 144s ease infinite;
 }
 .chrome________extension__MSG_@@extension_id__ * {
@@ -129,3 +130,7 @@ h6 {
   border-radius: 50px 50px 50px 0;
   transform: rotate(45deg);
 }
+
+
+.chrome________extension__MSG_@@extension_id__ {}
+

@@ -59,7 +59,6 @@
       "css": ["src/assets/css/default.css"],
       "js": [
         "src/assets/js/jquery.min.js",
-        "src/assets/js/inject.mjs",
         "src/assets/js/store.js"
       ]
     }

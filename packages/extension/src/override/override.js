@@ -47,3 +47,4 @@ $(function() {
     item.addEventListener("click", calc, false);
   });
 });
+

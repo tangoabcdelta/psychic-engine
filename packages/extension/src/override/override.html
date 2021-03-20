@@ -266,6 +266,11 @@
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         overflow: hidden;
       }
+      .calculator input[type="text"] {
+      background: transparent;
+      color: #fff;
+      text-align: right
+    }
       /* button */
       .calculator button {
         width: 50px;
@@ -326,8 +331,10 @@
     </pre>
     <div id="jdCBIVE" class="calculator s_flex">
       <div class="screen">
-        <div class="cal_formula">88 x 2</div>
-        <div class="cal_total" id="Result1">176</div>
+        <!-- <div class="cal_formula">88 x 2</div> -->
+        <input class="cal_formula" value="88 x 2" />
+        <input type="text" class="cal_total" id="Result1" value="176" />
+        <!-- <div type="text" class="cal_total" id="Result1" value="">176</div> -->
       </div>
       <div class="main">
         <button>7</button>
@@ -347,34 +354,11 @@
         <button>%</button>
       </div>
     </div>
-    <pre id="W29iamV">
-      .wrapper {
-        position: relative;
-      }
-      .info {
-        font-size: 0.8rem;
-        width: 200px;
-        display: inline-block;
-        border: 1px solid black;
-        padding: 10px;
-        background: white;
-        border-radius: 10px;
-        opacity: 0;
-        transition: 0.6s all;
-        position: absolute;
-        bottom: 20px;
-        left: 10px;
-        z-index: 3;
-      }
-
-      img {
-        width: 1.2rem;
-      }
-
-      .icon:hover + .info,
-      .icon:focus + .info {
-        opacity: 1;
-      }
-    </pre>
   </span>
+
+  <script id="hello-world-template" type="text/x-handlebars-template">
+    <div class="entry">
+      <h1>Hello, {{thing}}!</h1>
+    </div>
+  </script>
 </html>

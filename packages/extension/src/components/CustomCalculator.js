@@ -1,70 +1,26 @@
-// // CustomElementRegistry
-
-// class CustomCalculator extends HTMLElement {
-//   constructor() {
-//     super(); //always need to call super() first in a constructor
-
-//     const shadow = this.attachShadow({
-//       mode: "open",
-//     });
-
-//     const wrapper = document.createElement("span");
-//     wrapper.setAttribute("class", "wrapper");
-
-//     const icon = document.createElement("span");
-//     icon.setAttribute("class", "icon");
-//     icon.setAttribute("tabindex", 0);
-
-//     const info = document.createElement("span");
-//     info.setAttribute("class", "info");
-
-//     const text = this.getAttribute("text");
-//     info.textContent = text; // Take attribute content and put it inside the info span
-
-//     const imgUrl;
-//     if(this.hasAttribute('img')) {
-//       imgUrl = this.getAttribute('img');
-//     } else {
-//       imgUrl = 'img/default.png';
-//     }
-//     const img = document.createElement('img');
-//     img.src = imgUrl;
-//     icon.appendChild(img);
-
-//     var style = document.createElement('style');
-
-//     // attach the created elements to the shadow dom
-
-//     shadow.appendChild(style);
-//     shadow.appendChild(wrapper);
-//     wrapper.appendChild(icon);
-//     wrapper.appendChild(info);
-//   }
-// }
-
-// customElements.define('custom-calculator', CustomCalculator);
-
 // Create a class for the element
 class CustomCalculator extends HTMLElement {
+  #shadow;
+  #wrapper;
+  #result;
   constructor() {
     // Always call super first in constructor
     super();
+    this.attachHTML();
+  }
 
+  attachHTML() {
     // Create a shadow root
-    const shadow = this.attachShadow({ mode: "open" });
-
+    this.shadow = this.attachShadow({ mode: "open" });
     // Create spans
-    const wrapper = document.createElement("span");
-    wrapper.setAttribute("class", "wrapper");
+    this.wrapper = document.createElement("span");
+    this.wrapper.setAttribute("class", "wrapper");
     const icon = document.createElement("span");
     icon.setAttribute("class", "icon");
-    icon.setAttribute("tabindex", 0);
-    const info = document.createElement("span");
-    info.setAttribute("class", "info");
 
     // Take attribute content and put it inside the info span
-    const text = this.getAttribute("text");
-    info.textContent = text;
+    // const text = this.getAttribute("text");
+    // info.textContent = text;
 
     // Insert icon
     let imgUrl;
@@ -77,29 +33,62 @@ class CustomCalculator extends HTMLElement {
     img.src = imgUrl;
     icon.appendChild(img);
 
-    const elements = ["1MRWxlb"];
-    const styles = ["W29iamV", "jdCBIVE"];
+    const elements = ["jdCBIVE"];
+    const styles = ["1MRWxlb"];
     // Create some CSS to apply to the shadow dom
     // Array.from({ length: styles.length }, (x, i) => {
-    Array.from(elements, (selector, index) => {
-      let markup = document.getElementById(selector).cloneNode(true);
-      wrapper.appendChild(markup);
+    Array.from(elements, (selector) => {
+      let el = document.getElementById(selector).cloneNode(true);
+      el.setAttribute("tabindex", 0);
+      this.wrapper.appendChild(el);
     });
 
-    Array.from(styles, (selector, index) => {
-      let el = document.createElement("style");
-      el.textContent = document.getElementById(selector).innerText;
-      wrapper.appendChild(el);
+    Array.from(styles, (selector) => {
+      let st = document.createElement("style");
+      st.textContent = document.getElementById(selector).innerText;
+      this.wrapper.appendChild(st);
     });
 
     // attach the created elements to the shadow dom
+    window.requestAnimationFrame(() => {
+      this.shadow.appendChild(this.wrapper);
+      this.onMount();
+    });
+  }
 
-    wrapper.appendChild(icon);
+  onMount() {
+    const res =
+      this.wrapper.querySelector("#Result1") ||
+      document.querySelector(".cal_total");
+    const formula = this.wrapper.querySelector(".cal_formula");
+    const del = () => {
+      res.value = "0";
+    };
 
-    wrapper.appendChild(info);
+    const num = (n, calc) => {
+      console.log(n);
+      (calc && (res.value = eval(formula.value))) || (formula.value += n);
+    };
 
-    // shadow.appendChild(style);
-    shadow.appendChild(wrapper);
+    const clickListener = (event) => {
+      num(
+        event?.target?.innerText,
+        event?.target?.className?.indexOf("equal") > -1
+      ); // event?.target[0]?.innerText
+    };
+
+    const mainButton = this.wrapper.querySelectorAll(".main button");
+    Array.from(mainButton, (button) => {
+      button.addEventListener("click", clickListener, false);
+    });
+
+    // document.querySelector("").addEventListener("click", calc, false);
+  }
+
+  onUnmount() {
+    mainButton.map((button) => {
+      button.removeEventListener("click", clickListener);
+    });
   }
 }
 

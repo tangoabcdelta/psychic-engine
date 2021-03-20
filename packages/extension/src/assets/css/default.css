@@ -1,2 +1,14 @@
 * {
 }
+
+
+/*ad blok*/
+[data-text-ad],
+[aria-label="Advertiser link"],
+[aria-label="Advertiser image link"],
+iframe {
+  display: block !important;
+  height: 1px !important;
+  width: 1px !important;
+  border:10px solid red !important;
+}
