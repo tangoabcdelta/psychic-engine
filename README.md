@@ -1,3 +1,5 @@
+file location: psychic-engine/README.md
+
 - Workspaces can only be enabled in private projects.
 
 ```
@@ -45,3 +47,13 @@ git push -u origin main
 
 yarn run v1.22.10
 info Commands available from binary scripts: JSONStream, acorn, ansi-to-html, atob, brfs, browserslist, conventional-changelog-writer, conventional-commits-parser, conventional-recommended-bump, cssesc, envinfo, escodegen, esgenerate, eslint, esparse, esvalidate, get-pkg-repo, git-raw-commits, git-semver-tags, handlebars, import-local-fixture, is-ci, js-yaml, jsesc, json5, lerna, lint, loose-envify, miller-rabin, mime, mkdirp, node-gyp, node-which, nopt, parcel, parser, prettier, purgecss, quote-stream, regjsparser, replace-in-file, rimraf, semver, sha.js, sl-log-transformer, sshpk-conv, sshpk-sign, sshpk-verify, svgo, terser, tsc, tsserver, uglifyjs, uncss, uuid
+
+
+
+```
+ps ax
+watch ps ax
+
+# look at the tree of processes
+pstree -p
+```

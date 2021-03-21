@@ -1,0 +1,5 @@
+[
+  { "keys": ["shift+alt+f"], "command": "js_prettier" },
+  { "keys": ["ctrl+shift+e"], "command": "reveal_in_side_bar" },
+  { "keys": ["alt+ctrl+shift+c"], "command": "copy_path" }
+]
