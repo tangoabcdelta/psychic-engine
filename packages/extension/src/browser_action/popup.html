@@ -1,79 +1,78 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="Readability.js"></script>
     <script src="popup.js"></script>
     <style type="text/css">
-    #mainPopup {
+      #mainPopup {
         padding: 10px;
         height: 900px;
         width: 400px;
         font-family: Helvetica, Ubuntu, Arial, sans-serif;
-    }
+      }
 
-    h1 {
+      h1 {
         font-size: 2em;
-    }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="mainPopup">
-        <div>Search Bookmarks: <input id="search" /></div>
-        <div id="bookmarks"></div>
-        <div id="editdialog"></div>
-        <div id="deletedialog"></div>
-        <div id="adddialog"></div>
-        <p>
-            To shut this popup down, edit the manifest file and remove the "default
-            popup" key. To edit it, just edit ext/page_action/page_action.html. The
-            CSS is there, too.
-        </p>
-        <style type="text/css">
+      <div>Search Bookmarks: <input id="search" /></div>
+      <div id="bookmarks"></div>
+      <div id="editdialog"></div>
+      <div id="deletedialog"></div>
+      <div id="adddialog"></div>
+      <p>
+        To shut this popup down, edit the manifest file and remove the "default
+        popup" key. To edit it, just edit ext/page_action/page_action.html. The
+        CSS is there, too.
+      </p>
+      <style type="text/css">
         .speech {
-            box-sizing: border-box;
-            width: 75px;
-            height: 75px;
-            position: relative;
-            display: inline-block;
-            background: transparent;
-            border-radius: 10px;
-            background: #212121;
-            animation: audio 0.3s infinite alternate;
+          box-sizing: border-box;
+          width: 75px;
+          height: 75px;
+          position: relative;
+          display: inline-block;
+          background: transparent;
+          border-radius: 10px;
+          background: #212121;
+          animation: audio 0.3s infinite alternate;
         }
 
         @keyframes audio {
-            0% {
-                box-shadow: 0 0 0 0px #212121, 0 0 0 50px #616161;
-            }
+          0% {
+            box-shadow: 0 0 0 0px #212121, 0 0 0 50px #616161;
+          }
 
-            50% {
-                box-shadow: 0 0 0 0px #212121, 0 0 0 40px #616161;
-            }
+          50% {
+            box-shadow: 0 0 0 0px #212121, 0 0 0 40px #616161;
+          }
 
-            75% {
-                box-shadow: 0 0 0 0px #212121, 0 0 0 50px #616161;
-            }
+          75% {
+            box-shadow: 0 0 0 0px #212121, 0 0 0 50px #616161;
+          }
 
-            100% {
-                box-shadow: 0 0 0 0px #212121, 0 0 0 40px #616161;
-            }
+          100% {
+            box-shadow: 0 0 0 0px #212121, 0 0 0 40px #616161;
+          }
         }
 
         @keyframes calm2 {
-            0% {
-                box-shadow: 0 0 0 10px #3e92d2, 0 0 0 40px #1f445f;
-            }
+          0% {
+            box-shadow: 0 0 0 10px #3e92d2, 0 0 0 40px #1f445f;
+          }
 
-            100% {
-                box-shadow: 0 0 0 15px #3e92d2, 0 0 0 25px #1f445f;
-            }
+          100% {
+            box-shadow: 0 0 0 15px #3e92d2, 0 0 0 25px #1f445f;
+          }
         }
-        </style>
-        <div class="speech"></div>
-        <button>READ</button>
+      </style>
+      <div class="speech"></div>
+      <button id="button.read.page">READ</button>
     </div>
-</body>
-
+  </body>
 </html>

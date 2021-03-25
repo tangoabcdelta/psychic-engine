@@ -1,0 +1,49 @@
+[user]
+    name = <Your name>
+    email = <Your email>
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    br = branch -v
+    rt = reset --hard
+    df = diff
+    dc = diff --cached
+    unstage = reset HEAD
+    uncommit = reset --soft HEAD^
+    l = log --graph --decorate --pretty=oneline --abbrev-commit
+    la = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    lg = log --graph --decorate --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
+    lp = log -p
+    ls = ls-files
+    amend = commit --amend
+    who = shortlog -n -s --no-merges
+    g = grep -n --color -E
+    cp = cherry-pick -x
+    nb = checkout -b
+    addall = !sh -c 'git add . && git add -u'
+    # Upstream merge:
+    upsmerge = !sh -c 'git fetch origin -v && git fetch upstream -v && git merge upstream/master'
+    # Show files ignored by git:
+    ign = ls-files -o -i --exclude-standard
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+[core]
+    excludesfile = ~/.gitignore
+    editor = vim
+    autocrlf = input
+    ignorecase = false
+[apply]
+    whitespace = nowarn
+[format]
+    pretty = %C(yellow)%H%Creset %s %C(red)(%an, %cr)%Creset
+[i18n]
+    filesEncoding = utf-8
+    commitencoding = utf-8
+    logoutputencoding = utf-8
+[push]
+    default = current
+[github]
+    name = <Your github account>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/src/assets/css/bootstrap.min.css"
+      media="screen"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/src/assets/css/inject.css"
+      media="screen"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/src/assets/css/calc.css"
+      media="screen"
+    />
+    <script
+      defer
+      type="text/javascript"
+      src="/src/assets/js/jquery.min.js"
+    ></script>
+    <script
+      defer
+      type="text/javascript"
+      src="/src/assets/js/lodash.min.js"
+    ></script>
+    <script
+      defer
+      type="text/javascript"
+      src="/src/assets/js/moment.min.js"
+    ></script>
+    <!-- <script defer type="text/javascript" src="/src/assets/js/utils.js"></script> -->
+    <script defer src="./override.js"></script>
+    <style>
+      .container {
+        display: flex;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+      }
+      .container .calculator {
+        width: 80%;
+        height: auto;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        overflow: hidden;
+      }
+    </style>
+    <script>
+      (function() {
+        var width = 320; // We will scale the photo width to this
+        var height = 0; // This will be computed based on the input stream
+
+        var streaming = false;
+
+        var video = null;
+        var canvas = null;
+        var photo = null;
+        var startbutton = null;
+      })();
+    </script>
+  </head>
+
+  <body
+    class="flex justify-center"
+    id="chrome________extension__MSG_@@extension_id__"
+  >
+    <div class="wrapper">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#"
+                >Home <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Dropdown
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input
+              class="form-control mr-sm-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </nav>
+      <div
+        class="container d-flex justify-content-center align-items-center flex-column"
+      >
+        <div class="container">
+          <div class="calculator s_flex">
+            <div class="screen">
+              <div class="cal_formula">88 x 2</div>
+              <div class="cal_total" id="Result1">176</div>
+              <div class="camera">
+                <video id="video">Video stream not available.</video>
+              </div>
+              <canvas id="canvas"> </canvas>
+              <div class="output">
+                <img
+                  id="photo"
+                  alt="The screen capture will appear in this box."
+                />
+              </div>
+            </div>
+            <div class="main">
+              <button>1</button>
+              <button>2</button>
+              <button>3</button>
+              <button>+</button>
+              <button>0</button>
+              <button></button>
+              <button></button>
+              <button class="equal">=</button>
+
+              <button></button>
+              <button>7</button>
+              <button>8</button>
+              <button>9</button>
+              <button>x</button>
+              <button>4</button>
+              <button>5</button>
+              <button>6</button>
+              <button>-</button>
+
+              <button class="equal" id="startbutton">Take photo</button>
+              <button></button>
+              <button>%</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

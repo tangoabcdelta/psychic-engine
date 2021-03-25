@@ -1,0 +1,94 @@
+[user]
+	name = Pavan Kumar Sunkara
+	email = pavan.sss1991@gmail.com
+[core]
+	editor = vim
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+[sendemail]
+	smtpencryption = tls
+	smtpserver = smtp.gmail.com
+	smtpuser = pavan.sss1991@gmail.com
+	smtppass = password
+	smtpserverport = 587
+	to = git@vger.kernel.org
+[web]
+	browser = google-chrome
+[alias]
+	s = status
+	sa = stash apply
+	sc = stash clear
+	sd = stash drop
+	sl = stash list
+	sp = stash pop
+	ss = stash save
+	d = diff
+	dc = diff --cached
+	dk = diff --check
+	dck = diff --cached --check
+	c = commit
+	ca = commit -a
+	cm = commit -m
+	cam = commit -am
+	cd = commit --amend
+	cad = commit -a --amend
+	a = add .
+	ap = apply
+	as = apply --stat
+	ac = apply --check
+	l = log --oneline
+	lg = log --oneline --graph
+	o = checkout
+	ob = checkout -b
+	b = branch
+	ba = branch -a
+	bd = branch -d
+	br = branch -r
+	f = fetch
+	fp = format-patch
+	fk = fsck
+	m = merge
+	ps = push
+	pl = pull
+	pb = pull --rebase
+	pr = prune -v
+	psf = push -f
+	psu = push -u
+	pso = push origin
+	plo = pull origin
+	pbo = pull --rebase origin
+	psfo = push -f origin
+	psuo = push -u origin
+	r = remote
+	rb = rebase
+	re = reset
+	reh = reset --hard
+	rem = reset --mixed
+	res = reset --soft
+	rehh = reset --hard HEAD
+	remh = reset --mixed HEAD
+	resh = reset --soft HEAD
+	rv = remote -v
+	rp = remote prune
+	rs = remote show
+	rso = remote show origin
+	rpo = remote prune origin
+	w = show
+	meldon = config diff.external /home/pkumar/.diff.py
+	meldof = config --remove-section diff
+	human = name-rev --name-only --refs=refs/heads/*
+[color]
+	ui = true
+[color "branch"]
+	current = yellow bold
+	local = green bold
+	remote = cyan bold
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[color "status"]
+	added = green bold
+	changed = yellow bold
+	untracked = red bold

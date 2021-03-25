@@ -1,0 +1,58 @@
+[
+  {
+    "filter_name": "blind_recruitment",
+    "status": "active",
+    "categorized": false,
+    "user": "foobar",
+    "config": []
+  },
+  {
+    "filter_name": "time_sensitive",
+    "status": "active",
+    "categorized": false,
+    "user": "foobar",
+    "config": []
+  },
+  {
+    "filter_name": "cost_sensitive",
+    "status": "active",
+    "categorized": false,
+    "user": "foobar",
+    "config": []
+  },
+  {
+    "filter_name": "performance_sensitive",
+    "status": "active",
+    "categorized": false,
+    "user": "foobar",
+    "config": []
+  },
+  {
+    "filter_name": "mandatory_skills",
+    "status": "active",
+    "categorized": false,
+    "user": "foobar",
+    "config": []
+  },
+  {
+    "filter_name": "notice_period",
+    "status": "active",
+    "categorized": false,
+    "user": "foobar",
+    "config": []
+  },
+  {
+    "filter_name": "current_location",
+    "status": "active",
+    "categorized": false,
+    "user": "foobar",
+    "config": []
+  },
+  {
+    "filter_name": "current_location",
+    "status": "active",
+    "categorized": false,
+    "user": "foobar",
+    "config": []
+  }
+]

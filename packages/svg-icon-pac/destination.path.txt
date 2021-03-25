@@ -1,0 +1,1 @@
+/home/deveedutta/Documents/Projects/tdp-recruit-ui/src/assets/images/job_card

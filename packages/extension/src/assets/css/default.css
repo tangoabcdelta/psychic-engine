@@ -1,9 +1,8 @@
 * {
 }
 
-
 /*ad blok*/
-[data-text-ad],
+/* [data-text-ad],
 [aria-label="Advertiser link"],
 [aria-label="Advertiser image link"],
 iframe {
@@ -11,4 +10,4 @@ iframe {
   height: 1px !important;
   width: 1px !important;
   border:10px solid red !important;
-}
+} */

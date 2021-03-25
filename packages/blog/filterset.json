@@ -1,0 +1,448 @@
+[{
+    "name": "default",
+    "config": {
+        "edge_insights": {
+            "display_name": "EdGE Insights(Not Información perimetral)",
+            "categorized": true,
+            "exists": true,
+            "sub_filters": {
+                "immediately_available": {
+                    "display_name": "Immediately Available",
+                    "categorized": false,
+                    "exists": true,
+                    "default": null
+                },
+                "top_university": {
+                    "display_name": "Top University",
+                    "categorized": false,
+                    "exists": true,
+                    "default": null
+                },
+                "diversity_candidate": {
+                    "display_name": "Diversity Candidate",
+                    "categorized": false,
+                    "exists": true,
+                    "default": null
+                },
+                "silver_medalist_candidate": {
+                    "display_name": "Silver Medalist Candidate",
+                    "categorized": false,
+                    "exists": true,
+                    "default": null
+                },
+                "fast_tracker": {
+                    "display_name": "Fast Tracker",
+                    "categorized": false,
+                    "exists": true,
+                    "default": null
+                },
+                "high_potential": {
+                    "display_name": "High Potential",
+                    "categorized": false,
+                    "exists": true,
+                    "default": null
+                }
+            }
+        },
+        "star_ratings": {
+            "display_name": "Clasificaciones de estrellas",
+            "categorized": false,
+            "exists": true,
+            "default": null
+        },
+        "blind_recruitment": {
+            "display_name": "Reclutamiento ciego",
+            "categorized": false,
+            "exists": true,
+            "default": null
+        },
+        "time_sensitive": {
+            "display_name": "Tiempo sensible",
+            "categorized": false,
+            "exists": true,
+            "default": null
+        },
+        "cost_sensitive": {
+            "display_name": "Sensible al costo",
+            "categorized": false,
+            "exists": true,
+            "default": null
+        },
+        "performance_sensitive": {
+            "display_name": "Sensible al rendimiento",
+            "categorized": false,
+            "exists": true,
+            "default": null
+        },
+        "frozen_candidates": {
+            "display_name": "Candidatos congelados",
+            "categorized": false,
+            "exists": true,
+            "default": null
+        },
+        "mandatory_skills": {
+            "display_name": "Habilidades obligatorias",
+            "categorized": false,
+            "exists": true,
+            "default": null
+        },
+        "only_my_actions": {
+            "display_name": "Solo mis acciones",
+            "categorized": false,
+            "exists": true,
+            "default": null
+        },
+        "notice_period": {
+            "display_name": "Plazo de aviso",
+            "categorized": false,
+            "exists": true,
+            "default": null
+        },
+        "current_location": {
+            "display_name": "Ubicación actual",
+            "categorized": false,
+            "exists": true,
+            "default": null
+        },
+        "preferred_location": {
+            "display_name": "ubicación preferida",
+            "categorized": false,
+            "exists": true,
+            "default": null
+        },
+        "current_organization": {
+            "display_name": "Organización actual",
+            "categorized": false,
+            "exists": true,
+            "default": null
+        },
+        "experience": {
+            "display_name": "Experiencia",
+            "categorized": false,
+            "exists": true,
+            "default": null
+        },
+        "education_qualification": {
+            "display_name": "Calificación de Educación",
+            "categorized": false,
+            "exists": true,
+            "default": null
+        },
+        "college": {
+            "display_name": "Universidad",
+            "categorized": false,
+            "exists": true,
+            "default": null
+        },
+        "mail_status": {
+            "display_name": "Estado del correo",
+            "categorized": false,
+            "exists": true,
+            "default": null
+        },
+        "source": {
+            "display_name": "Fuente",
+            "categorized": false,
+            "exists": true,
+            "default": null
+        }
+    }
+}, {
+    "name": "bangalore_cost_sensitive_immediately_available",
+    "config": {
+        "edge_insights": {
+            "display_name": "Edge Insights",
+            "categorized": true,
+            "exists": true,
+            "sub_filters": {
+                "immediately_available": {
+                    "display_name": "Immediately Available",
+                    "categorized": false,
+                    "exists": true,
+                    "default": true
+                },
+                "top_university": {
+                    "display_name": "Top University",
+                    "categorized": false,
+                    "exists": false,
+                    "default": null
+                },
+                "diversity_candidate": {
+                    "display_name": "Diversity Candidate",
+                    "categorized": false,
+                    "exists": false,
+                    "default": null
+                },
+                "silver_medalist_candidate": {
+                    "display_name": "Silver Medalist Candidate",
+                    "categorized": false,
+                    "exists": false,
+                    "default": null
+                },
+                "fast_tracker": {
+                    "display_name": "fast_tracker",
+                    "categorized": false,
+                    "exists": false,
+                    "default": null
+                },
+                "high_potential": {
+                    "display_name": "high_potential",
+                    "categorized": false,
+                    "exists": false,
+                    "default": null
+                }
+            }
+        },
+        "star_ratings": {
+            "display_name": "star_ratings",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "blind_recruitment": {
+            "display_name": "blind_recruitment",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "time_sensitive": {
+            "display_name": "time_sensitive",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "cost_sensitive": {
+            "display_name": "cost_sensitive",
+            "categorized": false,
+            "exists": true,
+            "default": true
+        },
+        "performance_sensitive": {
+            "display_name": "performance_sensitive",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "frozen_candidates": {
+            "display_name": "frozen_candidates",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "mandatory_skills": {
+            "display_name": "mandatory_skills",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "only_my_actions": {
+            "display_name": "only_my_actions",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "notice_period": {
+            "display_name": "notice_period",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "current_location": {
+            "display_name": "current_location",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "preferred_location": {
+            "display_name": "preferred_location",
+            "categorized": false,
+            "exists": true,
+            "default": "bangalore"
+        },
+        "current_organization": {
+            "display_name": "current_organization",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "experience": {
+            "display_name": "experience",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "education_qualification": {
+            "display_name": "education_qualification",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "college": {
+            "display_name": "college",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "mail_status": {
+            "display_name": "mail_status",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "source": {
+            "display_name": "source",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        }
+    }
+}, {
+    "name": "chennai_performance_sensitive_silver_medalist",
+    "config": {
+        "edge_insights": {
+            "display_name": "Edge Insights",
+            "categorized": true,
+            "exists": true,
+            "sub_filters": {
+                "immediately_available": {
+                    "display_name": "Immediately Available",
+                    "categorized": false,
+                    "exists": false,
+                    "default": null
+                },
+                "top_university": {
+                    "display_name": "Top University",
+                    "categorized": false,
+                    "exists": false,
+                    "default": null
+                },
+                "diversity_candidate": {
+                    "display_name": "Diversity Candidate",
+                    "categorized": false,
+                    "exists": false,
+                    "default": null
+                },
+                "silver_medalist_candidate": {
+                    "display_name": "Silver Medalist Candidate",
+                    "categorized": false,
+                    "exists": true,
+                    "default": null
+                },
+                "fast_tracker": {
+                    "display_name": "fast_tracker",
+                    "categorized": false,
+                    "exists": false,
+                    "default": null
+                },
+                "high_potential": {
+                    "display_name": "high_potential",
+                    "categorized": false,
+                    "exists": false,
+                    "default": null
+                }
+            }
+        },
+        "star_ratings": {
+            "display_name": "star_ratings",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "blind_recruitment": {
+            "display_name": "blind_recruitment",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "time_sensitive": {
+            "display_name": "time_sensitive",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "cost_sensitive": {
+            "display_name": "cost_sensitive",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "performance_sensitive": {
+            "display_name": "performance_sensitive",
+            "categorized": false,
+            "exists": true,
+            "default": null
+        },
+        "frozen_candidates": {
+            "display_name": "frozen_candidates",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "mandatory_skills": {
+            "display_name": "mandatory_skills",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "only_my_actions": {
+            "display_name": "only_my_actions",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "notice_period": {
+            "display_name": "notice_period",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "current_location": {
+            "display_name": "current_location",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "preferred_location": {
+            "display_name": "preferred_location",
+            "categorized": false,
+            "exists": true,
+            "default": "chennai"
+        },
+        "current_organization": {
+            "display_name": "current_organization",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "experience": {
+            "display_name": "experience",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "education_qualification": {
+            "display_name": "education_qualification",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "college": {
+            "display_name": "college",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "mail_status": {
+            "display_name": "mail_status",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        },
+        "source": {
+            "display_name": "source",
+            "categorized": false,
+            "exists": false,
+            "default": null
+        }
+    }
+}]
