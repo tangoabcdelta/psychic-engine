@@ -1,70 +1,169 @@
 <html class="no-js">
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Learning JavaScript Design Patterns</title>
+    <meta name="description" content="An open-source book on JavaScript Design Patterns" />
+    <meta name="author" content="Addy Osmani" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="cleartype" content="on" />
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <style>
+      section {
+        content-visibility: auto;
+        contain-intrinsic-size: 1px 1000px;
+      }
+    </style>
+    <link rel="stylesheet" href="./Learning JavaScript Design Patterns_files/vendor.css" />
+  </head>
 
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Learning JavaScript Design Patterns</title>
-  <meta name="description" content="An open-source book on JavaScript Design Patterns" />
-  <meta name="author" content="Addy Osmani" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="cleartype" content="on" />
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-  <style>
-    section {
-      content-visibility: auto;
-      contain-intrinsic-size: 1px 1000px;
-    }
-  </style>
-  <link rel="stylesheet" href="./Learning JavaScript Design Patterns_files/vendor.css" />
-</head>
+  <body class="container">
+    <h1 class="booktitle title">Learning JavaScript Design Patterns</h1>
+    <h2 class="booktitle">Some Root Class</h2>
+    <h3 class="booktitle author">
+      <a href="Learning JavaScript Design Patterns.html">Go back</a>
+    </h3>
+    <script>
+      // person class
+      function Person(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = "male";
+      }
 
-<body class="container">
+    </script>
+    <h3>Mixins</h3>
+    <script>
+      // mixin
+      // mixins are classes which offer functionality that can be easily
+      // inherited by a sub-class or group of sub-classes for the
+      // purpose of function re-use.
+      // 
+      // 
+      // in JS, it means of collecting functionality through extension
+
+
+      // const mixins = {
+      //   move: () => { this.move(); },
+      //   moveLeft: () => { this.moveLeft(); },
+      //   moveRight: () => { this.moveRight(); },
+      //   moveDown: () => { this.moveDown(); },
+      // }
+
+      const mixins = {
+        move: () => { console.log("move -"); },
+        moveLeft: () => { console.log("move left"); },
+        moveRight: () => { console.log("move right"); },
+        moveDown: () => { console.log("move down"); },
+      }
 
 
 
-  <h2>Some Root Class</h2>
+      class Car {
+        #chasistype;
+        #name = "mahindra";
 
+        constructor(chasis) {
+          this.#chasistype = chasis;
+        }
+
+      } {
+        const c1 = new Car("monocoque");
+        // var c1 = new Car("monocoque");
+        try {
+          c1.move();
+        } catch (err) {
+          console.log("c1", c1);
+          console.log("err", err);
+        }
+
+        Object.assign(Car.prototype, mixins);
+
+        const c2 = new Car("monocoque");
+        console.log("c2", c2);
+        c2.move();
+
+      }
+
+    </script>
+    <h4>Implementing <code>Promise.all</code> (<code>all</code> renamed <code>fall</code>) to Polyfill using a Mixin
+    </h4>
+    <script>
+      const PromisePolyfillsMixin = {
+        fall(args) {
+          return new Promise((resolve, reject) => {
+            if (args instanceof Array) {
+              let count = args.length;
+              let result = [];
+              let cb = () => {
+                if (count == 1) {
+                  resolve(result);
+                } else {
+                  count--;
+                }
+              }
+
+              args.map((p, index) => {
+                p.then((data) => {
+                  result[index] = data;
+                  cb();
+                });
+              })
+
+            } else {
+              // throw new TypeError(`Expected Array, received: ${typeof args}`);
+              reject(new TypeError(`Expected Array, received: ${typeof args}`));
+            }
+          })
+
+        },
+
+
+        allSettled(args) {
+          // JavaScript tip: Promise.allSettled is an ES2020 method that
+          // accepts an array of promises and returns a promise which
+          // will be resolved when all the promises in the array
+          // are either rejected or resolved
+
+        }
+      }
+      // Object.assign(Promise.prototype, PromisePolyfillsMixin);
+      Object.assign(Promise, PromisePolyfillsMixin);
+
+      {
+        let p1 = new Promise((resolve, reject) => {
+          setTimeout(resolve, 1000);
+        });
+
+        console.log("p1", p1);
+
+        let p2 = new Promise((resolve, reject) => {
+          setTimeout(resolve, 2000);
+        });
+
+        let p3 = new Promise((resolve, reject) => {
+          setTimeout(resolve.call(null, 3), 3000);
+        });
+
+        Promise.fall([p1, p2, p3])
+          .then((res) => {
+
+            console.log(res);
+          })
+      }
+
+    </script>
+  </body>
   <script>
-    // person class
-    function Person(firstName, lastName) {
-      this.firstName = firstName;
-      this.lastName = lastName;
-      this.gender = "male";
-    }
-  </script>
-  <h3>Mixins</h3>
-  <script>
-    // mixin
-    // mixins are classes which offer functionality that can be easily
-    // inherited by a sub-class or group of sub-classes for the
-    // purpose of function re-use.
-    // 
-    // 
-    // in JS, it means of collecting functionality through extension
-
-
-    const mixins = {
-      move: () => { this.move(); },
-      moveLeft: () => { this.moveLeft(); },
-      moveRight: () => { this.moveRight(); },
-      moveDown: () => { this.moveDown(); },
-    }
-
-
-
+    let bodyScripts = Array.from(document.body.getElementsByTagName("script"));
+    bodyScripts.pop();
+    bodyScripts
+      .map((item, index) => {
+        let xmp = document.body.insertBefore(document.createElement("xmp"), item);
+        xmp.innerText = item.innerText;
+      })
 
   </script>
-</body>
-<script>
-  let bodyScripts = Array.from(document.body.getElementsByTagName("script"));
-  bodyScripts.pop();
-  bodyScripts
-    .map((item, index) => {
-      let xmp = document.body.insertBefore(document.createElement("xmp"), item);
-      xmp.innerText = item.innerText;
-    })
-
-</script>
 
 </html>

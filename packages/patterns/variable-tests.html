@@ -1,0 +1,378 @@
+<html class="no-js">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>JavaScript Snippets</title>
+    <meta name="description" content="An open-source book on JavaScript Design Patterns" />
+    <meta name="author" content="Addy Osmani" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="cleartype" content="on" />
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <style>
+      section {
+        content-visibility: auto;
+        contain-intrinsic-size: 1px 1000px;
+      }
+    </style>
+    <link rel="stylesheet" href="./Learning JavaScript Design Patterns_files/vendor.css" />
+  </head>
+
+  <body class="container">
+    <h1>JS Snippets</h1>
+    <h2 class="subtitle">JS Snippets</h2>
+
+
+    <h2>Functions, Scope, Caching / Memoization</h2>
+    <h3>Function.prototype.apply()</h3>
+    <p>The <code>arguments</code> object - It may look like an Array, but it isn't one. It has elements in sequential
+      order. If you console.log() it, it'll print an array. It has a length
+      attribute. But it doesn't have a `slice` attribute.
+    </p>
+
+    <script>
+
+      function foo() {
+        return Math.max.apply(null, arguments);
+      }
+      foo(5, 6, 2, 3, 7);
+    </script>
+
+
+    <script>
+
+      function foo() {
+        console.log("arguments.constructor", arguments.constructor);
+        console.log("arguments.length", arguments.length);
+        console.log("typeof arguments", typeof arguments);
+        console.log("arguments instanceof Array", arguments instanceof Array);
+        console.log("this.name", this.name);
+        return Math.max.apply(null, arguments);
+      }
+      foo(5, 6, 2, 3, 7);
+
+    </script>
+    <p>
+      The <code>arguments</code> object - although, not an array, still manages to play well with the
+      <code>apply</code>.However, it may not actually be an Array. JavaScript is
+      sometimes a quirky language to say the least and the notion of what is an Array is no exception.
+
+    </p>
+    <script>
+      function foo() {
+        return (
+          arguments &&
+          (console.log(arguments), Math.max.apply(null, Array.from(arguments)))
+        );
+      }
+      // VM827: undefined;
+
+      foo(5, 6, 2, 3, 7);
+      // VM827: 1 Arguments(5)[5, 6, 2, 3, 7, callee: ƒ, Symbol(Symbol.iterator): ƒ]
+      // 7
+    </script>
+
+
+    <h2>JS Snippets</h2>
+
+
+
+    <h3>Fancy Memoization</h3>
+    <script>
+      function memoized(func, resolver) {
+
+        let cache = {};
+
+        cache[func.name] = {};
+
+        return function (args) {
+          let uniqueKey = args.join("");
+          if (cache[func.name][uniqueKey]) {
+            return cache[func.name][uniqueKey]
+          } else {
+            return func.apply(null, args);
+          }
+        }
+
+      }
+
+      function factorial(n) {
+        if (n < 0) return -1;
+        if (n == 0) return 1;
+        if (n >= 1) return n * factorial(n - 1);
+      }
+
+      const anon = () => {
+        console.log("i am anon");
+      }
+
+      var memoizedFactorial = memoized(factorial);
+
+      console.log("factorial.name", factorial.name);
+      console.log("anon.name", anon.name);
+
+    </script>
+
+    <h3>Curry</h3>
+
+
+    <script>
+      console.log("-------------");
+      (() => {
+        console.log(add(1)(2)(3)(4)());
+        console.log(add(1)(2)(3)());
+        console.log(add(1)(2)());
+        console.log(add(1)());
+        console.log(add(1));
+        console.log(add());
+        function add(a) {
+          return function add2(b) {
+            if (b) {
+              return add(a + b);
+            }
+            return a;
+          }
+        }
+      })()
+      console.log("-------------");
+
+    </script>
+
+
+    <h2>Difference between var and let in JavaScript</h2>
+    <h3>Scope</h3>
+    <script>
+      (function () {
+        var x = 10;
+        var printThis = () => {
+          try {
+            console.log(x);
+            let x = 10;
+          } catch (err) {
+            console.log(err);
+          }
+        }
+        printThis(x);
+      })()
+    </script>
+    <h4>var</h4>
+    <script>
+      console.log("var x", x); // undefined
+      var x = 5;
+      console.log("var x", x); // 5
+    </script>
+    <h4>let</h4>
+    <script>
+      {
+        try {
+          console.log("let x", x); // Uncaught ReferenceError: Cannot access 'x' before initialization
+        } catch (err) {
+          console.log(err);
+        }
+        let x = 5;
+        console.log("let x", x); // 5
+      }
+    </script>
+
+    <h4>both var and let</h4>
+    <script>
+      console.log("var x", x); // undefined
+      var x = 5;
+      {
+        // even though the variable hasn't been declared yet
+        // it's still present in the scope and that's because
+        // of hoisiting.
+        try {
+          // the uncaught error occurs because it's in the
+          // temporal dead zone
+          console.log("let x", x); // Uncaught ReferenceError: Cannot access 'x' before initialization
+        } catch (err) {
+          console.log(err);
+        }
+        let x = 5;
+        console.log("let x", x); // 5
+      }
+    </script>
+    <h4>Inverse of the previous example: (both var and let)</h4>
+    <script>
+      try {
+        {
+          console.log("let x", x); // undefined
+          let x = 5;
+          console.log("let x", x);
+          {
+            // even though the variable hasn't been declared yet
+            // it's still present in the scope and that's because
+            // of hoisiting.
+
+            var x = 5; // Uncaught SyntaxError: Identifier 'x' has already been declared
+            console.log("let x", x); // 5
+          }
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    </script>
+
+    <h4>the foor loop</h4>
+    <p>forLoopLetVarTest1</p>
+    <div id="forLoopLetVarTest1"></div>
+    <p>forLoopLetVarTest2</p>
+    <div id="forLoopLetVarTest2"></div>
+    <script>
+      (() => {
+        for (var i = 0; i < 5; i++) {
+          var btn = document.createElement("button");
+          btn.appendChild(document.createTextNode("Button " + i));
+
+          btn.addEventListener("click", (e) => {
+            console.log(i);
+            alert(i);
+          });
+          document.body.querySelector('#forLoopLetVarTest1').appendChild(btn);
+        }
+
+        // created a separate scope
+        {
+
+          for (let i = 0; i < 5; i++) {
+            var btn = document.createElement("button");
+            btn.appendChild(document.createTextNode("Button " + i));
+
+            btn.addEventListener("click", (e) => {
+              console.log(i);
+              alert(i);
+            });
+            document.body.querySelector('#forLoopLetVarTest2').appendChild(btn);
+          }
+
+        }
+      })(); // IIFE because `i` is one one the most commonly used variables out there
+
+    </script>
+
+
+
+
+    <h2>Async Micro Tasks in JavaScript</h2>
+    <h3>Promise</h3>
+    <h4><code>Promise.all</code> Polyfill</h4>
+
+    <h4>Implementing <code>Promise.all</code> (<code>all</code> renamed <code>fall</code>) to Polyfill using a Mixin
+    </h4>
+    <script>
+      const PromisePolyfillsMixin = {
+        fall(args) {
+          return new Promise((resolve, reject) => {
+            if (args instanceof Array) {
+              let count = args.length;
+              let result = [];
+              let cb = () => {
+                if (count == 1) {
+                  resolve(result);
+                } else {
+                  count--;
+                }
+              }
+
+              args.map((p, index) => {
+                p.then((data) => {
+                  result[index] = data;
+                  cb();
+                });
+              })
+
+            } else {
+              // throw new TypeError(`Expected Array, received: ${typeof args}`);
+              reject(new TypeError(`Expected Array, received: ${typeof args}`));
+            }
+          })
+
+        },
+
+
+        allSettled(args) {
+          // JavaScript tip: Promise.allSettled is an ES2020 method that
+          // accepts an array of promises and returns a promise which
+          // will be resolved when all the promises in the array
+          // are either rejected or resolved
+
+        }
+      }
+      // Object.assign(Promise.prototype, PromisePolyfillsMixin);
+      Object.assign(Promise, PromisePolyfillsMixin);
+
+      {
+        let p1 = new Promise((resolve, reject) => {
+          setTimeout(resolve, 1000);
+        });
+
+        console.log("p1", p1);
+
+        let p2 = new Promise((resolve, reject) => {
+          setTimeout(resolve, 2000);
+        });
+
+        let p3 = new Promise((resolve, reject) => {
+          setTimeout(resolve.call(null, 3), 3000);
+        });
+
+        Promise.fall([p1, p2, p3])
+          .then((res) => {
+
+            console.log(res);
+          })
+      }
+    </script>
+
+
+
+
+
+    <!-- 
+    Micro and Macro Tasks/ event loop
+    How to make object immutable in JS (defineProperty)
+    Write Curry function
+    What is new in webpack5
+    Why named exports vs default export
+    Treeshaking
+    // Given an end point URL to fetch all the posts and comments. Do the following.
+    // * Map all the comments to the posts it belongs to. The resultant data after mapping should be of below structure.
+    // {<postID>:[{…coment}]}
+
+      const POSTS_URL = https://jsonplaceholder.typicode.com/posts;
+      const COMMENTS_URL = https://jsonplaceholder.typicode.com/comments; 
+  -->
+
+
+    <h3>Title</h3>
+
+    <script>
+    </script>
+
+    <p style="position: fixed; left: 20px; bottom: 20px;">
+      <strong>
+        <a href="#contents-list">
+          <g-emoji class="g-emoji" alias="arrow_up"
+            fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b06.png" />
+          <img class="emoji" alt="arrow_up" height="20" width="20"
+            src="https://github.githubassets.com/images/icons/emoji/unicode/2b06.png" />
+          </g-emoji> Back to Top
+        </a></strong>
+    </p>
+
+  </body>
+  <script>
+    let bodyScripts = Array.from(document.body.getElementsByTagName("script"));
+    bodyScripts.pop();
+    bodyScripts
+      .map((item, index) => {
+        let xmp = document.body.insertBefore(document.createElement("xmp"), item);
+        xmp.innerText = item.innerText;
+      })
+
+  </script>
+
+
+</html>

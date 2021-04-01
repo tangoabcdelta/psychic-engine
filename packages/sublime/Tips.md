@@ -23,3 +23,4 @@ You can add them in your `keybindings`
   { "keys": ["alt+ctrl+shift+c"], "command": "copy_path" }
 ]
 ```
+
