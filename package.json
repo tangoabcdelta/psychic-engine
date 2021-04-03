@@ -1,5 +1,6 @@
 {
-  "name": "psychic-engine",
+  "oldName": "psychic-engine",
+  "name": "bigfatsoftware",
   "org": "@bigfatsoftware",
   "private": true,
   "workspaces": [
