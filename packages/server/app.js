@@ -27,6 +27,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/resume", resumeRouter);
+app.use("/bc", async (req, res) => {
+  const hash = await BCrypt.hash("this is a long password", 8);
+  res.send(hash);
+});
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

@@ -22,8 +22,84 @@
   <body class="container">
     <h1>JS Snippets</h1>
     <h2 class="subtitle">JS Snippets</h2>
+<pre>
+React Component's life cycle,
+Event delegation,
+Web workers, event loop.
+Js Basics
+1.Asked diff bettween normal func and arrow func, Asked closure concept with programming,
+Css & JS
+context in arrow function ,deep cloning and shalow cloning.
+Asked to implement linkedin feed & optimizations required for infinite scroll. clarity on web securities. indepth knowledge on page optimizations, optimal approach for Promise.all polyfill
+CSS (Flexbox)
+ Holy grail: Solved complete problem, inculding responsive desgin, with element reorder using Flexbox
+2. Add(1, 2) || Add(1)(2) 
+3. Add(1,2,3,..) || Add(1)(2)(3)... 
+4. Add(1,2)(3)(4,5,6)...
+5. Generic function generator where you can pass it any function (add, mul, concat) and it will generate the above function for you
+[14:59, 3/30/2021] Divyamini: Ab Wednesday wat time interviews?
+</pre>
+    <script>
+      function add(x) {
+        return function(y) {
+          if(typeof y !== 'undefined') {
+            x = x+y;
+            return arguments.callee;
+          } else {
+            return x;
+          }
+        }
+      }    
+    
+    </script>
+    <script>
+    function generator(func) {
+        return function(arg1) {
+          return function(arg2) {
+            if (arg2) {
+              arg1 = func.call(null, arg1, arg2);
+              return arguments.callee;
+            } else {
+              return arg1;
+            }
+          }
+        }
+    }
+
+    g_add = generator(add);
+    g_multiply = generator(multiply);
 
 
+    function add(a, b) {
+      return a+b;
+    }
+
+
+    function multiply(a, b) {
+      return a*b;
+    }
+
+    g_add(1)(2)
+    g_add(1)(2)(3)
+    g_multiply(5)(4)()
+    g_multiply(5)(4)(5)()
+ </script>
+
+     <h2>Hoisting</h2>
+     
+     The <code>length</code> property indicates the number of parameters expected by the function.
+
+
+     <script>
+        func = function (a, b, c) {}
+        console.log(func.length);
+        function func (a, b, c, d) {}
+        console.log(func.length);
+        // > 3
+        // > 3
+     </script>
+     
+     
     <h2>Functions, Scope, Caching / Memoization</h2>
     <h3>Function.prototype.apply()</h3>
     <p>The <code>arguments</code> object - It may look like an Array, but it isn't one. It has elements in sequential
@@ -206,7 +282,9 @@
             // it's still present in the scope and that's because
             // of hoisiting.
 
-            var x = 5; // Uncaught SyntaxError: Identifier 'x' has already been declared
+            // var x = 5; // Uncaught SyntaxError: Identifier 'x' has already been declared
+            
+            x = 5;
             console.log("let x", x); // 5
           }
         }
