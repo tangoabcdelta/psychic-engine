@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "parcel watch index.html"
+    "start-disabled": "parcel watch index.html"
   },
   "main": "index.js",
   "repository": "git@github.com:tangoabcdelta/psychic-engine.git",

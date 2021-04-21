@@ -1,0 +1,268 @@
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+#main {
+    min-height: calc(100vh - 100px)
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+.relativeheading {
+    position: relative;
+}
+
+.underheading {
+    position: absolute;
+    right:0;
+    margin-top:-2.5em;
+    font-family: Montserrat, sans-serif;
+}
+
+.besideheading {
+    margin-top:2.1em;
+    margin-left:1em
+}
+
+#gameScreen {
+    display:grid;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.actionSection {
+    display: grid;
+    justify-content: center;
+    margin-top: 3em;
+}
+
+.moves {
+    font-size: 2em;
+    font-family: 'Press Start 2P';
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-column-gap: 1em;
+    justify-content: center;
+    text-align: center;
+    border: 5px solid #6D9773;
+    padding: 1em;
+    width: 8em;
+    margin:auto;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    margin-top: 1em;
+    grid-row-gap: 2em;
+    font-family: Montserrat, sans-serif
+}
+
+.directionSet {
+    display: grid;
+    justify-content: center;
+}
+
+.directionSet > div {
+    margin:auto
+}
+
+.up {
+    margin:auto
+}
+
+button {
+    width: 4em;
+    height: 4em;
+    border:none;
+    background-color: #8b2b2b;
+    color:white;
+    font-size: 1em;
+    border-radius:10%;
+    margin:2px;
+    cursor:pointer;
+}
+button:hover{
+    background-color: #8b2b2bc7;
+}
+
+ button:focus {
+   
+    outline: 4px solid #6D9773
+}
+
+
+.position {
+    background-color: #EB5056;
+    opacity: 0.1
+   
+}
+
+.glow {
+      /* These three properties are where the magic happens: */
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 4px hsl(34deg 100% 95%);
+  filter: 
+    drop-shadow(0px 2px 2px hsl(0deg 0% 0% / 0.5))
+    drop-shadow(0px 0px 4px hsl(34deg 100% 95% / 0.5))
+    drop-shadow(0px 0px 10px hsl(34deg 100% 95% / 0.5))
+    
+
+ 
+  
+  /* Misc aesthetic properties
+  font-size: 96px;
+  font-weight: 900;
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: -1px; */
+}
+
+.box {
+    background-color: #EB5056;
+}
+
+.hero {
+    border: 4px solid purple;
+}
+
+.wall {
+    background-color: #6D9773;    
+}
+
+img {
+    height: auto;
+    width: 4em;
+}
+.xs {
+    width: 1em;
+    margin:auto;
+}
+
+.center {
+    display:flex;
+    justify-content: center;
+}
+
+h2 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 3rem;
+    color: #6D9773
+}
+
+.homecontent {
+    display:grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    width:100%;
+}
+
+.buttonContainer{
+    width:100%;
+    text-align:center;
+}
+
+.wideButton {
+    width: 10em;
+    border-radius: 2%;
+    margin-top:5em;
+}
+
+.separator {
+    margin-top:3em;
+    border-top: 3px solid #bbb;
+    width:100%;
+}
+
+.modal {
+    position: absolute;
+    width: 40em;
+    top: 25%;
+    left: 20%;
+    border: 5px solid green;
+    background: white;
+    height: 30em;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    background-image:url("./imgs/confetti.jpg")
+    /*<a href="https://www.vecteezy.com/free-vector/confetti">Confetti Vectors by Vecteezy</a>*/
+}
+
+.wincenter {
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-content: center;
+    place-content: center;
+}
+
+.winImage {
+    width:10em;
+    margin-top:2em;
+}
+
+.winMsg {
+    font-size: 3em;
+    margin-top:1em;
+    font-family: 'Press Start 2P';
+    background:white;
+    color:#6D9773
+}
+.abouttext {
+    font-size: 1.5em;
+    font-family: Montserrat, sans-serif;
+    line-height: 1.5em;
+}
+
+.hometext {
+    border: 4px solid #6D9773;
+    padding: 1em;  
+    width: 60%;
+    margin:auto;
+}
+
+a{
+    color:#6D9773
+}
+
+.footer {
+    border-top: 5px solid #6D9773;
+    height: 100px;
+    background-color: #EAF1EA;
+
+}
+
+.footer > p{
+    font-size: 1em;
+    text-align: center;
+}
+
+.footer .buttonContainer {
+    justify-content: center;
+}
+.footer .buttonContainer .wideButton{
+    margin-top:0px;
+}
+
+
+.start {
+    margin-bottom: 2em;
+    font-size: 1.5em;
+    width: 7em;
+}
+.goto {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    font-size: 1.5em;
+    width: 7em;
+    color: white;
+    background-color:#8b2b2b ;
+    padding: 1em;
+    margin:auto;
+    margin-top: 2em;
+}
+.actionSection button {
+    width: 6em;
+    height:6em;
+}

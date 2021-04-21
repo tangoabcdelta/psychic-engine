@@ -7,7 +7,6 @@
     "classnames": "^2.2.6",
     "headroom.js": "^0.12.0",
     "moment": "^2.29.1",
-    "node-sass": "4",
     "nouislider": "^14.6.3",
     "parcel-bundler": "^ua1.12.4",
     "react": "^17.0.1",
@@ -31,18 +30,10 @@
     "map-sass": "sass src/assets/scss/argon-design-system-react.scss src/assets/css/argon-design-system-react.css --source-map true"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": ["react-app", "react-app/jest"]
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not ie <= 11",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

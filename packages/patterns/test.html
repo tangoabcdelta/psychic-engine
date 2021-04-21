@@ -1,0 +1,48 @@
+<html class="no-js">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Test</title>
+    <meta name="description" content="An open-source book on JavaScript Design Patterns" />
+    <meta name="author" content="Addy Osmani" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="cleartype" content="on" />
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <style>
+      section {
+        content-visibility: auto;
+        contain-intrinsic-size: 1px 1000px;
+      }
+    </style>
+    <link rel="stylesheet" href="./Learning JavaScript Design Patterns_files/vendor.css" />
+  </head>
+
+  <body class="container">
+    <h1>Test</h1>
+    <h2 class="booktitle author">JS Snippets</h2>
+
+    <hr />
+    <div id="contents-list"></div>
+
+
+  </body>
+  <script>
+    let bodyScripts = Array.from(document.body.getElementsByTagName("script"));
+    bodyScripts.pop();
+    bodyScripts
+      .map((item, index) => {
+        let xmp = document.body.insertBefore(document.createElement("xmp"), item);
+        xmp.innerText = item.innerText;
+      })
+
+    let contentsList = document.querySelector("#contents-list");
+    let headers = Array.from(document.querySelectorAll("h1, h2, h3, h4, h5, h6"));
+    let fragment = new DocumentFragment();
+
+
+  </script>
+
+
+</html>
