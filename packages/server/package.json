@@ -5,6 +5,14 @@
   "scripts": {
     "start": "PORT=4000 nodemon ./bin/www"
   },
+  "main": "./bin/www",
+  "bin": {
+    "server": "./bin/www"
+  },
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
   "dependencies": {
     "bcrypt": "5.0.1",
     "cookie-parser": "~1.4.4",

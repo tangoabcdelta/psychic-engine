@@ -12,6 +12,7 @@
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "pushf": "git -c user.useConfigOnly=true commit --quiet --allow-empty-message --file --no-verify",
     "push": "git -c user.useConfigOnly=true commit --quiet --allow-empty-message --no-verify",
+    "check": "node ./packages/server/bin/checks",
     "changelog": "git-release-notes $(git describe --tags --abbrev=0 $(git describe --tags --abbrev=0)^)..$(git describe --tags --abbrev=0) scripts/changelog.md >> changelog.$(git describe --tags --abbrev=0).md"
   },
   "version": "1.0.3",

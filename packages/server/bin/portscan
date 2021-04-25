@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+const { exec } = require("child_process");
+
+let count = 0;
+const execq = (error, stdout, stderr) => {
+  console.log(++count);
+  return Promise((resolve, reject) => {
+    if (error) {
+      console.error(`exec error: ${error}`);
+      reject(error);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+    console.error(`stderr: ${stderr}`);
+    console.log(`----------`);
+    resolve(stdout);
+  });
+};
+
+const commands = ["lsof -i :80"];
+
+const result = await Promise.all[commands.map(execq)];
+exec("echo START", generic);
+// exec("UBUNTU_VERSION=$(lsb_release -sc)", generic);
+exec("UBUNTU_VERSION=$(lsb_release -sr)", generic);
+exec("echo $UBUNTU_VERSION", generic);

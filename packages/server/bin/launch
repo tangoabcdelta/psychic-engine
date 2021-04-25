@@ -1,0 +1,137 @@
+#!/usr/bin/env node
+const child_process = require("child_process");
+const { exec } = child_process;
+const fs = require("fs");
+const path = require("path");
+const plist = require("plist");
+{
+  exports.safari = require("./safari");
+  exports.firefox = require("./firefox");
+  exports.chrome = exports["google-chrome"] = require("./chrome");
+}
+
+
+{
+const firefox2 = () => {
+   // BLOCK ::: FIREFOX (on Mac OS)
+};
+firefox2()
+}
+
+
+
+{
+  // BLOCK ::: FIREFOX (on Mac OS)
+
+  //Fetch all known version of Firefox on the host machine
+
+  const find = (id, callback) => {
+      
+      let query = `mdfind "kMDItemCFBundleIdentifier=="${id}"" | head -1`;
+      let output;
+      exec(query, function(err, stdout) {
+        if (err) {
+          reject({ err, loc: "" });
+        }
+        let loc = stdout.trim();
+        if (loc === "") {
+          loc = null;
+          err = "not installed";
+          reject({ err, loc });
+        }
+        resolve({ err, loc });
+      });
+    });
+  };
+
+  exports.all = function(callback) {
+    var installed = [],
+      pending = 0,
+      check = function() {
+        if (!pending) {
+          callback(null, installed);
+        }
+      };
+
+    util.find("org.mozilla.firefox", function(err, p) {
+      if (err) {
+        callback(err);
+      } else {
+        var items = p.split("\n");
+        pending = items.length;
+        items.forEach(function(loc) {
+          var pl = path.join(loc, "Contents", "Info.plist");
+          exists(pl, function(y) {
+            if (y) {
+              try {
+                var file = fs.readFileSync(pl, "utf8");
+                var data = plist.parse(file);
+                var o = {
+                  version: data[0].CFBundleShortVersionString,
+                  path: path.join(loc, "Contents/MacOS/firefox-bin"),
+                };
+                installed.push(o);
+              } catch (err) {
+                return callback(err);
+              }
+            }
+            pending--;
+            check();
+          });
+        });
+      }
+    });
+  };
+}
+
+{
+  // BLOCK ::: APPLE
+  const pathQuery = `mdfind "kMDItemCFBundleIdentifier==com.apple.Safari" | head -1`;
+  exec(pathQuery, (err, stdout) => {
+    var loc = stdout.trim();
+    if (loc === "") {
+      loc = null;
+      err = "not installed";
+    }
+    (err, loc) => {
+      getPathResult = [err, loc];
+      getPath(callback);
+    };
+
+    const file = fs.readFileSync(pl, "utf8");
+    const data = plist.parse(file);
+    const pl = path.join(p, "Contents", "version.plist");
+    const version = data[0].CFBundleShortVersionString;
+  });
+}
+const browsers = {
+  "google-chrome": {
+    name: "chrome",
+    re: /Google Chrome (\S+)/,
+    type: "chrome",
+    profile: true,
+  },
+  "chromium-browser": {
+    name: "chromium",
+    re: /Chromium (\S+)/,
+    type: "chrome",
+    profile: true,
+  },
+  firefox: {
+    name: "firefox",
+    re: /Mozilla Firefox (\S+)/,
+    type: "firefox",
+    profile: true,
+  },
+  safari: {
+    name: "safari",
+    type: "safari",
+    profile: false,
+  },
+  ie: {
+    windows: true,
+    name: "ie",
+    type: "ie",
+    profile: false,
+  },
+};

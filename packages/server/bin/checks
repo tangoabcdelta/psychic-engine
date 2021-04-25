@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+const { exec } = require("child_process");
+
+let count = 0;
+const generic = (error, stdout, stderr) => {
+  console.log(++count);
+  if (error) {
+    console.error(`exec error: ${error}`);
+    return;
+  }
+  console.log(`stdout: ${stdout}`);
+  console.error(`stderr: ${stderr}`);
+  console.log(`----------`);
+};
+
+exec("echo START", generic);
+// exec("UBUNTU_VERSION=$(lsb_release -sc)", generic);
+exec("UBUNTU_VERSION=$(lsb_release -sr)", generic);
+exec("echo $UBUNTU_VERSION", generic);
+
+exec(
+  '"https://www.aerospike.com/download/server/latest/artifact/${UBUNTU_VERSION}"',
+  generic
+);
