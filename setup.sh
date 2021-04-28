@@ -1,10 +1,57 @@
 #!/bin/bash
 
+
+# this is a built-in command
+# stops the execution of a script if a command or pipeline has an error
+# which is the opposite of the default shell behaviour,
+# which is to ignore errors in scripts.
+set -e
+
+# Type `help set` in a terminal for docs
+# -e  Exit immediately if a command exits with a non-zero status.
+# the alternative to `set -e` is to put `|| exit 1`
+# after each important command
+
+
+
+# set permissions
+echo "setting permission for ./packages/server/bin/"
+chmod -R 0755 ./packages/server/bin/
+# alternatively
+echo "setting permission for ./packages/server/bin/www"
+chmod +x ./packages/server/bin/www
+echo "setting permissions done"
+
+#### Distro Installation
+
+
+# - Can against Travis CI
+# - Replaces `bash` to Zim (a zsh plugin) for a better autocomplete support
+# -
+
+echo "initializing variables"
 CURRENT_USER="$(who | cut -d' ' -f1)"
 distro_name="UNKNOWN"
 ufw_ports_set="no"
 gufw_installed="no"
 node_installed="no"
+npm_installed="no"
+yarn_installed="no"
+google_fonts_installed="no"
+gimp_filters_installed="no"
+appimages_installed="no"
+etcher_installed="no"
+git_installed="no"
+gitit_installed="no"
+ring_installed="no"
+abricotine_installed="no"
+youtube_dl_installed="no"
+zsh_installed="no"
+oh_my_zsh_installed="no"
+bash_aliases_installed="no"
+printer_installed="no"
+wget_installed="no"
+xdotool_installed="no"
 
 
 # This contains the functions to provide a report for the installation script
@@ -13,18 +60,13 @@ if [[ $EUID -ne 0 ]]; then
   echo "This script must be run as root" 
   exit 1
 else
+
+  echo "running as root: $($EUID -ne 0)"
   # install all prerequisites
-  echo "installing all prerequisites"
-  apt-get update && sudo apt-get upgrade -y
-
-  # install ubuntu version detection libraries
-  apt-get install lsb-core
-  # detect the ubuntu version
-  UBUNTU_VERSION=$(lsb_release -sr)
-  UBUNTU_VERSION=$(cut -c 1,2 <<< "$UBUNTU_VERSION")
-  # store it and echo it for confirmation
-  echo $UBUNTU_VERSION
-
+  echo "updating the package lists, look for upgrades: apt-get update"
+  apt-get update
+  
+  
   # install `dialog` to show options
   sudo apt-get install dialog
   cmd=(dialog --separate-output --checklist "Please Select Software you want to install:" 22 76 16)
@@ -59,10 +101,94 @@ else
           choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
           clear
 
-  # install aerospike
-  echo https://www.aerospike.com/download/server/latest/artifact/ubuntu${UBUNTU_VERSION}
+
+          printf '\n' 
+          if ! [ -x "$(command -v git)" ]; then
+            printf 'Error: git is not installed.' >&2
+            printf '\n'
+            exit 1
+            else
+            git_installed="yes"
+            printf 'git is present'
+            printf '\n'
+          fi
+
+
+          echo "writing functions to provide a script-run-report of the installation"
+          if [ ! -f report_list ]; then touch report_list; fi
+
+  # done
+fi
+
+echo "installing aerospike"
+echo https://www.aerospike.com/download/server/latest/artifact/ubuntu${UBUNTU_VERSION}
+
+echo "upgrade to the fresh-est package updates: sudo apt-get upgrade -y"
+sudo apt-get upgrade -y
+
+
+echo "installing ubuntu version detection libraries"
+apt-get install lsb-core
+
+echo "detecting the ubuntu version"
+UBUNTU_VERSION=$(lsb_release -sr)
+UBUNTU_VERSION=$(cut -c 1,2 <<< "$UBUNTU_VERSION")
+echo "storing it UBUNTU_VERSION, echoing it for confirmation: $UBUNTU_VERSION"
 
 
 
+spatialPrint() {
+  echo ""
+  echo ""
+  echo "$1"
+	echo "================================"
+}
+
+print_line(){
+    printf "********************************************* \n" >> report_list
+}
+
+report_restart(){
+    print_line
+    printf "*******************  RESTARTED ************** \n" >> report_list
+}
+
+print_distro_name(){
+    printf "This distro is $distro_name \n"
+}
+
+report_distro_name(){
+    print_line
+    printf "This distro is $distro_name \n" >> report_list
+}
 
 
+report_install_flags(){
+
+    printf "distro_name $distro_name \n" >> report_list
+    printf "ufw_ports_set $ufw_ports_set \n" >> report_list
+    printf "gufw_installed $gufw_installed \n" >> report_list
+    printf "node_installed $node_installed \n" >> report_list
+    printf "npm_installed $npm_installed \n" >> report_list
+    printf "yarn_installed $yarn_installed \n" >> report_list
+    printf "google_fonts_installed $google_fonts_installed \n" >> report_list
+    printf "gimp_filters_installed $gimp_filters_installed \n" >> report_list
+    printf "appimages_installed $appimages_installed \n" >> report_list
+    printf "etcher_installed $etcher_installed \n" >> report_list
+    printf "gitit_installed $gitit_installed \n" >> report_list
+    printf "ring_installed $ring_installed \n" >> report_list
+    printf "abricotine_installed $abricotine_installed \n" >> report_list
+    printf "youtube_dl_installed $youtube_dl_installed \n" >> report_list
+    printf "zsh_installed $zsh_installed \n" >> report_list
+    printf "oh_my_zsh_installed $oh_my_zsh_installed \n" >> report_list
+    printf "bash_aliases_installed $bash_aliases_installed \n" >> report_list
+    printf "printer_installed $printer_installed \n" >> report_list
+    printf "wget_installed $wget_installed \n" >> report_list
+    
+}
+
+display_report(){
+
+  cat report_list
+
+}

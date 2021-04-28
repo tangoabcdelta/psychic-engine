@@ -8,7 +8,8 @@ var app = require("../app");
 var debug = require("debug")("server:server");
 var http = require("http");
 var WebSocket = require("ws");
-
+var { exec } = require("child_process");
+var generic = require("./generic");
 /**
  * Get port from environment and store in Express.
  */
@@ -89,4 +90,10 @@ function onListening() {
   var addr = server.address();
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   debug("Listening on " + bind);
+  //exec(`google-chrome "http://localhost:${addr.port}"`, generic);
+
+  exec(
+    `sh ./relaunch.sh google-chrome "http://localhost:${addr.port}"`,
+    generic
+  );
 }

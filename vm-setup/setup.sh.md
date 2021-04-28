@@ -6,6 +6,25 @@ Start with a hash bang.
 #!/bin/bash
 ```
 
+##### Early exit
+
+- Unix apps, when they encounter an error, they communicate it back to the invoker (in this case, bash) with a non-zero exit status.
+- The convention is - `0 for success, and non-zero for "some kind of error"`
+- It became a trend to put `|| exit 1` after each important command to exit the program
+
+But there are many commands that return non-zero even when there wasn't an error.
+For example,
+
+```bash
+if [ -d /foo ]; then ...; else ...; fi
+if [ ! -f report_list ]; then touch report_list; fi
+```
+
+- If the directory or the file doesn't exist, the `[` command returns non-zero.
+- Ideally, the script shouldn't `abort` when that happens
+- The script should handle that in the `else` part.
+- So the shell implementors made a bunch of special rules e.g. - "commands that are part of an if test are immune" - and "commands in a pipeline, other than the last one, are immune"
+
 ##### Set Vars
 
 - `VARABLENAME=$(command)`

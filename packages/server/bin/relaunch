@@ -1,0 +1,78 @@
+#!/bin/bash
+
+printf "checking the given argument against the available browsers"
+printf "\n"
+if [ -z "$1" ]; then
+    printf "usage:"
+    printf "\n"
+    printf "bash ./packages/server/bin/relaunch google-chrome"
+    printf "\n"
+    printf "missing browser argument"
+    printf "\n"
+fi
+
+BROWSER=$1;
+printf "browser arg set to: $BROWSER"
+printf "\n"
+
+
+
+# use CTRL+R hard reload i.e. general reload
+# use CTRL+SHIFT+R hard reload i.e. cache busting
+RELOAD_KEYS="CTRL+R"
+RELOAD_KEYS_2="CTRL+SHIFT+R"
+printf "setting reload keys \n  1: $RELOAD_KEYS, \n  2: $RELOAD_KEYS_2\n"
+
+
+if [ -z "${BROWSER}" ]; then
+    # if was empty,
+    # then set the default name of browser to
+    # firefox/chrome/opera/etc
+    printf "found empty string, hence, setting to chrome"
+    BROWSER=google-chrome
+fi
+
+
+COMMAND=google-chrome
+if ! [ -x "$(command -v $COMMAND)" ];
+then
+  printf "$COMMAND command not found"
+  printf "\n"
+else 
+  printf "$COMMAND command found"
+  printf "\n"
+fi
+
+COMMAND=xdotool
+# if ! [xdotool -v COMMAND &> /dev/null]
+if ! [ -x "$(command -v $COMMAND)" ];
+then
+    printf "$COMMAND command not found"
+    printf "\n"
+else
+  # get the active window
+    printf "getting the active browser window"
+    printf "\n"
+    MYWINDOW=$(xdotool getactivewindow)
+
+    # bring up the browser
+    # and
+    # send the page-reload keys
+    # anyof {RELOAD_KEYS or RELOAD_KEYS_2}
+    printf "bringing the browser up"
+    printf "\n"
+    xdotool search --name ${BROWSER} windowactivate --sync
+    xdotool search --name ${BROWSER} key --clearmodifiers ${RELOAD_KEYS}
+
+
+    # sometimes the focus doesn't work, so follow up with activate
+    xdotool windowfocus --sync ${MYWINDOW}
+    xdotool windowactivate --sync ${MYWINDOW}
+
+fi
+
+
+
+#######################
+# debug
+# sh ./packages/server/bin/www/relaunch.sh google-chrome "http://localhost:4000"

@@ -1,17 +1,6 @@
 #!/usr/bin/env node
 const { exec } = require("child_process");
-
-let count = 0;
-const generic = (error, stdout, stderr) => {
-  console.log(++count);
-  if (error) {
-    console.error(`exec error: ${error}`);
-    return;
-  }
-  console.log(`stdout: ${stdout}`);
-  console.error(`stderr: ${stderr}`);
-  console.log(`----------`);
-};
+const generic = require("./generic");
 
 exec("echo START", generic);
 // exec("UBUNTU_VERSION=$(lsb_release -sc)", generic);
