@@ -103,3 +103,31 @@ It was primarily developed for use by Node.js, but it's also used by Luvit, Juli
 - FS events (file system events)
 - ANSI escape code controlled TTY (TeleTYpewriter)
 - IPC (inter-process communication) with socket sharing, using Unix domain sockets or named pipes (Windows)
+
+###### Minimist Usage
+
+- Parses argument options
+- This module is the guts of optimist's argument parser without all the fanciful decoration.
+- Previous versions had a prototype pollution bug that could cause privilege escalation in some circumstances when handling untrusted user input.
+
+```js
+var argv = require("minimist")(process.argv.slice(2));
+console.log(argv);
+```
+
+```bash
+$ node example/parse.js -a beep -b boop
+$ node example/parse.js -x 3 -y 4 -n5 -abc --beep=boop foo bar baz
+```
+
+```js
+{ _: [], a: 'beep', b: 'boop' }
+{ _: [ 'foo', 'bar', 'baz' ],
+  x: 3,
+  y: 4,
+  n: 5,
+  a: true,
+  b: true,
+  c: true,
+  beep: 'boop' }
+```

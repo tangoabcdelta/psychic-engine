@@ -1,0 +1,1924 @@
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="/css/login_new.css?v=2">
+    <link rel="stylesheet" type="text/css" href="/css/login_new.css">
+    <title>Welcome to HDFC Bank NetBanking</title>
+
+    <meta http-equiv="Content-Type" content="application/x-www-form-urlencoded; charset=iso-8859-1">
+    <meta http-equiv="cache-control" content="max-age=0">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="CACHE-CONTROL" content="private">
+    <meta http-equiv="CACHE-CONTROL" content="no-store">
+    <meta http-equiv="CACHE-CONTROL" content="must-revalidate">
+    <meta http-equiv="CACHE-CONTROL" content="post-check=0,pre-check=0">
+    <!-- Added header for no cache	Gaurav W	28 Mar 2014	-->
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <!-- Added header for no cache	Gaurav W	28 Mar 2014	-->
+
+    <!-- 201709/SFR/Flex@/031 : cross frame scripting - Netbanking | High Start-->
+
+    <script type="text/javascript">
+      if (self === top) {
+        var antiClickjack = document.getElementById("antiClickjack");
+        antiClickjack.parentNode.removeChild(antiClickjack);
+      } else {
+        top.location = self.location;
+      }
+    </script>
+    <!-- 201709/SFR/Flex@/031 : cross frame scripting - Netbanking | High  End-->
+
+    <!-- RPoladia: Back Button Issue START -->
+    <script type="text/javascript">
+      if (sessionStorage.getItem('url') != null) {
+        sessionStorage.setItem('home', window.location.href);
+      }
+    </script>
+    <!-- RPoladia: Back Button Issue END -->
+    <!--- 21-10-2013	JS changes  START-->
+    <script type="text/javascript">
+      var head = document.getElementsByTagName("head")[0];
+      var fileref = document.createElement("link");
+      fileref.setAttribute("rel", "stylesheet");
+      fileref.setAttribute("type", "text/css");
+      if (parent.daemon == "NETBANKING") {
+        fileref.setAttribute("href", "/css/login_new.css?v=2"); // 27 jan 2017	Pratik kashid Login RD added version
+      } else {
+        fileref.setAttribute("href", "/css/login.css");
+      }
+      // fileref.onload = callbackFunc();
+      head.insertBefore(fileref, head.firstChild);
+    </script>
+
+    <script language="javascript">
+      var daemon = 'NETBANKING';
+      var p_remoteaddress = '';
+      var RsaAuthReq = '';
+
+      var l_path = window.location.pathname;
+
+      if (l_path == undefined || l_path == '' || l_path.indexOf("/netbanking") < 0) {
+        window.location.href = window.location.protocol + "//" + window.location.host + "/netbanking";
+      }
+    </script>
+    <!--<script language="JavaScript" src="/jsdir/RS_01_eng.js"></script> -->
+    <script language="JavaScript" src="/jsdir/RS_01_eng_ext.js?v=1"></script>
+    <!--SFR-KnowMoreLink-03/06/2016-->
+    <script language="JavaScript" src="/jsdir/virtualkeyboard.js?v=3" type="text/JavaScript"></script>
+    <!--26/11/2015    SouvikB          Changes done for Virtual Keyboard JS import  -->
+    <script language="JavaScript" src="/jsdir/des.js"></script>
+    <script language="JavaScript" src="/jsdir/HmacSHA256.js"></script>
+    <script language="JavaScript" src="/jsdir/hashtable.js"></script>
+    <!-- Anant Mane :CCR482- RSA Finger Printing Device -->
+    <script language="JavaScript" src="/jsdir/rsa.js"></script><!-- Anant Mane :CCR482- RSA Finger Printing Device-->
+
+
+
+    <script language="JavaScript1.2">
+      var isIE5 = (document.all && document.getElementById) ? true : false;
+      var l_clicked = false;
+
+      //start, below code block added for improper URL used to access NB
+      try {
+        var l_path = window.location.pathname;
+        if (parent.daemon == undefined || l_path.indexOf("/netbanking/") < 0) {
+          window.location.href = window.location.protocol +
+            "//" + window.location.host + "/netbanking/";
+        }
+      } catch (e) { //alert('daemon='+parent.daemon);	
+      }
+      //end, above code block added for improper URL used to access NB
+
+      //---------------------------------------------------------------------------------------
+      function fSubmit(e) {
+
+        var key;
+        if (window.event) {
+          key = window.event.keyCode; //IE
+        } else {
+          key = e.which; //firefox      
+        }
+
+        if (key != 13) {
+          return true;
+        }
+
+        if (parent.daemon == ' NETBANKING' || parent.RsaAuthReq == 'Y') {
+          return fLogon();
+        }
+        return true;
+      }
+      //--------------------------------------------------------------------------------------- function fLogon() { // Anant
+      // Mane: RSA Device Print: start
+      var l_dp_value;
+      try {
+        l_dp_value = encode_deviceprint();
+      } catch (e) {
+        l_dp_value = '';
+      }
+      document.frmLogin.fldDevicePrint.value = l_dp_value; // Anant Mane : RSA Device Print :end
+      document.frmLogin.fldLoginUserId.value = ltrim(rtrim(document.frmLogin.fldLoginUserId.value));
+      var
+        l_str_val = isStringValid(document.frmLogin.fldLoginUserId.value, "required, minlen=1, maxlen=15", true, "Customer ID "); //  06-june-2016 Pratik Kashid FS_CCR_0498_Added menumonic for Personalization of user id  --maxlen=10,salphanum
+      if (l_str_val != null) {
+        document.frmLogin.fldLoginUserId.focus();
+        return false;
+      }
+    </script>
+
+
+    <!--ADD: TEJAS D - ISG Vulnerability Issue START -->
+    <script>
+      if (/[^a-zA-Z0-9@._]/.test(document.frmLogin.fldLoginUserId.value)) {
+        alert('Customer ID  should contain Alphabets or Numbers or three special characters (. or _ or @)');
+        document.frmLogin.fldLoginUserId.focus();
+        return false;
+      }
+    </script>
+    <!--ADD: TEJAS D - ISG Vulnerability Issue END -->
+
+    <script>
+      if ((parent.daemon == " MERCHANT" && (parent.RsaAuthReq == 'N' || parent.RsaAuthReq == 'E')) //FLXENH-410 Pratik ||
+        (parent.daemon == "NSDL") || (parent.daemon == "BROKER") || (parent.daemon == "DPHOLD") || (parent.daemon == "CBEC") ||
+        (parent.daemon == "ICEGATE") || (parent.daemon == "GSTN") || (parent.daemon == "GST1") || (parent.daemon == "NACH")) {
+        /*
+             Hitesh FLEXENH-274 GSTN*/
+        /*FLEXENH-499 | Ankit |NACH*/
+        var
+          l_str_val = isStringValid(document.frmLogin.fldPassword.value, "required, minlen=4", true, "IPIN (password)");
+        if (l_str_val != null) {
+          document.frmLogin.fldPassword.focus();
+          return false;
+        }
+      }
+      /*ILENH-PasswordPolicy-22/11/2012-SandeepSaxena-Start*/
+      if ((parent.daemon == "MERCHANT" && (parent.RsaAuthReq == 'N' ||
+        parent.RsaAuthReq == 'E')) //FLXENH-410 Pratik || (parent.daemon=="NSDL" ) || (parent.daemon=="BROKER" ) ||
+        (parent.daemon == "DPHOLD") || (parent.daemon == "CBEC") || (parent.daemon == "ICEGATE") || (parent.daemon == "GSTN") ||
+        (parent.daemon == "GST1") || (parent.daemon == "NACH")) {
+        /* Hitesh FLEXENH-274 GSTN*/ /*FLEXENH-499 | Ankit |NACH*/
+        var
+          randomnumber = Math.floor(10000000 + (Math.random() * (100000000 - 10000000 + 1)));
+        var l_str_pas = stringToHex(des(document.frmLogin.fldPassword.value.substring(0, 8), document.frmLogin.fldPassword.value, 1, 0));
+        var
+          l_sub_password = l_str_pas.toUpperCase().substring(2, l_str_pas.length);
+        while (l_sub_password.length < 32) {
+          l_sub_password = l_sub_password + "0";
+        }
+        document.frmLogin.fldRandomNumber.value = randomnumber;
+        document.frmLogin.fldPassword.value = hex_hmac(document.frmLogin.fldRandomNumber.value, l_sub_password);
+      }
+      /*ILENH-PasswordPolicy-22/11/2012-SandeepSaxena-END*/
+      /* if(!document.frmLogin.termcon.checked){ alert("Please Read
+           and Accept the Terms and Conditions to access Net Banking."); return false; } */
+      document.frmLogin.fldRefVal.value = document.frmLogin.fldLoginUserId.value + '-' +
+        document.frmLogin.fldRandomNumber.value + '-' + parent.daemon + '-' + parent.RsaAuthReq + '-';
+      switch (parent.daemon) {
+        case 'NETBANKING':
+        default:
+          if (!l_clicked) {
+            document.frmLogin.target = "_self";
+            document.frmLogin.fldTxnId.value = "RGN";
+            document.frmLogin.submit();
+          }
+          break;
+        case 'CBEC':
+          document.frmLogin.MajorHead.value = parent.MajorHead;
+          document.frmLogin.fldMerchCode.value = 'CBEC';
+          document.frmLogin.Accounting_code1.value = parent.Accounting_code1;
+          document.frmLogin.Accounting_code2.value = parent.Accounting_code2;
+          document.frmLogin.Accounting_code3.value = parent.Accounting_code3;
+          document.frmLogin.Accounting_code4.value = parent.Accounting_code4;
+          document.frmLogin.Accounting_code5.value = parent.Accounting_code5;
+          document.frmLogin.Accounting_code6.value = parent.Accounting_code6;
+          document.frmLogin.Assessee_code.value = parent.Assessee_code;
+          document.frmLogin.Commissioneratee_Code.value = parent.Commissioneratee_Code;
+          document.frmLogin.Division_Code.value = parent.Division_Code;
+          document.frmLogin.Range_Code.value = parent.Range_Code;
+          document.frmLogin.Name.value = parent.Name;
+          document.frmLogin.Add_Line1.value = parent.Add_Line1;
+          document.frmLogin.Add_Line2.value = parent.Add_Line2;
+          document.frmLogin.Add_Line3.value = parent.Add_Line3;
+          document.frmLogin.Add_Pin.value = parent.Add_Pin;
+          document.frmLogin.TransactionDate.value = parent.TransactionDate;
+          document.frmLogin.TransactionDateStr.value = parent.TransactionDateStr;
+          /* Flexenh 435- Invalid Customer Id error on
+                Login Page Sanjana Added*/
+          document.frmLogin.fldCustomerInvalidPass.value = parent.CustomerInvalidPass;
+          /* Flexenh 435-
+               Invalid Customer Id error on Login Page Sanjana Added*/
+          document.frmLogin.fldAppId.value = 'XT';
+          document.frmLogin.fldScrnSeqNbr.value = '31';
+          if (!l_clicked) {
+            document.frmLogin.target = "_parent";
+            document.frmLogin.submit();
+          }
+          break;
+        case 'NSDL':
+          document.frmLogin.fldChallanNo.value = parent.ChallanNo;
+          document.frmLogin.fldMajorHead.value = parent.MajorHead;
+          document.frmLogin.fldMinorHead.value = parent.MinorHead;
+          document.frmLogin.fldAssessYear.value = parent.AssessYear;
+          document.frmLogin.fldPAN.value = parent.PAN;
+          document.frmLogin.fldTAN.value = parent.TAN;
+          document.frmLogin.fldName.value = parent.Name;
+          document.frmLogin.fldAdd_Line1.value = parent.Add_Line1;
+          document.frmLogin.fldAdd_Line2.value = parent.Add_Line2;
+          document.frmLogin.fldAdd_Line3.value = parent.Add_Line3;
+          document.frmLogin.fldAdd_Line4.value = parent.Add_Line4;
+          document.frmLogin.fldAdd_Line5.value = parent.Add_Line5;
+          document.frmLogin.fldAdd_State.value = parent.Add_State;
+          document.frmLogin.fldAdd_PIN.value = parent.Add_PIN;
+          document.frmLogin.fldNaturePayment.value = parent.NaturePayment;
+          document.frmLogin.fldDatTimeTxn.value = parent.TransactionDate;
+          document.frmLogin.fldMerchCode.value = parent.MerchantCode;
+          document.frmLogin.fldMerchName.value = parent.MerchantName;
+          document.frmLogin.fldMerchAcct.value = parent.MerchantAcctNo;
+          document.frmLogin.fldFinYear.value = parent.FinancialYear;
+          document.frmLogin.fldZaoCode.value = parent.ZAOCODE;
+          document.frmLogin.fldInpChkSum.value = parent.InpChkSum;
+          document.frmLogin.fldCustomerInvalidPass.value = parent.CustomerInvalidPass;
+          /* Flexenh 435- Invalid Customer Id error
+               on Login Page Sanjana ADDED*/
+          document.frmLogin.TransactionDateStr.value = parent.TransactionDateStr;
+          /* Flexenh 435-
+                Invalid Customer Id error on Login Page Sanjana Added*/
+          document.frmLogin.fldAppId.value = 'XT';
+          document.frmLogin.fldScrnSeqNbr.value = '21';
+          if (!l_clicked) {
+            document.frmLogin.target = "_parent";
+            document.frmLogin.submit();
+          }
+          break; /* IL-ADD-18/06/2012- : DineshM : ICEGATE : START*/
+        case 'ICEGATE':
+          document.frmLogin.fldMerchCode.value = parent.MerchantCode;
+          document.frmLogin.fldLogId.value = parent.UniqueId;
+          document.frmLogin.fldAppId.value = 'XT';
+          document.frmLogin.fldScrnSeqNbr.value = '41';
+          if (!l_clicked) {
+            document.frmLogin.target = "_parent";
+            document.frmLogin.submit();
+          }
+          break;
+        /* IL-ADD-18/06/2012- : DineshM : ICEGATE :
+             END*/
+        /* Hitesh FLEXENH-274 GSTN start */
+        case 'GSTN':
+          document.frmLogin.MerchantName.value = parent.MerchantName;
+          document.frmLogin.fldMerchCode.value = parent.MerchantCode;
+          document.frmLogin.MerchantAcctNo.value = parent.MerchantAcctNo;
+          document.frmLogin.fldCpin.value = parent.Cpin;
+          document.frmLogin.fldGSTNTxnId.value = parent.TxnId;
+          document.frmLogin.fldGSTNIn.value = parent.GSTNIn;
+          document.frmLogin.fldChallanExpDate.value = parent.ChallanExpDate;
+          document.frmLogin.fldIGSTamt.value = parent.IGST_amt;
+          document.frmLogin.fldSGSTamt.value = parent.SGST_amt;
+          document.frmLogin.fldCGSTamt.value = parent.CGST_amt;
+          document.frmLogin.fldCESSamt.value = parent.CESS_amt;
+          document.frmLogin.fldTotalamt.value = parent.Total_amt;
+          document.frmLogin.fldCESSAccCode.value = parent.CESS_AccCode;
+          document.frmLogin.fldIGSTAccCode.value = parent.IGST_AccCode;
+          document.frmLogin.fldSGSTAccCode.value = parent.SGST_AccCode;
+          document.frmLogin.fldCGSTAccCode.value = parent.CGST_AccCode;
+          document.frmLogin.fldBenStateCode.value = parent.Ben_State_Code;
+          document.frmLogin.fldRequestTime.value = parent.RequestTime;
+          document.frmLogin.fldReturnURL.value = parent.ReturnURL;
+          document.frmLogin.fldMercRefno.value = parent.MercRefno;
+          document.frmLogin.fldRsaAuthReq.value = parent.RsaAuthReq;
+          document.frmLogin.fldAccReqFlag.value = parent.AccReqFlag;
+          document.frmLogin.fldEpiReqId.value = parent.EpiReqId;
+          document.frmLogin.fldCustomerInvalidPass.value = parent.CustomerInvalidPass;
+          document.frmLogin.fldClientCode.value = '';
+          document.frmLogin.fldAppId.value = 'XT';
+          document.frmLogin.fldScrnSeqNbr.value = '51';
+          document.frmLogin.target = "_parent";
+          if (!l_clicked) {
+            document.frmLogin.target = "_parent";
+            document.frmLogin.submit();
+          }
+          break; /* Hitesh FLEXENH-274 GSTN End */
+        case 'MERCHANT':
+          document.frmLogin.OrgReqDate.value = parent.OrgReqDate;
+          document.frmLogin.fldEpiReqId.value = parent.EpiReqId;
+          document.frmLogin.fldRsaAuthReq.value = parent.RsaAuthReq;
+          document.frmLogin.fldClientCode.value = parent.ClientCode;
+          document.frmLogin.fldAccReqFlag.value = parent.AccReqFlag;
+          document.frmLogin.fldClientAccNum.value = parent.ClientAccNum;
+          document.frmLogin.fldMerchCode.value = parent.MerchantCode;
+          document.frmLogin.fldMerchRefNbr.value = parent.MerchantRefNo;
+          document.frmLogin.fldSucStatFlg.value = parent.SucStatFlag;
+          document.frmLogin.fldFailStatFlg.value = parent.FailStatFlag;
+          document.frmLogin.fldDatTimeTxn.value = parent.TxnDateTime
+          document.frmLogin.fldTxnCurr.value = parent.TxnCurrency;
+          document.frmLogin.fldTxnAmt.value = parent.TxnAmount;
+          document.frmLogin.fldTxnScAmt.value = parent.TxnScAmount;
+          document.frmLogin.fldRef1.value = parent.ref1;
+          document.frmLogin.fldRef2.value = parent.ref2;
+          document.frmLogin.fldRef3.value = parent.ref3;
+          document.frmLogin.fldRef4.value = parent.ref4;
+          document.frmLogin.fldRef5.value = parent.ref5;
+          document.frmLogin.fldRef6.value = parent.ref6;
+          document.frmLogin.fldRef7.value = parent.ref7;
+          document.frmLogin.fldRef8.value = parent.ref8;
+          document.frmLogin.fldRef9.value = parent.ref9;
+          document.frmLogin.fldRef10.value = parent.ref10;
+          document.frmLogin.fldRef11.value = parent.ref11;
+          document.frmLogin.fldDate1.value = parent.date1;
+          document.frmLogin.fldDate2.value = parent.date2;
+          document.frmLogin.fldCheckSum.value = parent.CheckSum;
+          document.frmLogin.fldDynamicUrl.value = parent.DynamicUrl;
+          /*
+               ILENH-ADD-10/05/2011-SandeepS */
+          document.frmLogin.fldDisplayDetails.value = parent.DisplayDetails;
+          document.frmLogin.fldDetails1.value = parent.Details1;
+          document.frmLogin.fldDetails2.value = parent.Details2;
+          document.frmLogin.fldDetails3.value = parent.Details3;
+          document.frmLogin.fldAppId.value = 'XT';
+          document.frmLogin.fldScrnSeqNbr.value = '11';
+          document.frmLogin.target = "_parent";
+          document.frmLogin.fldCustomerInvalidPass.value = parent.CustomerInvalidPass;
+          /* Flexenh 435- Invalid Customer Id error
+               on Login Page Sanjana ADDED*/
+          try {
+            document.frmLogin.fldEpiToken.value = '*' + parent.EpiReqId + '*' +
+              parent.MerchantCode + '*' + parent.ClientCode + '*' + parent.MerchantRefNo + '*' + parent.TxnDateTime + '*' + parent.ref1 + '*' + parent.ref2 + '*' + parent.ref3 + '*' + parent.ref4 + '*' + parent.ref5 + '*';
+            resetParentParams();
+          } catch (e) { }
+          if (parent.RsaAuthReq == 'Y') {
+            document.frmLogin.fldTxnId.value = "RGN";
+            document.frmLogin.fldScrnSeqNbr.value = "01";
+            document.frmLogin.target = "_self";
+          }
+          if (!l_clicked) {
+            document.frmLogin.submit();
+          }
+          break;
+        case 'BROKER':
+          document.frmLogin.fldApplicationId.value = parent.fldApplicationId;
+          document.frmLogin.fldTransactionId.value = parent.fldTransactionId;
+          document.frmLogin.fldAgencyId.value = parent.fldAgencyId;
+          document.frmLogin.fldTxnRefNo.value = parent.fldTxnRefNo;
+          document.frmLogin.fldSource.value = parent.fldSource;
+          document.frmLogin.fldCodOrgBrn.value = parent.fldCodOrgBrn;
+          document.frmLogin.fldHoldCustId.value = parent.fldHoldCustId;
+          document.frmLogin.fldHoldAcctNo.value = parent.fldHoldAcctNo;
+          document.frmLogin.fldHoldDesc.value = parent.fldHoldDesc;
+          document.frmLogin.fldHoldAmount.value = parent.fldHoldAmount;
+          document.frmLogin.fldHoldCurrency.value = parent.fldHoldCurrency;
+          document.frmLogin.fldAppId.value = 'BR';
+          if (!l_clicked) {
+            document.frmLogin.target = "_parent";
+            document.frmLogin.fldLoginUserId.disabled = false;
+            document.frmLogin.submit();
+            document.frmLogin.fldLoginUserId.disabled = true;
+          }
+          break;
+        case 'DPHOLD':
+          document.frmLogin.fldApplicationId.value = parent.fldApplicationId;
+          document.frmLogin.fldTransactionId.value = parent.fldTransactionId;
+          document.frmLogin.fldAgencyId.value = parent.fldAgencyId;
+          document.frmLogin.fldTxnRefNo.value = parent.fldTxnRefNo;
+          document.frmLogin.fldSource.value = parent.fldSource;
+          document.frmLogin.fldMsgVer.value = parent.fldMsgVer;
+          document.frmLogin.fldMsgTp.value = parent.fldMsgTp;
+          document.frmLogin.fldRelId.value = parent.fldRelId;
+          document.frmLogin.fldHoldCustId.value = parent.fldHoldCustId;
+          document.frmLogin.fldDpTag.value = parent.fldDpTag;
+          document.frmLogin.fldAppId.value = 'BR';
+          document.frmLogin.fldScrnSeqNbr.value = '10';
+          if (!l_clicked) {
+            document.frmLogin.target = "_parent";
+            document.frmLogin.fldLoginUserId.disabled = false;
+            document.frmLogin.submit();
+            document.frmLogin.fldLoginUserId.disabled = true;
+          }
+          break; /*FLEXENH - 499 | Ankit | START */
+        case 'NACH':
+          document.frmLogin.fldClientAccNum.value = parent.ClientAccNum;
+          document.frmLogin.fldMandateRefNo.value = parent.MandateRefNo;
+          document.frmLogin.fldMerchCode.value = parent.MerchantCode;
+          document.frmLogin.fldDate.value = parent.Date;
+          document.frmLogin.fldCheckSum.value = parent.CheckSum;
+          document.frmLogin.fldTxnAmount.value = parent.TxnAmount;
+          document.frmLogin.fldDebitType.value = parent.DebitType;
+          document.frmLogin.fldDebitFreq.value = parent.DebitFreq;
+          document.frmLogin.fldStartDate.value = parent.StartDate;
+          document.frmLogin.fldEndDate.value = parent.EndDate;
+          document.frmLogin.fldCategory.value = parent.Category;
+          document.frmLogin.fldAcctHolderName.value = parent.AcctHolderName;
+          document.frmLogin.fldMerchantRefNo.value = parent.MerchantRefNo;
+          document.frmLogin.fldMerchantName.value = parent.MerchantName;
+          document.frmLogin.fldAcctType.value = parent.AcctType;
+          document.frmLogin.fldRef1.value = parent.Ref1;
+          document.frmLogin.fldRef2.value = parent.Ref2;
+          document.frmLogin.fldRef3.value = parent.Ref3;
+          document.frmLogin.fldRef4.value = parent.Ref4;
+          document.frmLogin.fldRef5.value = parent.Ref5;
+          document.frmLogin.fldRef6.value = parent.Ref6;
+
+          document.frmLogin.fldAppId.value = 'XT';
+          document.frmLogin.fldScrnSeqNbr.value = '61';
+          document.frmLogin.target = "_parent";
+
+          if (!l_clicked) {
+            document.frmLogin.target = "_parent";
+            document.frmLogin.submit();
+          }
+
+          break;
+      }
+      document.frmLogin.reset();
+      return false;
+
+        }
+
+    </script>
+
+    <!--FLEXENH - 499 | Ankit | END-->
+
+
+    <script>
+      //-------------------------------------------------------------------------------
+      function init() {
+        if (parent.daemon != 'NETBANKING' && (parent.RsaAuthReq == '' || parent.RsaAuthReq == 'N' || parent.RsaAuthReq == 'E')) { //FLXENH-410 Pratik
+          setKeyboardFocus("frmLogin", "fldPassword");
+        }
+        if (parent.daemon == 'NETBANKING' || parent.daemon == 'MERCHANT' || parent.daemon == 'NSDL' || parent.daemon ==
+          'NACH') {
+          /*FLEXENH-499 | Ankit | NACH*/
+          document.frmLogin.fldLoginUserId.value = "";
+          document.frmLogin.fldLoginUserId.focus();
+          if (parent.daemon == 'MERCHANT' && (parent.RsaAuthReq == 'N' || parent.RsaAuthReq == 'E')) { //FLXENH-410 Pratik
+            if (document.frmLogin.chksecmod.checked) {
+              document.frmLogin.fldPassword.readOnly = true;
+              document.frmLogin.fldPassword.blur();
+              document.frmLogin.fldPassword.focus();
+            } else {
+              document.frmLogin.fldPassword.readOnly = false;
+            }
+          }
+        } else if (parent.daemon == 'BROKER' || parent.daemon == 'DPHOLD') {
+          document.frmLogin.fldLoginUserId.value = parent.fldHoldCustId;
+          document.frmLogin.fldLoginUserId.disabled = true;
+          if (parent.daemon == 'BROKER') {
+            if (document.frmLogin.chksecmod.checked) {
+              document.frmLogin.fldPassword.readOnly = true;
+              document.frmLogin.fldPassword.blur();
+              document.frmLogin.fldPassword.focus();
+            } else {
+              document.frmLogin.fldPassword.readOnly = false;
+              document.frmLogin.fldPassword.focus();
+            }
+          } else {
+            document.frmLogin.fldPassword.focus();
+          }
+        }
+        return false;
+      }
+      //-----------------------------------------------------------------------------
+      function DeletePwd() {
+        if (document.frmLogin.chksecmod.checked) {
+          var strNumField = new String(document.frmLogin.fldPassword.value);
+          document.frmLogin.fldPassword.value = strNumField.substring(0, strNumField.length - 1);
+          document.frmLogin.fldPassword.id = "";
+          doRandomize();
+        }
+        return false;
+      }
+
+      //-----------------------------------------------------------------------------
+      function ClearPwd() {
+        if (document.frmLogin.chksecmod.checked) {
+          document.frmLogin.fldPassword.value = "";
+          doRandomize();
+        }
+        return false;
+      }
+      //-----------------------------------------------------------------------------
+      function SecurityWarning() {
+        if (document.frmLogin.chksecmod.checked) {
+          document.frmLogin.fldPassword.readOnly = true;
+          document.frmLogin.fldPassword.blur();
+        } else {
+          document.frmLogin.fldPassword.readOnly = false;
+          if (false == confirm("Use of Security Keyboard is recommended to protect your Password. Are you sure you choose NOT to
+                        use the Security Keyboard ? ")) {
+                        document.frmLogin.chksecmod.checked = true; SecurityWarning();
+        }
+      }
+            }
+      //-----------------------------------------------------------------------------
+      function changeIndicator(q) {
+        var l_caps_indicator;
+        l_caps_indicator = document.getElementById("capsindicator");
+
+        if (q == 0) {
+          l_caps_indicator.innerHTML = "ON";
+        } else {
+          l_caps_indicator.innerHTML = "OFF";
+        }
+
+
+      }
+
+
+      //-------------------------------------------------------------------------------
+      function resetParentParams() {
+        try {
+          var tmp_str = '';
+          parent.OrgReqDate = tmp_str;
+          parent.EpiReqId = tmp_str;
+          parent.ref1 = tmp_str;
+          parent.ref2 = tmp_str;
+          parent.ref3 = tmp_str;
+          parent.ref4 = tmp_str;
+          parent.ref5 = tmp_str;
+          parent.ref6 = tmp_str;
+          parent.ref7 = tmp_str;
+          parent.ref8 = tmp_str;
+          parent.ref9 = tmp_str;
+          parent.ref10 = tmp_str;
+          parent.ref11 = tmp_str;
+        } catch (e) { }
+      }
+      /*02/03/2015 RogerG ENH CCR 431: Retrieve Customer Id Start */
+      function fretrieveCustId() {
+        document.frmLogin.fldAppId.value = "RS";
+        document.frmLogin.fldTxnId.value = "CRO";
+        document.frmLogin.fldScrnSeqNbr.value = "01";
+        document.frmLogin.submit();
+        return false;
+
+      }
+      /*02/03/2015 RogerG ENH CCR 431: Retrieve Customer Id end */
+      /* mehul start */
+      function fretrieveCustIdEpi() {
+        var w = window.open('', '_target', '');
+        document.frmLogin.target = "_target";
+
+        document.frmLogin.fldAppId.value = "RS";
+        document.frmLogin.fldTxnId.value = "CRO";
+        document.frmLogin.fldScrnSeqNbr.value = "01";
+        document.frmLogin.submit();
+        return false;
+
+      }
+            /* mehul end */
+            //-----------------------------------------------------------------------------
+    </script>
+
+    <link href="/css/vkb.css" type="text/css" rel="stylesheet" />
+
+
+
+  </head>
+  <frameset border="false" frameborder="O" framespacing="0" rows="*" cols="*">
+    <frameset border="false" frameborder="O" framespacing="0" rows="*,30" cols="*">
+      <frame marginwidth="0" marginheight="0" name="login_page" src="RSLogin.html?v=12" noresize="true" scrolling="yes">
+        <frame marginwidth="0" marginheight="0" name="footer" src="footer.html" noresize="true" scrolling="no">
+    </frameset>
+  </frameset>
+
+  <body onload="init();" marginwidth="0" marginheight="0">
+
+
+
+
+    <form name="frmLogin" action="entry" class="login" method="post" target="_top" autocomplete="off">
+      <input type="password" style="position:absolute; top:-100px; display:none;" name="fldpwdtmp">
+      <!-- added on 19/11/2015 -->
+      <input type="hidden" name="fldAppId" value="RS">
+      <input type="hidden" name="fldDevicePrint" value=""> <!-- Anant Mane : RSA device print-->
+      <input type="hidden" name="fldTxnId" value="LGN">
+      <input type="hidden" name="fldScrnSeqNbr" value="01">
+      <input type="hidden" name="fldLangId" value="eng">
+      <input type="hidden" name="fldDeviceId" value="01">
+      <input type="hidden" name="fldWebServerId" value="YG">
+      <input type="hidden" name="fldAppServerId" value="ZZ">
+      <input type="hidden" name="fldRandomNumber" value="">
+      <!--added by sandeep-->
+      <input type="hidden" name="fldRefPage" value="rsloginhtml">
+      <input type="hidden" name="fldRefVal" value="*">
+      <!--02/03/2015	RogerG	ENH CCR 431: Retrieve Customer Id  Start			 -->
+      <!--<input type="hidden" name="fldLoginUserCss" value="default"/>-->
+      <!--02/03/2015	RogerG	ENH CCR 431: Retrieve Customer Id  end /			 -->
+      <script language="javascript">
+        if (parent.daemon == 'MERCHANT') {
+          document.write('<input type="hidden" name="fldRsaAuthReq" />');
+          document.write('<input type="hidden" name="fldClientCode" />');
+          document.write('<input type="hidden" name="fldMerchCode" />');
+          document.write('<input type="hidden" name="fldClientAccNum" />');
+          document.write('<input type="hidden" name="fldAccReqFlag" />');
+          document.write('<input type="hidden" name="fldMerchRefNbr" />');
+          document.write('<input type="hidden" name="fldSucStatFlg" />');
+          document.write('<input type="hidden" name="fldFailStatFlg" />');
+          document.write('<input type="hidden" name="fldDatTimeTxn" />');
+          document.write('<input type="hidden" name="fldTxnCurr" />');
+          document.write('<input type="hidden" name="fldTxnAmt" />');
+          document.write('<input type="hidden" name="fldTxnScAmt" />');
+          document.write('<input type="hidden" name="fldRef1" />');
+          document.write('<input type="hidden" name="fldRef2" />');
+          document.write('<input type="hidden" name="fldRef3" />');
+          document.write('<input type="hidden" name="fldRef4" />');
+          document.write('<input type="hidden" name="fldRef5" />');
+          document.write('<input type="hidden" name="fldRef6" />');
+          document.write('<input type="hidden" name="fldRef7" />');
+          document.write('<input type="hidden" name="fldRef8" />');
+          document.write('<input type="hidden" name="fldRef9" />');
+          document.write('<input type="hidden" name="fldRef10" />');
+          document.write('<input type="hidden" name="fldRef11" />');
+          document.write('<input type="hidden" name="fldDate1" />');
+          document.write('<input type="hidden" name="fldDate2" />');
+          document.write('<input type="hidden" name="fldCheckSum" />');
+          document.write('<input type="hidden" name="fldDynamicUrl" />'); /* ILENH-ADD-10/05/2011-SandeepS-START */
+          document.write('<input type="hidden" name="fldDisplayDetails" />');
+          document.write('<input type="hidden" name="fldDetails1" />');
+          document.write('<input type="hidden" name="fldDetails2" />');
+          document.write('<input type="hidden" name="fldDetails3" />');
+          document.write('<input type="hidden" name="fldEpiToken" />');
+          document.write('<input type="hidden" name="fldEpiReqId" />');
+          document.write('<input type="hidden" name="OrgReqDate" />');
+          document.write('<input type="hidden" name="fldCustomerInvalidPass" />'); /* Flexenh 435- Invalid Customer Id error on Login Page Sanjana ADDED  */
+
+        } else if (parent.daemon == 'NSDL') {
+          document.write('<input type="hidden" name="fldChallanNo" />');
+          document.write('<input type="hidden" name="fldMajorHead" />');
+          document.write('<input type="hidden" name="fldMinorHead" />');
+          document.write('<input type="hidden" name="fldAssessYear" />');
+          document.write('<input type="hidden" name="fldPAN" />');
+          document.write('<input type="hidden" name="fldTAN" />');
+          document.write('<input type="hidden" name="fldName" />');
+          document.write('<input type="hidden" name="fldAdd_Line1" />');
+          document.write('<input type="hidden" name="fldAdd_Line2" />');
+          document.write('<input type="hidden" name="fldAdd_Line3" />');
+          document.write('<input type="hidden" name="fldAdd_Line4" />');
+          document.write('<input type="hidden" name="fldAdd_Line5" />');
+          document.write('<input type="hidden" name="fldAdd_State" />');
+          document.write('<input type="hidden" name="fldAdd_PIN" />');
+          document.write('<input type="hidden" name="fldNaturePayment" />');
+          document.write('<input type="hidden" name="fldDatTimeTxn" />');
+          document.write('<input type="hidden" name="fldMerchCode" />');
+          document.write('<input type="hidden" name="fldMerchName" />');
+          document.write('<input type="hidden" name="fldMerchAcct" />');
+          document.write('<input type="hidden" name="fldFinYear" />');
+          document.write('<input type="hidden" name="fldZaoCode" />');
+          document.write('<input type="hidden" name="fldInpChkSum" />');
+          document.write('<input type="hidden" name="fldCustomerInvalidPass" />'); //Flexenh 435- Invalid Customer Id error on Login Page Sanjana 
+          document.write('<input type="hidden" name="TransactionDateStr" />'); //Flexenh 435- Invalid Customer Id error on Login Page Sanjana 
+        } else if (parent.daemon == 'ICEGATE') {
+          /* IL-ADD-18/06/2012- : DineshM : ICEGATE : START*/
+          document.write('<input type="hidden" name="fldMerchCode" />');
+          document.write('<input type="hidden" name="fldLogId" />');
+        } /* IL-ADD-18/06/2012- : DineshM : ICEGATE : END*/
+        else if (parent.daemon == 'CBEC') {
+
+          document.write('<input type="hidden" name="fldMerchCode" />');
+          document.write('<input type="hidden" name="MajorHead" />');
+          document.write('<input type="hidden" name="Accounting_code1" />');
+          document.write('<input type="hidden" name="Accounting_code2" />');
+          document.write('<input type="hidden" name="Accounting_code3" />');
+          document.write('<input type="hidden" name="Accounting_code4" />');
+          document.write('<input type="hidden" name="Accounting_code5" />');
+          document.write('<input type="hidden" name="Accounting_code6" />');
+          document.write('<input type="hidden" name="Assessee_code" />');
+          document.write('<input type="hidden" name="Commissioneratee_Code" />');
+          document.write('<input type="hidden" name="Division_Code" />');
+          document.write('<input type="hidden" name="Range_Code" />');
+          document.write('<input type="hidden" name="Name" />');
+          document.write('<input type="hidden" name="Add_Line1" />');
+          document.write('<input type="hidden" name="Add_Line2" />');
+          document.write('<input type="hidden" name="Add_Line3" />');
+          document.write('<input type="hidden" name="Add_Pin" />');
+          document.write('<input type="hidden" name="TransactionDate" />');
+          document.write('<input type="hidden" name="fldNaturePayment" />');
+
+          document.write('<input type="hidden" name="fldCustomerInvalidPass" />'); //Flexenh 435- Invalid Customer Id error on Login Page Sanjana 
+          document.write('<input type="hidden" name="TransactionDateStr" />'); //Flexenh 435- Invalid Customer Id error on Login Page Sanjana 
+        } else if (parent.daemon == 'BROKER') {
+          document.write('<input type="hidden" name="fldApplicationId"/>');
+          document.write('<input type="hidden" name="fldTransactionId" value="7008" />');
+          document.write('<input type="hidden" name="fldAgencyId"/>');
+          document.write('<input type="hidden" name="fldTxnRefNo"/>');
+          document.write('<input type="hidden" name="fldSource"/>');
+          document.write('<input type="hidden" name="fldCodOrgBrn"/>');
+          document.write('<input type="hidden" name="fldHoldCustId"/>');
+          document.write('<input type="hidden" name="fldHoldAcctNo"/>');
+          document.write('<input type="hidden" name="fldHoldDesc"/>');
+          document.write('<input type="hidden"  MAXLENGTH="15" name="fldHoldAmount"/>');
+          document.write('<input type="hidden" name="fldHoldCurrency"/>');
+        } else if (parent.daemon == 'DPHOLD') {
+          document.write('<input type="hidden" name="fldApplicationId"/>');
+          document.write('<input type="hidden" name="fldTransactionId"/>');
+          document.write('<input type="hidden" name="fldAgencyId"/>');
+          document.write('<input type="hidden" name="fldTxnRefNo"/>');
+          document.write('<input type="hidden" name="fldSource"/>');
+          document.write('<input type="hidden" name="fldMsgVer"/>');
+          document.write('<input type="hidden" name="fldMsgTp"/>');
+          document.write('<input type="hidden" name="fldRelId"/>');
+          document.write('<input type="hidden" name="fldHoldCustId"/>');
+          document.write('<input type="hidden" name="fldDpTag"/>');
+        } else if (parent.daemon == 'GSTN') {
+          /* Hitesh FLEXENH-274  Start*/
+          document.write('<input type="hidden" name="MerchantName"/>');
+          document.write('<input type="hidden" name="fldMerchCode"/>');
+          document.write('<input type="hidden" name="MerchantAcctNo"/>');
+          document.write('<input type="hidden" name="fldCpin"/>');
+          document.write('<input type="hidden" name="fldGSTNTxnId"/>');
+          document.write('<input type="hidden" name="fldGSTNIn"/>');
+          document.write('<input type="hidden" name="fldChallanExpDate"/>');
+          document.write('<input type="hidden" name="fldIGSTamt"/>');
+          document.write('<input type="hidden" name="fldSGSTamt"/>');
+          document.write('<input type="hidden" name="fldCGSTamt"/>');
+          document.write('<input type="hidden" name="fldCESSamt"/>');
+          document.write('<input type="hidden" name="fldTotalamt"/>');
+          document.write('<input type="hidden" name="fldCESSAccCode"/>');
+          document.write('<input type="hidden" name="fldIGSTAccCode"/>');
+          document.write('<input type="hidden" name="fldSGSTAccCode"/>');
+          document.write('<input type="hidden" name="fldCGSTAccCode"/>');
+          document.write('<input type="hidden" name="fldBenStateCode"/>');
+          document.write('<input type="hidden" name="fldRequestTime"/>');
+          document.write('<input type="hidden" name="fldReturnURL"/>');
+          document.write('<input type="hidden" name="fldMercRefno"/>');
+          document.write('<input type="hidden" name="fldRsaAuthReq"/>');
+          document.write('<input type="hidden" name="fldAccReqFlag"/>');
+          document.write('<input type="hidden" name="fldClientCode"/>');
+          document.write('<input type="hidden" name="fldEpiReqId" />');
+          document.write('<input type="hidden" name="fldCustomerInvalidPass" />'); //Flexenh 435- Invalid Customer Id error on Login Page Sanjana
+        } /* Hitesh FLEXENH-274  Start*/
+
+            <
+          !--FLEXENH - 499 | Ankit | START-- >
+                else if (parent.daemon == 'NACH') {
+          document.write('<input type="hidden" name="fldClientAccNum"/>');
+          document.write('<input type="hidden" name="fldMandateRefNo"/>');
+          document.write('<input type="hidden" name="fldMerchCode"/>');
+          document.write('<input type="hidden" name="fldDate"/>');
+          document.write('<input type="hidden" name="fldCheckSum"/>');
+          document.write('<input type="hidden" name="fldTxnAmount"/>');
+          document.write('<input type="hidden" name="fldDebitType"/>');
+          document.write('<input type="hidden" name="fldDebitFreq"/>');
+          document.write('<input type="hidden" name="fldStartDate"/>');
+          document.write('<input type="hidden" name="fldEndDate"/>');
+          document.write('<input type="hidden" name="fldCategory"/>');
+          document.write('<input type="hidden" name="fldAcctHolderName"/>');
+          document.write('<input type="hidden" name="fldMerchantRefNo"/>');
+          document.write('<input type="hidden" name="fldMerchantName"/>');
+          document.write('<input type="hidden" name="fldAcctType"/>');
+          document.write('<input type="hidden" name="fldRef1"/>');
+          document.write('<input type="hidden" name="fldRef2"/>');
+          document.write('<input type="hidden" name="fldRef3"/>');
+          document.write('<input type="hidden" name="fldRef4"/>');
+          document.write('<input type="hidden" name="fldRef5"/>');
+          document.write('<input type="hidden" name="fldRef6"/>');
+        } <
+          !--FLEXENH - 499 | Ankit | END-- >
+      </script>
+
+      <!--- 21-10-2013	Anand K	 Revamping changes   START-->
+      <script language="javascript">
+            if (parent.daemon == "NETBANKING") {
+          document.write('<table width="1000" border="0" cellspacing="0" cellpadding="0" >');
+          document.write('<tbody>');
+          document.write('<tr>');
+          document.write('<td height="121" valign="bottom">');
+          document.write('<img src="/gif/logo_left_top_new1.jpg?v=1" alt="HDFC BANK - Net Banking" border="0"  align="top" >'); // 07/05/2016 Login Image change-Upwan 
+          document.write('<img src="/gif/header1_new1.jpg?v=1" usemap="#Map" alt="HDFC BANK - Net Banking" border="0"  align="top">'); // 07/05/2016 Login Image change-Upwan 
+          document.write('</td>');
+          document.write('</tr>');
+          document.write('<tbody>');
+          document.write('</table>');
+        } else {
+          document.write('<table width="770" border="0" cellspacing="0" cellpadding="0">');
+          document.write('<tr>');
+          document.write('<td colspan="3" height="67" valign="bottom"><img src="/gif/logo_left_top_new1.jpg?v=1" alt="HDFC BANK - Net Banking" ><img src="/gif/header1_new1.jpg?v=1" height="123" alt="HDFC BANK - Net Banking" border="0"></td>'); // 07/05/2016 EPI Login Image change-Upwan 
+          document.write('</tr>');
+          document.write('</table>');
+        }
+      </script>
+      <table width="1000" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+          <tr>
+            <td height="121" valign="bottom"><img src="/gif/logo_left_top_new1.jpg?v=1" alt="HDFC BANK - Net Banking"
+                border="0" align="top"><img src="/gif/header1_new1.jpg?v=1" usemap="#Map" alt="HDFC BANK - Net Banking"
+                border="0" align="top"></td>
+          </tr>
+        </tbody>
+        <tbody></tbody>
+      </table>
+      <!--- 21-10-2013	Anand K	 Revamping changes   END-->
+      <!--
+<table width="770" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+   <script language="javascript">  
+	if(parent.daemon=="NETBANKING"){
+		document.write('<td height="67" valign="bottom">');
+		document.write('<img src="./gif/logo_left_top.jpg" alt="HDFC BANK - Net Banking" border="0" width="228">');
+		document.write('<img src="./gif/header1_new.jpg" usemap="#Map" alt="HDFC BANK - Net Banking" border="0" >');
+		document.write('</td>');
+	} else{
+		document.write('<td colspan="3" height="67" valign="bottom"><img src="./gif/newtop1.gif" alt="HDFC BANK - Net Banking" ><img src="./gif/home-top-n2_new.gif" height="123" alt="HDFC BANK - Net Banking" border="0"></td>');
+	}
+  </script>
+  </tr>
+  </table>-->
+      <!--- 21-10-2013	Anand K	 Revamping changes   START-->
+
+      <script language="javascript">
+        if ((parent.daemon == 'NETBANKING')) {
+          document.write('<table width="1000" border="0" cellspacing="0" cellpadding="0"');
+          document.write('<tr>');
+          document.write('<td width="14" valign="top">&nbsp;&nbsp;&nbsp;</td>');
+          document.write('<td width="303" valign="top">');
+          document.write('<table width="303" border="0" cellspacing="0" cellpadding="0"  class="leftBox" bgcolor="#EDF0F4" >');
+          document.write('<tr>');
+          document.write('<td width="295" valign="top">'); //<!-- customer login box starts -->		
+        } else {
+          document.write('<table width="770" border="0" cellspacing="0" cellpadding="0">');
+          document.write('<tr>');
+          document.write('<td width="228" valign="top">');
+          document.write('<table width="274" border="0" cellspacing="0" cellpadding="0">'); //06-june-2016 Pratik Kashid FS_CCR_0498_ Personalization of user id 	width="228"
+          document.write('<tr>');
+          document.write('<td width="217" bgcolor="#EDF0F4" valign="top">'); //<!-- customer login box starts -->
+
+        }
+      </script>
+      <table width="1000" border="0" cellspacing="0" cellpadding="0" <tr="">
+        <tbody>
+          <tr>
+            <td width="14" valign="top">&nbsp;&nbsp;&nbsp;</td>
+            <td width="303" valign="top">
+              <table width="303" border="0" cellspacing="0" cellpadding="0" class="leftBox" bgcolor="#EDF0F4">
+                <tbody>
+                  <tr>
+                    <td width="295" valign="top">
+                      <!--- 21-10-2013	Anand K	 Revamping changes   END-->
+
+                      <!--table width="295" border="0" cellspacing="0" cellpadding="0" class="label">
+  
+  <table width="770" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="228" valign="top">
+      <table width="228" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="217" bgcolor="#EDF0F4" valign="top"> < !-- customer login box starts -->
+                      <!--- 21-10-2013	Anand K	 Revamping changes Commented  START-->
+                      <!--table width="100%" border="0" cellspacing="0" cellpadding="3" class="label"-->
+                      <!--- 21-10-2013	Anand K	 Revamping changes Commented  END-->
+                      <script language="javascript">
+                        if ((parent.daemon == 'MERCHANT' && (parent.RsaAuthReq == 'N' || parent.RsaAuthReq == 'E')) //FLXENH-410 Pratik
+                          ||
+                          parent.daemon == 'BROKER' || parent.daemon == 'NSDL' || parent.daemon == 'CBEC' || parent.daemon == 'ICEGATE' || parent.daemon == 'GSTN' || parent.daemon == 'GST1' || parent.daemon == 'NACH') {
+                                                /* Hitesh GSTN FLEXENH-274*/ /*FLEXENH-499 | Ankit | NACH*/ <
+                            !-- - 21 - 10 - 2013 Anand K Revamping changes START-- >
+                              document.write('<table width="100%" border="0" cellspacing="0" cellpadding="3" class="label">'); <
+                                !-- - 21 - 10 - 2013 Anand K Revamping changes END-- >
+                                  //Avinash START
+                                  document.write('<tr>');
+                          document.write('<td width="8" valign="top">&nbsp;</td>');
+                          document.write('<td class="nbl_ttl" colspan="2" valign="top">NetBanking Login</td>');
+                          document.write('</tr>');
+                          document.write('<tr>');
+                          document.write('<td width="8" valign="top">&nbsp;</td>');
+                          document.write('</tr>');
+                          //Avinash END
+                          document.write('<tr align="left" valign="middle">');
+                          document.write('<td width="8%">&nbsp;</td>');
+                          document.write('<td width="8%" valign="top">');
+                          document.write('<input id="chksecmod" onclick="return SecurityWarning();" type="checkbox" name="chksecmod">');
+                          document.write('</td>');
+                          var l_str = "";
+                          l_str = '<td width="84%"><align="left">';
+                          l_str = l_str + '<b>Click here to use Virtual keyboard for the Password only';
+                          l_str = l_str + '</align></td>';
+                          document.write(l_str);
+                          document.write('</tr>'); <
+                            !-- - 21 - 10 - 2013 Anand K Revamping changes START-- >
+                              document.write('</table>'); <
+                                !-- - 21 - 10 - 2013 Anand K Revamping changes END-- >
+                                            }
+                      </script>
+                      <!--- 21-10-2013	Anand K	 Revamping changes Commented  START-->
+                      <!--/table-->
+
+                      <!--table width="100%" border="0" cellspacing="0" cellpadding="3" class="label"-->
+                      <!--- 21-10-2013	Anand K	 Revamping changes Commented  END-->
+                      <script language="javascript">
+                        if ((parent.daemon == "MERCHANT" && (parent.RsaAuthReq == 'N' || parent.RsaAuthReq == 'E')) ||
+                          (parent.daemon == "NSDL") || (parent.daemon == "BROKER") ||
+                          (parent.daemon == "DPHOLD") || (parent.daemon == "CBEC") || (parent.daemon == "ICEGATE") || (parent.daemon == 'GSTN') || (parent.daemon == "NACH")) {
+                                                /* IL-ADD-18/06/2012- : DineshM : ICEGATE : START*/ /* Hitesh GSTN FLEXENH-274*/ /*FLEXENH-499 | Ankit | NACH*/ <
+                            !-- - 21 - 10 - 2013 Anand K Revamping changes START-- >
+                              document.write('<table width="100%" border="0" cellspacing="0" cellpadding="3" class="label">'); <
+                                !-- - 21 - 10 - 2013 Anand K Revamping changes END-- >
+                                  document.write('<tr align="left" valign="middle">');
+                          document.write('<td width="8">&nbsp;</td>');
+                          document.write('<td width="206">User ID / Customer ID:</td>'); //06-june-2016 Pratik Kashid FS_CCR_0498_Added menumonic for Personalization of user id width="89"
+                          document.write('<td width="101">');
+                          document.write('<input type="text" name="fldLoginUserId" maxlength="15" size="13" autocomplete="off" onkeypress = "return fSubmit(event);" value="" oncopy="return false" ondrag="return false" ondrop="return false" onpaste="return false" />'); //06-june-2016 Pratik Kashid FS_CCR_0498_Added menumonic for Personalization of user id maxlength="10" size="10"
+                          document.write('</td>');
+                          document.write('</tr>');
+                          // text changes mehul start----
+                          if (!((parent.daemon == "NSDL") || (parent.daemon == "CBEC"))) {
+                            document.write('<tr>');
+                            document.write('<td width="8"></td>');
+                            document.write('<td width="89">');
+                            document.write('</td>');
+                            document.write('<td width="110" colspan="2" valign="bottom" align="left" style="cursor: pointer"');
+                            document.write('<p><a style="font-size:11px;" href="javascript:void(0)" onclick="return fretrieveCustIdEpi();">Forgot Customer ID?</a></p>');
+                            document.write('</td>');
+
+                            document.write('</tr>');
+                          }
+                          // text changes mehul end----
+                          /* Flexenh 435- Invalid Customer Id error on Login Page Sanjana start */
+                          if (parent.CustomerInvalidPass == 'Y') {
+                            document.write('<tr align="left" valign="middle">');
+                            document.write('<td width="8">&nbsp;</td>');
+                            document.write('<td colSpan="2" width="89"><font color="red">The Customer ID/IPIN (Password) is invalid. Please try again.</font></td>');
+                          }
+                          /* Flexenh 435- Invalid Customer Id error on Login Page Sanjana end*/
+
+                          document.write('<tr align="left" valign="middle">');
+                          document.write('<td width="8">&nbsp;</td>');
+                          document.write('<td width="89">IPIN (password):</td>');
+                          document.write('<td width="101">');
+                          document.write('<input type="password" name="fldPassword" size="13" autocomplete="off" onfocus = "javascript:setKeyboardFocus(\'frmLogin\',\'fldPassword\');" value="" oncopy="return false" ondrag="return false" ondrop="return false" onpaste="return false" />'); //06-june-2016 Pratik Kashid FS_CCR_0498_Added menumonic for Personalization of user id 	 size="10"
+                          document.write('</td>');
+                          document.write('</tr>');
+                          // text changes mehul start----
+                          if (!((parent.daemon == "NSDL") || (parent.daemon == "CBEC"))) {
+                            document.write('<tr align="left" valign="middle">');
+                            document.write('<td width="8">&nbsp;</td>');
+                            document.write('<td width="89">');
+                            document.write('</td>');
+                            document.write('<td width="101" colspan="2" valign="bottom" align="left" style="cursor: pointer"');
+                            document.write('<p><a style="font-size:11px;" href="https://netbanking.hdfcbank.com/netbanking/IpinResetUsingOTP.htm?v=1" target="blank">Forgot Password?</a></p>');
+                            document.write('</td>');
+                            document.write('</tr>');
+                          }
+                                                // text changes mehul end----
+                                                <
+                            !-- - 21 - 10 - 2013 Anand K Revamping changes START-- >
+                              document.write('</table>')
+                          document.write('<p></p>');
+                          document.write('<table width="100%" border="0" cellspacing="0" cellpadding="0" class="label">');
+                          document.write('<tr align="left" valign="middle">');
+                          document.write('<td width="8">&nbsp;</td>');
+                          document.write('<td width="89">&nbsp;</td>');
+                          document.write('<td align="right" class="login_tab"><a href="javascript:void(0)" onclick="return fLogon();" ondblclick="return fLogon()"><img src="/gif/continue.gif" alt="continue" border="0"></a></td>');
+                          document.write('</tr>');
+                          document.write('</table>'); <
+                            !-- - 21 - 10 - 2013 Anand K Revamping changes END-- >
+                                            } <
+                          !-- - 21 - 10 - 2013 Anand K Revamping changes START-- >
+                                                if (parent.daemon != "NETBANKING" && parent.RsaAuthReq == 'Y') {
+                          document.write('<table width="100%" border="0" cellspacing="0" cellpadding="3" class="label">'); <
+                            !-- - 21 - 10 - 2013 Anand K Revamping changes END-- >
+                              //Avinash START
+                              document.write('<tr>');
+                          //document.write('<td width="8" valign="top">&nbsp;</td>');//06-june-2016 Pratik Kashid FS_CCR_0498  cmt
+                          document.write('<td class="nbl_ttl" colspan="2" valign="top">NetBanking Login</td>');
+                          document.write('</tr>');
+                          document.write('<tr>');
+                          document.write('<td width="8" valign="top">&nbsp;</td>');
+                          document.write('</tr>');
+                          //Avinash END
+                          document.write('<tr align="left" valign="middle">');
+                          //document.write('<td width="8">&nbsp;</td>');			 //06-june-2016 Pratik Kashid FS_CCR_0498
+                          document.write('<td width="122">User ID / Customer ID:</td>'); //06-june-2016 Pratik Kashid FS_CCR_0498_ 	89
+                          document.write('<td width="101">');
+                          document.write('<input type="text" name="fldLoginUserId" maxlength="15" size="18" autocomplete="off" onkeypress = "return fSubmit(event);" value="" class="input_password" oncopy="return false" ondrag="return false" ondrop="return false" onpaste="return false" style="width:116"/>'); //06-june-2016 Pratik Kashid FS_CCR_0498_  maxlength="10" size="10"	  style="width:116"
+                          document.write('</td>');
+                          document.write('</tr>');
+                          document.write('<tr><td>&nbsp;</td></tr>'); //06-june-2016 Pratik Kashid FS_CCR_0498
+                          //mehul changes start----
+                          if (!((parent.daemon == "NSDL") || (parent.daemon == "CBEC"))) {
+                            document.write('<tr>');
+                            // document.write('<td width="8"></td>'); //06-june-2016 Pratik Kashid FS_CCR_0498_
+                            document.write('<td width="89"> </td>');
+                            document.write('<td width="111" colspan="2" valign="bottom" align="center" style="cursor: pointer"');
+                            document.write('<p><a style="font-size:11px;" href="javascript:void(0)" onclick="return fretrieveCustIdEpi();"> Forgot Customer ID?</a></p>');
+                            document.write('</td>');
+                            document.write('</tr>');
+                          }
+                          //mehul changes end----
+
+                          document.write('<tr align="left" valign="middle">');
+                          //document.write('<td width="8">&nbsp;</td>');	  //06-june-2016 Pratik Kashid FS_CCR_0498
+                          document.write('<td colspan="2"><align="justify">');
+                          document.write('Key-in your Customer Id here. Click Continue to go to the next screen to key-in your password!');
+                          document.write('</align></td>');
+                          document.write('</tr>'); <
+                            !-- - 21 - 10 - 2013 Anand K Revamping changes START-- >
+                              document.write('</table>');
+
+
+
+                          document.write('<p></p>');
+
+                          document.write('<table width="100%" border="0" cellspacing="0" cellpadding="0" class="label">');
+                          document.write('<tr align="left" valign="middle">');
+                          document.write(' <td width="8">&nbsp;</td>');
+                          document.write('<td width="89">&nbsp;</td>');
+                          document.write('  <td align="right" class="login_tab"><a href="javascript:void(0)" onclick="return fLogon();" ondblclick="return fLogon()"><img src="/gif/continue.gif" alt="continue" border="0"></a></td>');
+                          document.write('</tr>');
+                          document.write('</table>');
+
+
+                        }
+                        if (parent.daemon == "NETBANKING") {
+
+                          document.write('<table width="295" border="0" cellspacing="0" cellpadding="0" class="label">');
+                          document.write('<tbody>');
+                          document.write('<tr>');
+                          document.write('<td width="8" valign="top">&nbsp;</td>');
+                          document.write('<td class="nbl_ttl" colspan="2" valign="top">NetBanking Login</td>');
+                          document.write('</tr>');
+                          document.write('<tr>');
+                          document.write('<td colspan="3" height="6"></td>');
+                          document.write('</tr>');
+                          document.write('<tr align="left" valign="middle">');
+                          document.write('<td width="8">&nbsp;</td>');
+                          document.write('<td colspan="2">');
+                          document.write('<table cellpadding="0" cellspacing="0" bgcolor="#ffffff" class="lForm" width="100%">');
+                          document.write('<tr>');
+                          document.write('<td colspan="3" height="15"></td>');
+                          document.write('</tr>');
+                          /*15/04/2016    krishna textchange_april:start*/
+                          document.write('<tr>');
+                          //06-june-2016 Pratik Kashid FS_CCR_0498_Added menumonic for Personalization of user id start
+                          //document.write('<td width="150" align="right">Customer ID</td>');
+                          //document.write('<td width="150" align="center" valign="middle">');
+                          document.write('<td width="50%" align="right">User ID / Customer ID</td>');
+                          document.write('<td width="50%" align="center" valign="middle">');
+                          //06-june-2016 Pratik Kashid FS_CCR_0498_Added menumonic for Personalization of user id  End
+
+                          document.write('<span class="pwd_field">');
+                          document.write('<input  type="text" name="fldLoginUserId" maxlength="15" size="10" onKeyPress="return fSubmit(event);" value="" class="input_password"/>'); //06-june-2016 Pratik Kashid FS_CCR_0498_Added menumonic for Personalization of user id    --size="10"
+                          document.write('</span>');
+                          document.write('</td>');
+                          document.write('<td width="185"></td>');
+
+
+
+
+                          /*02/03/2015	RogerG	ENH CCR 431: Retrieve Customer Id  Start */
+                          //document.write('<td width="40"><img src="/gif/qmark_icon.jpg?v=1" alt="" title="Forgot Customer ID? Click here" onclick="return fretrieveCustId();"/></td>');
+                          //onClick="window.open(\'http://www.hdfcbank.com/htdocs/common/NetBanking/product/customerid.html\')"/></td>');
+                          /*02/03/2015	RogerG	ENH CCR 431: Retrieve Customer Id  End */
+                          //onclick="return fretrieveCustId();"
+                          document.write('</tr>');
+
+                          /*15/04/2016    krishna textchange_april:start*/
+                          document.write('<tr>');
+                          document.write('<td height="8" colspan="3"></td>');
+                          document.write('</tr>');
+
+                          document.write('<tr align="right" valign="middle">');
+                          document.write('<td width="50"></td>');
+                          //06-june-2016 Pratik Kashid FS_CCR_0498_Added menumonic for Personalization of user id  Start Comment
+                          /*document.write('<td width="300" colspan="2" valign="bottom" align="right" style="cursor: pointer"');						
+                          document.write('<p><a href="javascript:void(0)" onclick="return fretrieveCustId();"> Forgot Customer ID?</a></p>');//Avinash Changes
+                          document.write('</td>');*/
+                          //06-june-2016 Pratik Kashid FS_CCR_0498_Added menumonic for Personalization of user id  End
+                          document.write('</tr>');
+                          document.write('<tr>');
+                          document.write('<td colspan="3" height="2"></td>');
+                          document.write('</tr>');
+                          document.write(' <tr>');
+                          document.write('<td ></td>');
+                          document.write('<td colspan="2" width="400" valign="bottom" align="right" >');
+                          document.write('<a  href="javascript:void(0)" onClick="return fLogon();" onDblClick="return fLogon()">');
+                          document.write('<img src="/gif/continue_new1.gif?v=1" alt="continue" border="0" style="margin-right:18px;"/>');
+                          document.write('</a>');
+                          document.write('</td>');
+                          document.write('</tr>');
+                          /*15/04/2016    krishna textchange_april:end*/
+                          //06-june-2016 Pratik Kashid FS_CCR_0498_Added menumonic for Personalization of user id  Start
+                          document.write('<tr>');
+                          document.write('<td colspan="3" height="8"></td>');
+                          document.write('</tr>');
+                          document.write('<tr>'); <
+                            !--document.write('<td width="50"></td>');
+                          -- >
+                            document.write('<td width="100%" colspan="3" valign="bottom" align="right" style="cursor: pointer"'); //<!--FLEXENH-353 Vishal Hanjagi-->				
+                          document.write('<p>(<a href="http://www.hdfcbank.com/htdocs/common/netbanking_video/retrieve_custID.htm"  target="blank"><b>View Demo</b></a>)<a style="margin-right:10px;" href="javascript:void(0)" onclick="return fretrieveCustId();"> Forgot Customer ID?</a></p>');
+                          document.write('</td>');
+                          document.write('</tr>');
+                          /*document.write('<tr>');
+                          document.write('<td colspan="3" height="17"></td>');
+                          document.write('</tr>');*/
+                          //06-june-2016 Pratik Kashid FS_CCR_0498_Added menumonic for Personalization of user id  End
+                          document.write('</table>');
+                          document.write('</td>');
+                          document.write('</tr>');
+                          document.write('</tbody>');
+                          document.write('</table>');
+
+
+                                                /*document.write('<tr align="left" valign="middle">');
+					document.write('<td width="8">&nbsp;</td>');
+					document.write('<td width="89">Customer ID:</td>');
+					document.write('<td width="101">');
+					document.write('<input type="text" name="fldLoginUserId" maxlength="10" size="10" onkeypress = "return fSubmit(event);" value="" class="input_password" oncopy="return false" ondrag="return false" ondrop="return false" onpaste="return false" />');
+					document.write('</td>');
+					document.write('</tr>');
+					document.write('<tr align="left" valign="middle">');
+					document.write('<td width="8">&nbsp;</td>');
+					document.write('<td colspan="2"><align="justify">');
+					document.write('Key-in your Customer Id here. Click Continue to go to the next screen to key-in your password!');
+					document.write('</align></td>');
+  					document.write('</tr>');*/
+                                                <
+                            !-- - 21 - 10 - 2013 Anand K Revamping changes END-- >
+                                            }
+                      </script>
+                      <table width="295" border="0" cellspacing="0" cellpadding="0" class="label">
+                        <tbody>
+                          <tr>
+                            <td width="8" valign="top">&nbsp;</td>
+                            <td class="nbl_ttl" colspan="2" valign="top">NetBanking Login</td>
+                          </tr>
+                          <tr>
+                            <td colspan="3" height="6"></td>
+                          </tr>
+                          <tr align="left" valign="middle">
+                            <td width="8">&nbsp;</td>
+                            <td colspan="2">
+                              <table cellpadding="0" cellspacing="0" bgcolor="#ffffff" class="lForm" width="100%">
+                                <tbody>
+                                  <tr>
+                                    <td colspan="3" height="15"></td>
+                                  </tr>
+                                  <tr>
+                                    <td width="50%" align="right">User ID / Customer ID</td>
+                                    <td width="50%" align="center" valign="middle"><span class="pwd_field"><input
+                                          type="text" name="fldLoginUserId" maxlength="15" size="10"
+                                          onkeypress="return fSubmit(event);" value="" class="input_password"></span>
+                                    </td>
+                                    <td width="185"></td>
+                                  </tr>
+                                  <tr>
+                                    <td height="8" colspan="3"></td>
+                                  </tr>
+                                  <tr align="right" valign="middle">
+                                    <td width="50"></td>
+                                  </tr>
+                                  <tr>
+                                    <td colspan="3" height="2"></td>
+                                  </tr>
+                                  <tr>
+                                    <td></td>
+                                    <td colspan="2" width="400" valign="bottom" align="right"><a
+                                        href="javascript:void(0)" onclick="return fLogon();"
+                                        ondblclick="return fLogon()"><img src="/gif/continue_new1.gif?v=1"
+                                          alt="continue" border="0" style="margin-right:18px;"></a></td>
+                                  </tr>
+                                  <tr>
+                                    <td colspan="3" height="8"></td>
+                                  </tr>
+                                  <tr>
+                                    <td width="100%" colspan="3" valign="bottom" align="right" style="cursor: pointer"
+                                      <p="">(<a
+                                        href="http://www.hdfcbank.com/htdocs/common/netbanking_video/retrieve_custID.htm"
+                                        target="blank"><b>View Demo</b></a>)<a style="margin-right:10px;"
+                                        href="javascript:void(0)" onclick="return fretrieveCustId();"> Forgot Customer
+                                        ID?</a>
+                                      <p></p>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <!--/table>
+				<script language="javascript">
+				document.write('<p></p>');
+				</script>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="label">
+                <tr align="left" valign="middle">
+                  <td width="8">&nbsp;</td>
+                  <td width="89">&nbsp;</td>
+                  <td align="right" class="login_tab"><a href="javascript:void(0)" onclick="return fLogon();" ondblclick="return fLogon()"><img src="./gif/continue.gif" alt="continue" border="0"></a></td>
+                </tr>
+<!--- 21-10-2013	Anand K	 Revamping changes   START-->
+
+                      <!--- 21-10-2013	Anand K	 Revamping changes   END-->
+                      <script language="javascript">
+                        if (parent.daemon == "NETBANKING") {
+
+                          document.write('<span class="content ntn_txt" style="display: inline-block; vertical-align: middle;">New to NetBanking ?</span>');
+                          document.write('<span class="content nb_link">');
+                          document.write('<a href="javascript:void(0)" onclick="window.open(\'http://www.hdfcbank.com/htdocs/common/onlineservices/netbankingdemo/index.html\')" style="vertical-align: middle;position: relative;top: 4px;">View Demo</a>');
+                          document.write('</span>');
+                          document.write('<p class="login_devider"><img src="/gif/login_divider.jpg" alt="" /></p>');
+                          document.write('<span class="content padLeft8">'); <
+                            !--FLEXENH - 568: Login Page and TPT Limit Change - Ashish start-- >
+                                                    <
+                              !--FLEXENH - 690 - 20 / 08 / 2020 - Roshni Soni - CC Data Encryption-- >
+                                document.write('<p style="font-size: 14px;">Credit Card Holders <a href="javascript:void(0)" onclick="return window.open(\'https://netbanking.hdfcbank.com/netbanking/CCLogin.html?v=2\');"><img src="/gif/continue_new1.gif" alt="continue" border="0" style="float: right;margin-right: 12px;"></a><br/>');
+
+
+                          document.write('<span class="ifTxt">(if you do not hold HDFC Bank account)</span>');
+                          document.write('</p>');
+                          document.write('</span>');
+                          document.write('<p class="login_devider"><img src="/gif/login_divider.jpg" alt="" /></p>');
+                          document.write('<span class="content padLeft8">'); <
+                            !--FLEXENH - 561 | Ankit | HTML version change-- >
+                              document.write('<p style="font-size: 14px;">Retail Loan Customers <a href="javascript:void(0)" onClick="return window.open(\'https://netbanking.hdfcbank.com/netbanking/LNLogin.html?v=2\');"><img src="/gif/continue_new1.gif" alt="continue" border="0" style="float: right;margin-right: 12px;"></a> <br>'); <
+                                !--FLEXENH - 568: Login Page and TPT Limit Change - Ashish end-- >
+                                  document.write('<span class="ifTxt">for online loan account access<br>(if you do not hold HDFC Bank account)</span></p>');
+                          document.write('</span>');
+                                                /*
+<!--- 21-10-2013	Anand K	 Revamping changes   END-->
+				<!-- ENH-IL-ADD-21-06-2011-Mahendra-Start -->
+				document.write('<p></p>');
+				document.write('<span class="content">');
+				document.write('<p>');
+				document.write('<a href="javascript:void(0)" onclick="return window.open(\'./registrationMenu.htm\');">Click here</a> to register for NetBanking &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instantly ');				
+				document.write('</p>');
+				document.write('</span>');
+				<!-- ENH-IL-ADD-21-06-2011-Mahendra-End -->
+				
+				document.write('<p></p>');
+				document.write('<span class="content">');
+				document.write('<p>');
+				/ * ENH-MOD-TXT-CHNG-NTBNK-CNSLDAT-04/12/2012-PankilP-START * /
+				/*
+				document.write('Forgot Your IPIN (password), <a href="javascript:void(0)" onclick="return window.open(\'./IpinResetMenu.htm\');">click here</a> &nbsp;&nbsp;&nbsp;&nbsp; to generate instantly');
+				* /
+				document.write('Forgot Your IPIN (password), <a href="javascript:void(0)" onclick="return window.open(\'./IpinResetUsingOTP.htm\');">click here</a> &nbsp;&nbsp;&nbsp;&nbsp; to generate instantly');
+				/* ENH-MOD-TXT-CHNG-NTBNK-CNSLDAT-04/12/2012-PankilP-END * /
+				document.write('</p>');
+				document.write('</span>');
+
+				document.write('<p></p>');
+				document.write('<span class="content">');
+				document.write('<strong>');
+				document.write('New to Netbanking ?');
+				document.write('</strong>');
+				document.write('</span><br/>');
+				document.write('<span class="content">');
+				document.write('<img src="./gif/bullet_blu.gif" width="4" height="4" hspace="5">');
+				document.write('<a href="javascript:void(0)" onclick="window.open(\'https://www.hdfcbank.com/common/onlineservices/netbankingdemo/Start.html\')">View Demo</a>');
+				document.write('</a>');
+				document.write('</span>');
+				document.write('<br/>');
+				document.write('<span class="content">');
+				document.write('<img src="./gif/bullet_blu.gif" width="4" height="4" hspace="5">');
+				document.write('<a href="javascript:void(0)" onclick="window.open(\'http://www.hdfcbank.com/personal/faq/faq-inner/gts8mitn-gts8mitq\')">NetBanking Faq\'s</a>');<!--ILENH-Modify-03/05/2012-Dinesh More-->
+				document.write('</a>');
+				document.write('</span>');
+				document.write('<br/>');
+				document.write('<span class="content">');
+				document.write('<img src="./gif/bullet_blu.gif" width="4" height="4" hspace="5">');
+				document.write('<a href="javascript:void(0)" onclick="window.open(\'http://www.hdfcbank.com/aboutus/security/security_landing.htm\')">Online Security</a>');
+				document.write('</a>');
+				document.write('</span>');
+
+				document.write('<p></p>');
+				document.write('<span class="content">');
+				document.write('<strong>');
+				document.write('Trouble logging on to NetBanking?');
+				document.write('</strong>');
+				document.write('</span>');
+				document.write('<br/>');
+				document.write('<span class="content">');
+				document.write('<img src="./gif/bullet_blu.gif" width="4" height="4" hspace="5">');
+				document.write('Visit our');
+				document.write('<a href="javascript:void(0)" onclick="window.open(\'http://www.hdfcbank.com/common/onlineservices/nb_troubleshoot.htm\'); return false;">');
+				document.write(' troubleshooting guide');
+				document.write('</a>');
+				document.write('</span>');
+				document.write('<br/>');
+				document.write('<span class="content">');
+				document.write('<img src="./gif/bullet_blu.gif" width="4" height="4" hspace="5">');
+				document.write('Call on our ');
+				document.write('<a href="javascript:void(0)" onclick="window.open(\'http://www.hdfcbank.com/personal/access/popup_pbnumbers.htm\'); return false;">');
+				document.write(' PhoneBanking');
+				document.write('</a>');
+				document.write(' in your city');
+				document.write('</span>');
+				document.write('<br/>');
+
+				document.write('<span class="content">');
+				document.write('<img src="./gif/bullet_blu.gif" width="4" height="4" hspace="5">');
+				document.write('<a href="javascript:void(0)" onClick="window.open(\'https://www.hdfcbank.com/applications/webforms/customersupport/optcfrm2.asp\')">');
+				document.write('Write in');
+				document.write('</a>');
+				document.write(' to us');
+				document.write('</span>');
+
+				document.write('<p></p>');
+				document.write('<span class="content">');
+				document.write('<p>');
+        <!--FLEXENH-568| Ashish Singh -->
+		<!--FLEXENH-690-14/08/2020-Roshni Soni-CC Data Encryption-->
+				document.write('<strong>Credit Cardholders</strong> <a href="javascript:void(0)" onclick="return window.open(\'https://netbanking.hdfcbank.com/netbanking/CCLogin.html?v=2\');"><img src="./gif/continue.gif" alt="continue" border="0"></a>');
+
+				document.write('<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if you do not hold HDFC Bank account)');
+				document.write('</p>');
+				document.write('</span>');
+
+				document.write('<span class="content">');
+				document.write('<p>');
+        <!--FLEXENH-568| Ashish Singh -->
+				document.write('<strong>Retail Loan Customers </strong> <a href="javascript:void(0)" onclick="return window.open(\'https://netbanking.hdfcbank.com/netbanking/LNLogin.html?v=2\');"><img src="./gif/continue.gif" alt="continue" border="0"></a>');
+				document.write(' for <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;online loan account access <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if you do not hold HDFC Bank account)');
+				document.write('</p>');
+<!--- 21-10-2013	Anand K	 Revamping changes  Comment Ended  START-->
+				document.write('</span>');*/
+                                                <
+                            !-- - 21 - 10 - 2013 Anand K Revamping changes Comment Ended END-- >
+                                            }
+                        document.write('</td>'); <
+                          !-- - 21 - 10 - 2013 Anand K Revamping changes Comment Started START-- >
+                                                /*document.write('<td width="11" background="/gif/log-right.gif">');
+<!--- 21-10-2013	Anand K	 Revamping changes  Comment Started  End-->
+			var l_height = 0;
+			if(parent.daemon == 'NETBANKING'){
+				l_height = 212;
+			}else{
+				l_height = 150;
+			}
+			document.write('<img src="./gif/log-right.gif" width="12" height="'+l_height+'">');*/
+                                                <
+                            !-- - 21 - 10 - 2013 Anand K Revamping changes START-- >
+                                                if (parent.daemon == 'NETBANKING') {
+                          document.write(' <td width="8">&nbsp;</td>');
+                        } else {
+                          var l_height = 150;
+                          document.write('<td width="11" background="/gif/log-right.gif">'); <
+                            !-- - 21 - 10 - 2013 Anand K Revamping changes END-- >
+                              document.write('<img src="/gif/log-right.gif" width="12" height="' + l_height + '">'); <
+                                !-- - 21 - 10 - 2013 Anand K Revamping changes START-- >
+                                                }
+                      </script><span class="content ntn_txt" style="display: inline-block; vertical-align: middle;">New
+                        to NetBanking ?</span><span class="content nb_link"><a href="javascript:void(0)"
+                          onclick="window.open('http://www.hdfcbank.com/htdocs/common/onlineservices/netbankingdemo/index.html')"
+                          style="vertical-align: middle;position: relative;top: 4px;">View Demo</a></span>
+                      <p class="login_devider"><img src="/gif/login_divider.jpg" alt=""></p><span
+                        class="content padLeft8">
+                        <p style="font-size: 14px;">Credit Card Holders <a href="javascript:void(0)"
+                            onclick="return window.open('https://netbanking.hdfcbank.com/netbanking/CCLogin.html?v=2');"><img
+                              src="/gif/continue_new1.gif" alt="continue" border="0"
+                              style="float: right;margin-right: 12px;"></a><br><span class="ifTxt">(if you do not hold
+                            HDFC Bank account)</span></p>
+                      </span>
+                      <p class="login_devider"><img src="/gif/login_divider.jpg" alt=""></p><span
+                        class="content padLeft8">
+                        <p style="font-size: 14px;">Retail Loan Customers <a href="javascript:void(0)"
+                            onclick="return window.open('https://netbanking.hdfcbank.com/netbanking/LNLogin.html?v=2');"><img
+                              src="/gif/continue_new1.gif" alt="continue" border="0"
+                              style="float: right;margin-right: 12px;"></a> <br><span class="ifTxt">for online loan
+                            account access<br>(if you do not hold HDFC Bank account)</span></p>
+                      </span>
+                    </td>
+                    <td width="8">&nbsp;</td>
+
+
+                  </tr>
+                  <script language="javascript">
+                    /*document.write('<tr>');
+document.write('<td width="217" bgcolor="#EDF0F4" valign="top">&#160;</td>');
+document.write('<td width="11" background="./gif/log-right.gif" valign="top"><img src="./gif/log-right.gif" width="12" height="30"></td>');
+document.write('</tr>');*/
+                  </script>
+                  <!--- 21-10-2013	Anand K	 Revamping changes  Delted <tr> to <br/>  968 to 974 -->
+                  <!--- 21-10-2013	Anand K	 Revamping changes   START-->
+                  <script language="javascript">
+                    if (parent.daemon != 'NETBANKING') {
+                      document.write('<tr>');
+                      document.write('<td width="217" background="/gif/log-bottom.gif" valign="top"><img src="/gif/log-bottom.gif" width="8" height="12"></td>');
+                      document.write('<td width="11" valign="top" height="2"><img src="/gif/log-corner.gif" width="12" height="12"></td>');
+                      document.write('</tr>'); < !--customer login box ends-- >
+                                    }
+                  </script>
+                  <!--- 21-10-2013	Anand K	 Revamping changes   END-->
+                  <!--- 21-10-2013	Anand K	 Revamping changes   START-->
+                  <script language="javascript">
+                    if (parent.daemon == 'NETBANKING') {
+                      document.write('<tr>');
+                      document.write('<td valign="top" width="380" height="150"><br>');
+                      document.write('<table width="135" border="0" cellspacing="0" cellpadding="0">');
+                      document.write('<tbody>');
+                      document.write('<tr>');
+                      document.write('<td><span><a href="https://trustsealinfo.websecurity.norton.com/splash?form_file=fdf/splash.fdf&amp;dn=NETBANKING.HDFCBANK.COM&amp;lang=en" target="_blank"><img src="/gif/vseal_new1.gif" border="0" /></a></span></p>');
+                      document.write('<a href="http://www.symantec.com/ssl-certificates" target="_blank"  style="color:#000000; text-decoration:none; font:bold 7px verdana,sans-serif; letter-spacing:.5px; text-align:center; margin:0px; padding:0px;">ABOUT SSL CERTIFICATES</a>');
+                      document.write('</td>');
+                      document.write('</tr>');
+                      document.write('</tbody>');
+                      document.write('</table></td>');
+                      document.write('</tr>');
+                    } else {
+
+                      //					document.write('<br/>');
+                      document.write('<tr>');
+                      document.write('<td valign="top" width="380">');
+                      document.write('<table width="135" border="0" cellspacing="0" cellpadding="0" >');
+                      document.write('<tr>');
+                      document.write('<td>');
+                      document.write('<span >');
+                      //document.write('<a href="https://seal.verisign.com/splash?form_file=fdf/splash.fdf&dn=NETBANKING.HDFCBANK.COM&lang=en" target="_blank"><img src="./gif/verisignlogo2.gif" width="158" height="50" class="table_border" border="0"></a>');
+                      document.write('<a href="https://trustsealinfo.websecurity.norton.com/splash?form_file=fdf/splash.fdf&dn=netbanking.hdfcbank.com&lang=en" target="_blank"><img src="/gif/vseal_new1.gif" border="0" /></a>');
+                      document.write('</span>');
+                      document.write('</p>'); <
+                        !--Nilesh: Added
+                      for "about ssl certificates"
+                                        string-- >
+                        document.write('<a href="http://www.symantec.com/ssl-certificates" target="_blank"  style="color:#000000; text-decoration:none; font:bold 7px verdana,sans-serif; letter-spacing:.5px; text-align:center; margin:0px; padding:0px;">ABOUT SSL CERTIFICATES</a>')
+                                        document.write('</td>');
+                      document.write('</tr>');
+                      document.write('</table>');
+                      document.write('</td>');
+                      document.write('</tr>');
+                    }
+                  </script>
+                  <tr>
+                    <td valign="top" width="380" height="150"><br>
+                      <table width="135" border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                          <tr>
+                            <td><span><a
+                                  href="https://trustsealinfo.websecurity.norton.com/splash?form_file=fdf/splash.fdf&amp;dn=NETBANKING.HDFCBANK.COM&amp;lang=en"
+                                  target="_blank"><img src="/gif/vseal_new1.gif" border="0"></a></span>
+                              <p></p><a href="http://www.symantec.com/ssl-certificates" target="_blank"
+                                style="color:#000000; text-decoration:none; font:bold 7px verdana,sans-serif; letter-spacing:.5px; text-align:center; margin:0px; padding:0px;">ABOUT
+                                SSL CERTIFICATES</a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <!--		</td>
+		</tr>  -->
+                  <!--- 21-10-2013	Anand K	 Revamping changes   END-->
+                </tbody>
+              </table>
+            </td>
+
+            <td valign="top" width="100%">
+              <table width="100%" border="0" cellspacing="0" cellpadding="1">
+                <tbody>
+                  <tr>
+                    <td>
+                      <!--div class="content"-->
+                      <!--- 21-10-2013	Anand K	 Revamping changes   START-->
+                      <script language="javascript">
+                        if (parent.daemon == 'NETBANKING') {
+                          // 27 jan 2017	Pratik kashid Login RD  replace NETBANKING start
+
+                          document.write('<table class="body_text2 three_tabs" cellpadding="0" cellspacing="0" border="0" style="width:650px">');
+                          document.write('<tbody>');
+                          document.write('<tr>');
+                          document.write('<td class="hdTtl" align="center" colspan="5">#ForgetCash...Go Digital!</td>');
+                          document.write('</tr>');
+                          document.write('<tr>');
+                          document.write('<td class="h2_ttl" align="center"  colspan="5">Use NetBanking for all your day-to-day needs</td>');
+                          document.write('</tr>');
+                          document.write('</tbody>');
+                          document.write('</table>');
+                          document.write('<table class="body_text2 next three_tabs" cellpadding="0" cellspacing="0" border="0" style="width:649px">');
+                          document.write('<tbody>');
+                          document.write('<tr>');
+                          document.write('<td width="210" class="grid_box">');
+                          document.write('<img src="/gif/transfer_money.png" alt="" width="100%">');
+                          document.write('<p class="content"><span>Transfer Money</span>Pay your maid\'s, driver\'s salary, society maintenance or transfer money to your friends &amp; family through NEFT, RTGS or IMPS.<a href="javascript:void(0)" style="text-decoration:underline;" onclick="openLink(\'http://www.hdfcbank.com/personal/making-payments/fund-transfer/emonies-national-electronic-funds-transfer\')">Know More</a></p>');
+                          document.write('</td>');
+                          document.write('<td width="12">&nbsp;</td>');
+                          document.write('<td width="210" class="grid_box">');
+                          document.write('<img src="/gif/pay_bills.png" alt="" width="100%">');
+                          document.write('<p class="content"><span>Pay Bills</span>Pay your electricity, mobile, gas, water &amp; DTH bills. Recharge your pre-paid mobile number.<a href="javascript:void(0)" style="text-decoration:underline;" onclick="openLink(\'http://www.hdfcbank.com/personal/making-payments/pay-bills-and-shop-online/billpay-plusnetbanking\')">Know More</a></p>');
+                          document.write('</td>');
+                          document.write('<td width="12">&nbsp;</td>');
+                          document.write('<td width="210" class="grid_box">');
+                          document.write('<img src="/gif/shop_online.png" alt="" width="100%">');
+                          document.write('<p class="content"><span>Shop Online</span>Shop online for fashion, food, travel &amp; entertainment.<a href="javascript:void(0)" style="text-decoration:underline;" onclick="openLink(\'http://www.hdfcbank.com/personal/making-payments/pay-bills-and-shop-online/directpaynetbanking\')">Know More</a></p>');
+                          document.write('</td>');
+                          document.write('</tr>');
+                          document.write('</tbody>');
+                          document.write('</table>');
+                          // 26-apr-2017 saurabh flexenh-318 april text changes start
+                          document.write('<table class="body_text2 next three_tabs" cellpadding="0" cellspacing="0" border="0" style="width:649px">');
+                          document.write('<tbody>');
+                          document.write('<tr>');
+                          document.write('<td >')
+                          document.write('Dear customer, your security is important for us. We request you to kindly go through and keep in mind the following measures while logging on to Netbanking.<a href="javascript:void(0)" style="text-decoration:underline;" onclick="openLink(\'http://www.hdfcbank.com/htdocs/common/insider/index.htm\')"> Click here</a>');
+                          document.write('</td>');
+                          document.write('</tr>');
+                          document.write('</tbody>');
+                          document.write('</table>');
+                          // 26-apr-2017 saurabh flexenh-318 april text changes end
+                          // 27 jan 2017	Pratik kashid Login RD  replace NETBANKING end
+                        } else if ((parent.daemon == 'MERCHANT') || (parent.daemon == 'NSDL') || (parent.daemon == 'ICEGATE') || (parent.daemon == "NACH")) {
+                          /* IL-ADD-18/06/2012- : DineshM : ICEGATE : START*/ /*FLEXENH-499 | Ankit | NACH*/
+
+                          document.write('<br/>');
+                          document.write('<table bgcolor="#f5f8fa" border="1" bordercolor="#ff7f50" width="396" cellspacing="0" cellpadding="3" >');
+                          document.write('<tr>');
+                          document.write('<td nowrap>');
+                          document.write('<align="justify"><font size="2" color="red"><b>IMPORTANT :</b></font>');
+                          document.write('<span class="content">');
+                          document.write('Please do not disclose your Netbanking Login Id and Password to anyone. <br>This is critical to ensure the ');
+                          document.write('<a href="javascript:void(0)" onclick="window.open(\'http://www.hdfcbank.com/common/onlineservices/security/security.htm\')">');
+                          document.write('security.');
+
+                          document.write('</a>');
+                          document.write(' of your account(s).');
+                          document.write('</span>');
+                          document.write('</td>');
+                          document.write('</tr>');
+                          document.write('</table>');
+
+                          if (parent.RsaAuthReq == '' || parent.RsaAuthReq == 'N') {
+                            //FLEXENH-499 | Ankit | Change text in case of NACH
+                            if (parent.daemon == "NACH") {
+                              document.write('<br/>');
+                              document.write('<p> <strong>Thank you for selecting HDFC Bank NetBanking for NACH <br> E-Mandate registration.</strong> </p>');
+
+                              document.write('<ul>');
+                              document.write('<li>You shall be able to register only if you are an HDFC Bank Account holder registered for the NetBanking service.</li>');
+                              document.write('<li>After you submit your Customer Id  and IPIN on the left, you will be prompted to enter One time password (OTP) sent on your registered mobile number.</br></li>');
+                              document.write('</ul>');
+                            } else {
+                              document.write('<br/>');
+                              document.write('<p> <strong>Thank you for deciding to pay using HDFC Bank Direct Pay.</strong> </p>');
+
+                              document.write('<ul>');
+                              document.write('<li>You shall be able to use this payment mechanism only if you are an HDFC Bank account holder registered for the NetBanking service.</li>');
+                              document.write('<li>After you submit your Customer Identification Number and IPIN(Password) on the left, you shall be asked to confirm the amount being<br> debited from your account.</br></li>');
+                              document.write('<li>Only on your confirmation the payment will be made.</li>');
+                              document.write('</ul>');
+                            }
+
+                          } else {
+
+                            document.write('<table class="body_text">');
+                            document.write('<tr>');
+                            document.write('<td class="spacer"><strong>Thank you for deciding to pay using HDFC Bank Direct Pay.</strong></td>');
+                            document.write('</tr>');
+                            document.write('<tr>');
+                            document.write('<td class="text">');
+                            document.write('<p>Taking the "Secure Banking" initiative to the next level we are pleased to announce the launch of Secure Access, an online security initiative which will make your Netbanking transactions more safe.</p>'); < !--FLEXENH - 485 MAY2018 TEXT CHANGE SANJANA-- >
+                              document.write('<p>Two key points you need to note- .</p>');
+                            document.write('<p>As a part of Secure Access, logging into HDFC Bank Netbanking is now a two step process. After keying in your customer id on the first screen, we will take you to the next one where you can enter your password.</p>');
+                            document.write('<p>Secure Access has an innovative Multi-layered Authentication Process, which is required to register for conducting ANY DirectPay Transaction. A personalized picture and message will help you identify fraud sites.</p>'); < !--FLEXENH - 485 MAY2018 TEXT CHANGE SANJANA-- >
+                              document.write('<p>This online security measure has been introduced to protect your account from fraudsters and hackers. Just follow the four easy steps to register, and ensure your transactions are safe and secure! <a href="javascript:void(0)" onclick="return window.open(\'https://www.hdfcbank.com/personal/access/netbanking_RSA/netbanking_rsa.htm\');">Click here</a> to know more on Secure Access.</p>');
+                            document.write('<p>&nbsp;</p>');
+                            document.write('</td>');
+                            document.write('</tr>');
+                            document.write('</table>');
+
+                          }
+
+                        } else if (parent.daemon == 'BROKER' || parent.daemon == 'DPHOLD') {
+                          document.write('<table bgcolor="#f5f8fa" border=1 bordercolor="#ff7f50" width="396" cellspacing="0" cellpadding="3">');
+                          document.write('<tr>');
+                          document.write('<TD>');
+                          document.write('&nbsp;&nbsp;');
+                          document.write('</TD>');
+                          document.write('<td nowrap>');
+                          document.write('<align="justify"><font size="2" color="red"><b>&nbsp;&nbsp;&nbsp;&nbsp;IMPORTANT</b></font>');
+                          document.write('<span class="content" >');
+                          document.write('Please do not disclose your Netbanking Login Id and Password to anyone. This is critical to ensure the ');
+                          document.write('<a href="javascript:void(0)" onclick="window.open(\'http://www.hdfcbank.com/security/security.htm\')">');
+                          document.write('security');
+                          document.write('</a>');
+                          document.write(' of your account(s).');
+                          document.write('</span>');
+                          document.write('</td>');
+                          document.write('</tr>');
+                          document.write('</table>');
+                          document.write('<br/>');
+                          document.write('<p class="header">Welcome to the Online Trading Interface of HDFC Bank.</p>');
+                          document.write('<ul>');
+                          document.write('<li>Kindly note that you must be a registered member to access NetBanking.</li>');
+                          document.write('<li>Please enter your Password to add a hold on your account.</li>');
+                          document.write('</ul>');
+                        }
+                      </script>
+                      <table class="body_text2 three_tabs" cellpadding="0" cellspacing="0" border="0"
+                        style="width:650px">
+                        <tbody>
+                          <tr>
+                            <td class="hdTtl" align="center" colspan="5">#ForgetCash...Go Digital!</td>
+                          </tr>
+                          <tr>
+                            <td class="h2_ttl" align="center" colspan="5">Use NetBanking for all your day-to-day needs
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table class="body_text2 next three_tabs" cellpadding="0" cellspacing="0" border="0"
+                        style="width:649px">
+                        <tbody>
+                          <tr>
+                            <td width="210" class="grid_box"><img src="/gif/transfer_money.png" alt="" width="100%">
+                              <p class="content"><span>Transfer Money</span>Pay your maid's, driver's salary, society
+                                maintenance or transfer money to your friends &amp; family through NEFT, RTGS or IMPS.<a
+                                  href="javascript:void(0)" style="text-decoration:underline;"
+                                  onclick="openLink('http://www.hdfcbank.com/personal/making-payments/fund-transfer/emonies-national-electronic-funds-transfer')">Know
+                                  More</a></p>
+                            </td>
+                            <td width="12">&nbsp;</td>
+                            <td width="210" class="grid_box"><img src="/gif/pay_bills.png" alt="" width="100%">
+                              <p class="content"><span>Pay Bills</span>Pay your electricity, mobile, gas, water &amp;
+                                DTH bills. Recharge your pre-paid mobile number.<a href="javascript:void(0)"
+                                  style="text-decoration:underline;"
+                                  onclick="openLink('http://www.hdfcbank.com/personal/making-payments/pay-bills-and-shop-online/billpay-plusnetbanking')">Know
+                                  More</a></p>
+                            </td>
+                            <td width="12">&nbsp;</td>
+                            <td width="210" class="grid_box"><img src="/gif/shop_online.png" alt="" width="100%">
+                              <p class="content"><span>Shop Online</span>Shop online for fashion, food, travel &amp;
+                                entertainment.<a href="javascript:void(0)" style="text-decoration:underline;"
+                                  onclick="openLink('http://www.hdfcbank.com/personal/making-payments/pay-bills-and-shop-online/directpaynetbanking')">Know
+                                  More</a></p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table class="body_text2 next three_tabs" cellpadding="0" cellspacing="0" border="0"
+                        style="width:649px">
+                        <tbody>
+                          <tr>
+                            <td>Dear customer, your security is important for us. We request you to kindly go through
+                              and keep in mind the following measures while logging on to Netbanking.<a
+                                href="javascript:void(0)" style="text-decoration:underline;"
+                                onclick="openLink('http://www.hdfcbank.com/htdocs/common/insider/index.htm')"> Click
+                                here</a></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <!--/div-->
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" width="380">
+                      <!-- VKB Starts -->
+                      <script language="javascript">
+                        if (parent.daemon != 'NETBANKING' && (parent.RsaAuthReq == '' || parent.RsaAuthReq == 'N' || parent.RsaAuthReq == 'E')) {
+                          document.write('<TABLE width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">');
+                          document.write('	<TR>');
+                          document.write('		<TD>');
+                          document.write('			&nbsp;');
+                          document.write('		</TD>');
+                          document.write('		<TD class="loginkeyboard">');
+                          document.write('			<TABLE width="90%" height="100%" class="table_border" border="0" cellspacing="0" cellpadding="0" align="center">');
+                          document.write('				<TR>');
+                          document.write('					<TD align="center"  height="20" valign="bottom">');
+                          document.write('						<h2 class="content">');
+                          document.write('						Virtual Keyboard');
+                          document.write('						</h2>');
+                          document.write('					</TD>');
+                          document.write('					<TD>');
+                          document.write('						&nbsp;&nbsp;&nbsp;&nbsp;');
+                          document.write('					</TD>');
+                          document.write('				</TR>');
+                          document.write('				<TR>');
+                          document.write('					<TD valign="top" class="loginkeyboard">');
+                          document.write('						<DIV id ="login-keyboard">');
+
+                          document.write('			<TABLE cellspacing="0" cellpadding="0" border="0">');
+                          document.write('			<TBODY>');
+                          document.write('				<TR>');
+                          document.write('					<TD colSpan="2">');
+                          document.write('						<DIV id="login-keyboard-special">');
+                          document.write('							<TABLE>');
+                          document.write('								<TBODY>');
+                          document.write('									<TR>');
+                          for (var i = 0; i < 13; i++) {
+                            document.write('<td>');
+                            imageSpCharOnPage(i);
+                            document.write('</td>');
+                          }
+                          document.write('									</TR>');
+                          document.write('								</TBODY>');
+                          document.write('							</TABLE>');
+                          document.write('							<TABLE>');
+                          document.write('								<TBODY>');
+                          document.write('									<TR>');
+                          document.write('										<TD class="halfwidthLgn">');
+                          document.write('											&nbsp;');
+                          document.write('										</TD>');
+                          for (var i = 13; i < 26; i++) {
+                            document.write('<td>');
+                            imageSpCharOnPage(i);
+                            document.write('</td>');
+                          }
+                          document.write('										<TD class="halfwidthLgn">');
+                          document.write('											&nbsp;');
+                          document.write('										</TD>');
+                          document.write('										<TD class="clearLgn">');
+                          document.write('											&nbsp;');
+                          document.write('										</TD>');
+                          document.write('									</TR>');
+                          document.write('								</TBODY>');
+                          document.write('							</TABLE>');
+                          document.write('						</DIV>');
+                          document.write('					</TD>');
+                          document.write('				</TR>');
+                          document.write('				<TR>');
+                          document.write('					<TD>');
+                          document.write('						<DIV id="login-keyboard-alpha"  align="center">');
+                          document.write('							<TABLE>');
+                          document.write('								<TBODY>');
+                          document.write('									<TR>');
+                          for (var i = 0; i < 10; i++) {
+                            document.write('<td>');
+                            imageAlphaOnPage(i);
+                            document.write('</td>');
+                          }
+                          document.write('									<TD class="button">');
+                          document.write('									<BUTTON  class="backbutton" onmouseup = "return changeBack();"');
+                          document.write('									onmousedown = "return changeToStar();" id="elemC1"');
+                          document.write('									onclick = "return DeletePwd();"');
+                          document.write('									onmouseout = "return changeBack();">Back</BUTTON>');
+                          document.write('									</TD>');
+                          document.write('									</TR>');
+                          document.write('								</TBODY>');
+                          document.write('							</TABLE>');
+                          document.write('							<TABLE>');
+                          document.write('								<TBODY>');
+                          document.write('									<TR>');
+                          document.write('										<TD class="halfwidthLgn">');
+                          document.write('											&nbsp;');
+                          document.write('										</TD>');
+                          for (var i = 10; i < 19; i++) {
+                            document.write('<td>');
+                            imageAlphaOnPage(i);
+                            document.write('</td>');
+                          }
+                          document.write('									<TD class="button">');
+                          document.write('									<BUTTON class="clearbutton" onmouseup = "return changeBack();"');
+                          document.write('									onmousedown = "return changeToStar();" id="elemC2"');
+                          document.write('									onclick = "return ClearPwd();"');
+                          document.write('									onmouseout = "return changeBack();">Clear</BUTTON>');
+                          document.write('									</TD>');
+                          document.write('									</TR>');
+                          document.write('								</TBODY>');
+                          document.write('							</TABLE>');
+                          document.write('							<TABLE>');
+                          document.write('								<TBODY>');
+                          document.write('									<TR>');
+                          document.write('										<TD class="halfwidthLgn">');
+                          document.write('											&nbsp;');
+                          document.write('										</TD>');
+                          document.write('										<TD class="clearLgn">');
+                          document.write('											&nbsp;');
+                          document.write('										</TD>');
+
+                          for (var i = 19; i < 26; i++) {
+                            document.write('<td>');
+                            imageAlphaOnPage(i);
+                            document.write('</td>');
+                          }
+                          document.write('									<TD  class="button">');
+                          document.write('									<BUTTON class="capslockbutton" onmouseup = "return changeBack();"');
+                          document.write('									onmousedown = "return changeToStar();" id="elemC0"');
+                          document.write('									onclick = "return setCase();"');
+                          document.write('									onmouseout = "return changeBack();">Caps Lock</BUTTON>');
+                          document.write('									</TD>');
+                          document.write('									</TR>');
+                          document.write('								</TBODY>');
+                          document.write('							</TABLE>');
+                          document.write('							<TABLE border="0">');
+                          document.write('								<TBODY>');
+                          document.write('									<TR>');
+                          document.write('										<TD class="clearLgn">');
+                          document.write('											&nbsp;');
+                          document.write('										</TD>');
+                          document.write('										<TD class="clearLgn">');
+                          document.write('											&nbsp;');
+                          document.write('										</TD>');
+                          document.write('									<TD class="button">');
+                          document.write('									<BUTTON class="hoveringbutton" id="virtualButton" onmouseup = "return changeBack();" onmousedown = "return changeToStar();"');
+                          document.write('									onclick = "return SetVirtual();"');
+                          document.write('									>Hovering</BUTTON>');
+                          document.write('									<INPUT id="elemC4" type="checkbox" name="elemC4" style="display:none">');
+
+                          document.write('									<TD class="button">');
+                          document.write('									<BUTTON class="mixedbutton" onmouseup = "return changeBack();"');
+                          document.write('									onmousedown = "return changeToStar();" id="elemSpace"');
+                          document.write('									onclick = "return showValue(this);"');
+                          document.write('									onmouseover = "startHover(this);"');
+                          document.write('									onmouseout = "return changeBack(),stopHover();">Space</BUTTON>');
+                          document.write('									</TD>');
+
+                          document.write('									<TD class="clearLgn">');
+                          document.write('										&nbsp;');
+                          document.write('									</TD>');
+                          document.write('									<TD class="button">');
+                          document.write('									<BUTTON class="mixedbutton" onmouseup = "return changeBack();"');
+                          document.write('									onmousedown = "return changeToStar();" id="elemC3"');
+                          document.write('									onclick = "return setRandom();"');
+                          document.write('									onmouseout = "return changeBack();">Shuffle</BUTTON>');
+                          document.write('									</TD>');
+                          document.write('								</TR>');
+                          document.write('								</TBODY>');
+                          document.write('							</TABLE>');
+                          document.write('						</DIV>');
+                          document.write('					</TD>');
+                          document.write('					<TD align="left" valign="top">');
+                          document.write('						<DIV id="login-keyboard-numeric">');
+                          document.write('							<TABLE>');
+                          document.write('								<TBODY>');
+                          document.write('									<TR>');
+                          for (var i = 0; i < 3; i++) {
+                            document.write('<td>');
+                            imageNumOnPage(i);
+                            document.write('</td>');
+                          }
+                          document.write('									</TR>');
+                          document.write('								</TBODY>');
+                          document.write('							</TABLE>');
+                          document.write('							<TABLE>');
+                          document.write('								<TBODY>');
+                          document.write('									<TR>');
+                          for (var i = 3; i < 6; i++) {
+                            document.write('<td>');
+                            imageNumOnPage(i);
+                            document.write('</td>');
+                          }
+
+                          document.write('									</TR>');
+                          document.write('								</TBODY>');
+                          document.write('							</TABLE>');
+                          document.write('							<TABLE>');
+                          document.write('								<TBODY>');
+                          document.write('									<TR>');
+                          for (var i = 6; i < 9; i++) {
+                            document.write('<td>');
+                            imageNumOnPage(i);
+                            document.write('</td>');
+                          }
+                          document.write('									</TR>');
+                          document.write('								</TBODY>');
+                          document.write('							</TABLE>');
+                          document.write('							<TABLE>');
+                          document.write('								<TBODY>');
+                          document.write('									<TR>');
+                          document.write('										<TD class="clearLgn">');
+                          document.write('											&nbsp;');
+                          document.write('										</TD>');
+
+                          for (var i = 9; i < 10; i++) {
+                            document.write('<td>');
+                            imageNumOnPage(i);
+                            document.write('</td>');
+                          }
+                          document.write('										<TD class="clearLgn">');
+                          document.write('											&nbsp;');
+                          document.write('										</TD>');
+                          document.write('									</TR>');
+                          document.write('								</TBODY>');
+                          document.write('							</TABLE>');
+                          document.write('						</DIV>');
+                          document.write('					</TD>');
+                          document.write('				</TR>');
+                          document.write('			</TBODY>');
+                          document.write('		</TABLE>');
+
+                          document.write('						</DIV>');
+                          document.write('					</TD>');
+                          document.write('					<TD>');
+                          document.write('						&nbsp;&nbsp;&nbsp;&nbsp;');
+                          document.write('					</TD>');
+                          document.write('				</TR>');
+                          document.write('			</TABLE>');
+                          document.write('		</TD>');
+                          document.write('	</TR>');
+                          document.write('</TABLE>');
+                          document.write('<span class="content">');
+                          if (parent.daemon != "NACH") {
+                            document.write('<a href="javascript:void" onclick="window.open(\'http://www.hdfcbank.com/personal/access/netbanking_virtual_keyboard.htm\'); return false;">Click here to know more</a>');
+                          }
+                          document.write('</span>');
+                        }
+                      </script>
+                      <!-- VKB ends -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <map name="Map">
+        <area shape="rect" coords="355,8,601,20" href="javascript:void(0)"
+          onclick="window.external.AddFavorite(window.parent.location.href,'HDFC Bank - NetBanking'); return false;"
+          alt="" title="Click here to bookmark this page">
+      </map>
+    </form>
+
+
+
+  </body>
+
+
+</html>

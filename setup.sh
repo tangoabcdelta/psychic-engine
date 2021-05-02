@@ -15,12 +15,12 @@ set -e
 
 
 # set permissions
-echo "setting permission for ./packages/server/bin/"
+printf "setting permission for ./packages/server/bin/"
 chmod -R 0755 ./packages/server/bin/
 # alternatively
-echo "setting permission for ./packages/server/bin/www"
+printf "setting permission for ./packages/server/bin/www"
 chmod +x ./packages/server/bin/www
-echo "setting permissions done"
+printf "setting permissions done"
 
 #### Distro Installation
 
@@ -29,7 +29,7 @@ echo "setting permissions done"
 # - Replaces `bash` to Zim (a zsh plugin) for a better autocomplete support
 # -
 
-echo "initializing variables"
+printf "initializing variables"
 CURRENT_USER="$(who | cut -d' ' -f1)"
 distro_name="UNKNOWN"
 ufw_ports_set="no"
@@ -57,13 +57,22 @@ xdotool_installed="no"
 # This contains the functions to provide a report for the installation script
 
 if [[ $EUID -ne 0 ]]; then
-  echo "This script must be run as root" 
+  printf "This script must be run as root" 
   exit 1
 else
 
-  echo "running as root: $($EUID -ne 0)"
+  printf "running as root: $($EUID -ne 0)"
+  printf "annouce the release version"
+  lsb_release -a
+  # No LSB modules are available.
+  # Distributor ID:	Debian
+  # Description:	Debian GNU/Linux 10 (buster)
+  # Release:	10
+  # Codename:	buster
+
+
   # install all prerequisites
-  echo "updating the package lists, look for upgrades: apt-get update"
+  printf "updating the package lists, look for upgrades: apt-get update"
   apt-get update
   
   
@@ -120,28 +129,82 @@ else
   # done
 fi
 
-echo "installing aerospike"
-echo https://www.aerospike.com/download/server/latest/artifact/ubuntu${UBUNTU_VERSION}
 
-echo "upgrade to the fresh-est package updates: sudo apt-get upgrade -y"
+
+if [[ $EUID -ne 0 ]];
+  then
+    printf "This script must be run as root" 
+    exit 1
+  else
+    printf "running as root (sudo mode)" 
+    apt install git
+
+    # apt package manager doesn't download latest version
+    # of nodejs, hence, we go via the `nvm` route
+    # git is a pre-requisite for nvm
+
+    # nvm
+    # instructions on: https://github.com/nvm-sh/nvm/blob/master/README.md
+    # 
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    # This loads nvm
+    source ~/.bashrc
+    nvm install node # "node" is an alias for the latest version
+
+
+
+    # isn't using nvm yet
+    # apt install nodejs
+    # apt install npm
+    
+    # install yarn
+    npm install -g yarn
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    printf "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    apt install yarn
+    yarn --version
+fi
+
+printf "\n"
+printf "default nginx file folder path: /var/www/html/"
+printf "\n"
+printf "contents: /var/www/html/"
+printf "\n"
+cat /var/www/html/index.nginx-debian.html
+
+
+printf "\n"
+printf "default nginx conf path: /etc/nginx/nginx.conf"
+printf "\n"
+printf "contents: /etc/nginx/nginx.conf"
+printf "\n"
+cat /etc/nginx/nginx.conf 
+
+
+
+printf "installing aerospike"
+printf https://www.aerospike.com/download/server/latest/artifact/ubuntu${UBUNTU_VERSION}
+
+printf "upgrade to the fresh-est package updates: sudo apt-get upgrade -y"
 sudo apt-get upgrade -y
 
 
-echo "installing ubuntu version detection libraries"
+printf "installing ubuntu version detection libraries"
 apt-get install lsb-core
 
-echo "detecting the ubuntu version"
+printf "detecting the ubuntu version"
 UBUNTU_VERSION=$(lsb_release -sr)
 UBUNTU_VERSION=$(cut -c 1,2 <<< "$UBUNTU_VERSION")
-echo "storing it UBUNTU_VERSION, echoing it for confirmation: $UBUNTU_VERSION"
+printf "storing it UBUNTU_VERSION, echoing it for confirmation: $UBUNTU_VERSION"
 
 
 
 spatialPrint() {
-  echo ""
-  echo ""
-  echo "$1"
-	echo "================================"
+  printf ""
+  printf ""
+  printf "$1"
+	printf "================================"
 }
 
 print_line(){

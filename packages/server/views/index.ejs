@@ -2,19 +2,24 @@
 <html>
 
   <head>
-    <title>
-      <%= title %>
-    </title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <%- include('./partials/head.html', {title: title }); %>
   </head>
 
   <body>
-    <style>
-      <%- Header.css %>
-    </style>
-    <%- Header.markup %>
-      <h1>Test: <%= title %>
-      </h1>
+
+
+
+    <% if (show=="default" ) { %>
+      <style>
+        <%- Header.css %>
+      </style>
+      <style>
+        <%- Main.css %>
+      </style>
+
+      <div>
+        <%- Header.markup %>
+      </div>
       <h2>
         <%= FOO %>
       </h2>
@@ -22,19 +27,83 @@
       <pre><%= tailwindcss %></pre>
 
       <h2>Main</h2>
-      <style>
-        <%- Main.css %>
-      </style>
+
       <%- Main.markup %>
 
-        <footer>
-          <a href="#" class="logo">Logo</a>
-          <a href="/">Home</a>
-          <a href="/resume">Resume</a>
-          <a href="/user">Users</a>
-          <a href="#">Support</a>
-          <a href="#">About</a>
-        </footer>
+        <% } %>
+
+
+          <% if (show=="cars" ) { %>
+            <div>
+              <%- include('./partials/nav.html', {title: title }); %>
+            </div>
+            <% } %>
+
+
+              <% if (show=="wp-admin" ) { %>
+                <div>
+                  <Login>
+                    <h5>IS_LOGGED_IN: <%= options.IS_LOGGED_IN %>
+                    </h5>
+                    <form method="post" action="/">
+                      <input placeholder="username" type="text" name="username" id="username"
+                        value="brucewaye@batcave.in" />
+                      <br />
+                      <br />
+                      <input placeholder="password" type="password" name="password" id="password" value="iambatman" />
+                      <br />
+                      <br />
+                      <input type="radio" id="logout" name="action" value="logout">
+                      <label for="logout">logout</label><br>
+                      <input type="radio" id="login" name="action" value="login" checked>
+                      <label for="login">login</label><br>
+                      <br />
+                      <br />
+                      <input type="submit" name="submit" id="submit" value="submit" />
+                      <br />
+                      <br />
+                      <input type="reset" name="reset" id="reset" value="reset" />
+                      <br />
+                      <br />
+                      <br />
+                      <br />
+                      <br />
+                      <br />
+                    </form>
+                  </Login>
+                </div>
+                <% } %>
+
+                  <main class="contaner">
+                    <input type="text" id="text" name="text" placeholder="ws send" />
+
+
+                    <script type="text/javascript">
+                      var options = '<%= options.url %>';
+                      var url = '<%= options.url %>';
+                      var clientID = `oooga booga`;
+
+
+                    </script>
+                    <h1>Test: <%= title %>!!
+                    </h1>
+
+
+
+                    <script type="text/javascript" src="/javascripts/index.js"></script>
+                  </main>
+
+
+                  <% if (show=="default" ) { %>
+                    <footer>
+                      <a href="#" class="logo">Logo</a>
+                      <a href="/">Home</a>
+                      <a href="/resume">Resume</a>
+                      <a href="/user">Users</a>
+                      <a href="#">Support</a>
+                      <a href="#">About</a>
+                    </footer>
+                    <% } %>
   </body>
 
 </html>

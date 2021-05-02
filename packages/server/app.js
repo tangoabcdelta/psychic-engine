@@ -9,6 +9,7 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const resumeRouter = require("./routes/resume");
 const tokenRouter = require("./routes/getToken");
+const mp3ServiceHandler = require("./routes/mp3ServiceHandler");
 
 const app = express();
 
@@ -26,7 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(auth);
+// app.use(auth);
 // app.use("/", auth, indexRouter);
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
@@ -35,6 +36,8 @@ app.use("/bc", async (req, res) => {
   const hash = await BCrypt.hash("this is a long password", 8);
   res.send(hash);
 });
+
+app.use("mp3", mp3ServiceHandler);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

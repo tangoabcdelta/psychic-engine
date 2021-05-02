@@ -1,0 +1,8 @@
+let API_KEY, CLIENT_ID, DISCOVERY_DOCS, SCOPES;
+
+const access = {
+  API_KEY,
+  CLIENT_ID,
+  DISCOVERY_DOCS,
+  SCOPES,
+};

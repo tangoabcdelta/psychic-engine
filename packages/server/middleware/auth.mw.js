@@ -6,10 +6,10 @@ const { createHmac } = crypto;
 const cookieParser = require("cookie-parser");
 const TOKEN_SECRET = `LIKE____________WHO_GIVES_A_SHIT?`;
 
-const auth = (request, response, next) => {
+const auth = (req, res, next) => {
   console.clear();
   console.dir("req");
-  console.dir(request);
+  console.dir(req);
   // console.dir("res");
   // console.dir(res);
   // console.log("res", next);
@@ -17,7 +17,7 @@ const auth = (request, response, next) => {
 
   const {
     headers: { cookie },
-  } = request;
+  } = req;
 
   let b64Encoded = Buffer.from(
     JSON.stringify({
@@ -32,13 +32,25 @@ const auth = (request, response, next) => {
 
   const hmac = createHmac("sha256", b64Encoded);
 
-  response.cookie("auth", { maxAge: 900000, httpOnly: true });
+  res.cookie("auth", {
+    maxAge: 900000,
+    httpOnly: true,
+  });
 
-  // response.writeHead(200, {
+  // res.writeHead(200, {
   //   "Set-Cookie": "mycookie=test",
   //   "Content-Type": "text/html",
   // });
   next();
+
+  // req.session.returnTo = req.originalUrl;
+  let {
+    session: { returnTo },
+    originalUrl,
+  } = req;
+
+  returnTo = originalUrl;
+  res.redirect("/login");
 };
 
 module.exports = auth;

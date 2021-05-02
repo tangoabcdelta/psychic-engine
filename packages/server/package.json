@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "PORT=4000 nodemon ./bin/www"
+    "start": "PORT=4000 nodemon ./bin/www",
+    "start:debug": "DEBUG=server:* yarn start"
   },
   "main": "./bin/www",
   "bin": {
@@ -15,6 +16,7 @@
   },
   "dependencies": {
     "bcrypt": "5.0.1",
+    "minimist": "1.2.5",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
@@ -22,11 +24,14 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "nodemon": "2.0.7",
-    "ws": "7.4.4"
+    "sqlite3": "5.0.2",
+    "ws": "7.4.4",
+    "tram-one": "10.1.1",
+    "cloudmersive-video-api-client": "2.0.5"
   },
   "devDependencies": {
-    "eslint": "^7.24.0",
-    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint": "~7.24.0",
+    "eslint-config-airbnb-base": "~14.2.1",
     "eslint-plugin-import": "^2.22.1"
   }
 }

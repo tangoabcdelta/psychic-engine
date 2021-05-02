@@ -141,3 +141,15 @@ Sometimes they’re not named, they’re numbered! The built-in numberings for t
 Given that context, you can see the command above is redirecting standard output into `/dev/null`, which is a place you can dump anything you don’t want (often called the bit-bucket), then redirecting standard error into standard output (you have to put an & in front of the destination when you do this).
 
 The short explanation, therefore, is “all output from this command should be shoved into a black hole.” That’s one good way to make a program be really quiet!
+
+### GIT: Shallow Clone
+
+##### How to Execute Git Shallow Clone
+
+Provide an argument of `--depth 1` to the git clone command to copy only the latest revision of a repo:
+
+```
+git clone -–depth [depth] [remote-url]
+You can also use git shallow clone to access a single branch:
+git clone [remote-url] --branch [name] --single-branch [folder]
+```

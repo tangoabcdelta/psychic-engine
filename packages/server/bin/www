@@ -4,37 +4,28 @@
  * Module dependencies.
  */
 
-var app = require("../app");
-var debug = require("debug")("server:server");
-var http = require("http");
-var WebSocket = require("ws");
-var { exec } = require("child_process");
-var generic = require("./generic");
+const app = require("../app");
+const debug = require("debug")("server:server");
+const http = require("http");
+const WebSocket = require("ws");
+const { exec } = require("child_process");
+// const worker = require("worker_threads");
+const {
+  Worker,
+  isMainThread,
+  parentPort,
+  workerData,
+} = require("worker_threads");
+const generic = require("./generic");
+const responseHandlers = {};
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || "4001");
-var port2 = normalizePort(parseInt(process.env.PORT) + 1 || "4002");
-
-app.set("port", port);
-
-/**
- * Create HTTP server.
- */
-
-var server = http.createServer(app);
-var wss = new WebSocket.Server({
-  port: port2,
-});
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port);
-server.on("error", onError);
-server.on("listening", onListening);
+const [port, port2] = [
+  process.env.PORT || "4001",
+  parseInt(process.env.PORT) + 1 || "4002",
+].map(normalizePort);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -55,6 +46,60 @@ function normalizePort(val) {
 
   return false;
 }
+
+/**
+ * set ports
+ */
+
+app.set("port", port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on("error", onError);
+server.on("listening", onListening);
+
+/**
+ * Create WSS server.
+ */
+
+let webSock = null;
+var wss = new WebSocket.Server({
+  port: port2,
+});
+wss.on("connection", (ws) => {
+  let timestamp = +new Date();
+  console.log(`ws connection is established: ${timestamp}`);
+  ws.send(`ws connection is established: ${timestamp}`);
+
+  wss.on("message", (data) => {
+    console.log(`ws message received: ${data}`);
+    wss.clients.map((client) => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(data);
+      }
+    });
+  });
+});
+
+// When the server runs behind a proxy like NGINX,
+// the de-facto standard is to use the "X-Forwarded-For" header.
+
+wss.on("connection", function connection(ws, req) {
+  const ip = req.headers["x-forwarded-for"]?.split(/\s*,\s*/)[0];
+});
+
+wss.on("close", function close() {
+  console.log("disconnected");
+});
 
 /**
  * Event listener for HTTP server "error" event.
@@ -90,10 +135,18 @@ function onListening() {
   var addr = server.address();
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   debug("Listening on " + bind);
-  //exec(`google-chrome "http://localhost:${addr.port}"`, generic);
 
-  exec(
-    `sh ./relaunch.sh google-chrome "http://localhost:${addr.port}"`,
-    generic
-  );
+  wss.on("connection", (ws) => {
+    let timestamp = +new Date();
+    console.log(`REFRESH_NOW: ${timestamp}`);
+    // ws.send(`REFRESH_NOW: ${timestamp}`);
+    ws.send(`REFRESH_NOWXXX`);
+  });
+
+  // exec(`google-chrome "http://localhost:${addr.port}"`, generic);
+
+  // exec(
+  //   `sh ./relaunch.sh google-chrome "http://localhost:${addr.port}"`,
+  //   generic
+  // );
 }

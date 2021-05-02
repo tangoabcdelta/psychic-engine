@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>
+      <%= title %>
+    </title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+
+  <body>
+    <style>
+      <%- Header.css %>
+    </style>
+    <%- Header.markup %>
+      <h1>Test: <%= title %>
+      </h1>
+      <h2>
+        <%= FOO %>
+      </h2>
+      <p>tailwindcss</p>
+      <pre><%= tailwindcss %></pre>
+      <main>
+        <h2>Main</h2>
+        <style>
+          <%- Main.css %>
+        </style>
+        <%- Main.markup %>
+
+          <h3>Upload File</h3>
+
+          <input type="file" accept=".mp3,audio\/*" />
+
+      </main>
+      <footer>
+        <a href="#" class="logo">Logo</a>
+        <a href="/">Home</a>
+        <a href="/resume">Resume</a>
+        <a href="/user">Users</a>
+        <a href="#">Support</a>
+        <a href="#">About</a>
+      </footer>
+  </body>
+
+</html>
