@@ -150,7 +150,15 @@ if [[ $EUID -ne 0 ]];
     export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
     # This loads nvm
     source ~/.bashrc
-    nvm install node # "node" is an alias for the latest version
+
+    # "node" is an alias for the latest version
+    printf '\n'
+    nvm install node
+    printf '\n'
+    printf "attempting to retrieve latest stable version"
+    printf '\n'
+    nvm ls-remote | grep Latest | tail -1
+    printf '\n'
 
 
 
