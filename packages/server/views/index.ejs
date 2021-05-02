@@ -2,7 +2,7 @@
 <html>
 
   <head>
-    <%- include('./partials/head.html', {title: title }); %>
+    <%- include('./partials/head.html', {title, domain }); %>
   </head>
 
   <body>
@@ -20,90 +20,109 @@
       <div>
         <%- Header.markup %>
       </div>
-      <h2>
-        <%= FOO %>
-      </h2>
-      <p>tailwindcss</p>
-      <pre><%= tailwindcss %></pre>
 
-      <h2>Main</h2>
-
-      <%- Main.markup %>
-
-        <% } %>
+      <main class="contaner">
+        <h1>Test: <%= title %> - <%= domain %>!!
+              <h2>
+                <%= FOO %>
+              </h2>
+              <input type="text" id="text" name="text" placeholder="ws send" />
 
 
-          <% if (show=="cars" ) { %>
-            <div>
-              <%- include('./partials/nav.html', {title: title }); %>
-            </div>
-            <% } %>
+              <script type="text/javascript">
+                var options = '<%= options.url %>';
+                var url = '<%= options.url %>';
+                var clientID = `oooga booga`;
 
 
-              <% if (show=="wp-admin" ) { %>
-                <div>
-                  <Login>
-                    <h5>IS_LOGGED_IN: <%= options.IS_LOGGED_IN %>
-                    </h5>
-                    <form method="post" action="/">
-                      <input placeholder="username" type="text" name="username" id="username"
-                        value="brucewaye@batcave.in" />
-                      <br />
-                      <br />
-                      <input placeholder="password" type="password" name="password" id="password" value="iambatman" />
-                      <br />
-                      <br />
-                      <input type="radio" id="logout" name="action" value="logout">
-                      <label for="logout">logout</label><br>
-                      <input type="radio" id="login" name="action" value="login" checked>
-                      <label for="login">login</label><br>
-                      <br />
-                      <br />
-                      <input type="submit" name="submit" id="submit" value="submit" />
-                      <br />
-                      <br />
-                      <input type="reset" name="reset" id="reset" value="reset" />
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                    </form>
-                  </Login>
-                </div>
-                <% } %>
+              </script>
 
-                  <main class="contaner">
-                    <input type="text" id="text" name="text" placeholder="ws send" />
-
-
-                    <script type="text/javascript">
-                      var options = '<%= options.url %>';
-                      var url = '<%= options.url %>';
-                      var clientID = `oooga booga`;
-
-
-                    </script>
-                    <h1>Test: <%= title %>!!
-                    </h1>
+        </h1>
 
 
 
-                    <script type="text/javascript" src="/javascripts/index.js"></script>
-                  </main>
+        <script type="text/javascript" src="/javascripts/index.js"></script>
+
+        <p>tailwindcss</p>
+        <pre><%= tailwindcss %></pre>
+
+        <h2>Main</h2>
+
+        <%- Main.markup %>
+      </main>
 
 
-                  <% if (show=="default" ) { %>
-                    <footer>
-                      <a href="#" class="logo">Logo</a>
-                      <a href="/">Home</a>
-                      <a href="/resume">Resume</a>
-                      <a href="/user">Users</a>
-                      <a href="#">Support</a>
-                      <a href="#">About</a>
-                    </footer>
-                    <% } %>
+      <% } %>
+
+
+        <% if (show=="cars" ) { %>
+          <div>
+            <%- include('./partials/nav.html', {title, domain }); %>
+              <%- include('./partials/cars-hero-wrap-degree-bg-st.html', { }); %>
+                <%- include('./partials/cars-ftco-section-ftco-no-pt.html', { }); %>
+
+          </div>
+          <% } %>
+
+
+            <% if (show=="wp-admin" ) { %>
+              <div>
+                <Login>
+                  <h5>IS_LOGGED_IN: <%= options.IS_LOGGED_IN %>
+                  </h5>
+                  <form method="post" action="/">
+                    <input placeholder="username" type="text" name="username" id="username"
+                      value="brucewaye@batcave.in" />
+                    <br />
+                    <br />
+                    <input placeholder="password" type="password" name="password" id="password" value="iambatman" />
+                    <br />
+                    <br />
+                    <input type="radio" id="logout" name="action" value="logout">
+                    <label for="logout">logout</label><br>
+                    <input type="radio" id="login" name="action" value="login" checked>
+                    <label for="login">login</label><br>
+                    <br />
+                    <br />
+                    <input type="submit" name="submit" id="submit" value="submit" />
+                    <br />
+                    <br />
+                    <input type="reset" name="reset" id="reset" value="reset" />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                  </form>
+                </Login>
+              </div>
+
+
+              <% } %>
+
+
+
+
+                <% if (show=="default" ) { %>
+                  <footer>
+                    <a href="#" class="logo">Logo</a>
+                    <a href="/">Home</a>
+                    <a href="/resume">Resume</a>
+                    <a href="/user">Users</a>
+                    <a href="#">Support</a>
+                    <a href="#">About</a>
+                  </footer>
+                  <% } %>
+
+
+                    <% if (show=="cars" ) { %>
+
+                      <%- include('./partials/cars-ftco-loader.html', {title: title }); %>
+                        <%- include('./partials/cars-scripts-footer.html', {title: title }); %>
+                          <%- include('./partials/cars-footer.html', {title: title }); %>
+
+                            <% } %>
   </body>
 
 </html>

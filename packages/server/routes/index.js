@@ -42,7 +42,8 @@ router.get("/", (req, res, next) => {
       a = "index";
       b = {
         ...info,
-        title: "Cars - BiriBadi.com",
+        title: "Cars",
+        domain: "BiriBadi.com",
         show: "cars",
       };
       break;
@@ -52,7 +53,8 @@ router.get("/", (req, res, next) => {
       a = "index";
       b = {
         ...info,
-        title: "Localhost / Default - BiriBadi.com",
+        title: "Localhost / Default",
+        domain: "BiriBadi.com",
         show: "default",
       };
       break;
