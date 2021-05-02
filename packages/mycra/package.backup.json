@@ -1,5 +1,5 @@
 {
-  "name": "tdp-et-al",
+  "name": "@bigfatsoftware/tdp-et-al",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -121,3 +121,36 @@ warning "workspace-aggregator-c11edad2-51ad-4176-9ee7-6cb8d2fb369e > use-comment
 warning "workspace-aggregator-c11edad2-51ad-4176-9ee7-6cb8d2fb369e > use-comments > react-toggle-dark-mode > react-spring > @react-spring/core > @react-spring/animated@9.1.1" has unmet peer dependency "react@>=16.8".
 warning "workspace-aggregator-c11edad2-51ad-4176-9ee7-6cb8d2fb369e > use-comments > react-toggle-dark-mode > react-spring > @react-spring/core > @react-spring/shared@9.1.1" has unmet peer dependency "react@>=16.8".
 warning Workspaces can only be enabled in private projects.
+[--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------] 23/10809
+<--- Last few GCs --->
+
+[31754:0x5f51b70]    90222 ms: Mark-sweep 484.4 (503.5) -> 482.0 (505.2) MB, 737.3 / 0.0 ms  (average mu = 0.169, current mu = 0.087) allocation failure scavenge might not succeed
+[31754:0x5f51b70]    91143 ms: Mark-sweep 486.1 (505.2) -> 482.0 (504.7) MB, 856.6 / 0.0 ms  (average mu = 0.119, current mu = 0.070) allocation failure scavenge might not succeed
+
+
+<--- JS stacktrace --->
+
+FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+ 1: 0xb12b00 node::Abort() [node]
+ 2: 0xa2fe25 node::FatalError(char const*, char const*) [node]
+ 3: 0xcf8a9e v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [node]
+ 4: 0xcf8e17 v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [node]
+ 5: 0xee2d65  [node]
+ 6: 0xee38ac  [node]
+ 7: 0xef17e1 v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [node]
+ 8: 0xf5b31c v8::internal::ScavengeJob::Task::RunInternal() [node]
+ 9: 0xb7f194 node::PerIsolatePlatformData::RunForegroundTask(std::unique_ptr<v8::Task, std::default_delete<v8::Task> >) [node]
+10: 0xb80ff9 node::PerIsolatePlatformData::FlushForegroundTasksInternal() [node]
+11: 0x1588db6  [node]
+12: 0x159bb45  [node]
+13: 0x15896e8 uv_run [node]
+14: 0xa55fd5 node::SpinEventLoop(node::Environment*) [node]
+15: 0xb545f7 node::NodeMainInstance::Run(node::EnvSerializeInfo const*) [node]
+16: 0xadae62 node::Start(int, char**) [node]
+17: 0x7fbeab46709b __libc_start_main [/lib/x86_64-linux-gnu/libc.so.6]
+18: 0xa52b4c  [node]
+Aborted
+
+
+
+https://github.com/nodejs/node/issues/21951

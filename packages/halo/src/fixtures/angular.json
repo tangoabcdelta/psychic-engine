@@ -1,9 +1,9 @@
 {
   "id": 24195339,
   "node_id": "MDEwOlJlcG9zaXRvcnkyNDE5NTMzOQ==",
-  "name": "angular",
+  "name": "@bigfatsoftware/angular",
   "full_name": "angular/angular",
-  "private": false,
+  "private": true,
   "owner": {
     "login": "angular",
     "id": 139426,

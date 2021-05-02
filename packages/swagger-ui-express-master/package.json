@@ -1,5 +1,5 @@
 {
-  "name": "swagger-ui-express",
+  "name": "@bigfatsoftware/swagger-ui-express",
   "version": "4.1.4",
   "description": "Swagger UI Express",
   "main": "./index.js",
@@ -21,7 +21,7 @@
     "json",
     "documentation"
   ],
-  "private": false,
+  "private": true,
   "engines": {
     "node": ">= v0.10.32"
   },

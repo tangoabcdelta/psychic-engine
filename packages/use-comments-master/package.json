@@ -1,6 +1,6 @@
 {
-  "name": "use-comments",
-  "private": false,
+  "name": "@bigfatsoftware/use-comments",
+  "private": true,
   "description": "Effortlessly add a comment section to your website, and start the discussion on your content.",
   "version": "1.0.1",
   "license": "MIT",

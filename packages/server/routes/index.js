@@ -1,7 +1,29 @@
 const express = require("express");
 const process = require("process");
-const { FOO, tailwindcss } = require("@bigfatsoftware/fashion");
-const { Header, Main } = require("@bigfatsoftware/components");
+const path = require("path");
+const { readFileSync } = require("fs");
+const ejs = require("ejs");
+// const { FOO, tailwindcss } = require("@bigfatsoftware/fashion");
+const FOO = "bar";
+const tailwindcss = "000";
+
+// const { Header, Main } = require("@bigfatsoftware/components");
+const Header = {
+  markup: readFileSync(
+    path.resolve(__dirname, "../views/partials/generic/Header.html")
+  ), //ejs.compile(
+  css: "",
+};
+
+const Main = {
+  markup: readFileSync(
+    path.resolve(__dirname, "../views/partials/generic/Main.html")
+  ), // ejs.compile(
+  css: "",
+};
+
+// `/home/deveedutta/Documents/Projects/psychic-engine/packages/server/routes/views/partials/generic/Header.html`;
+// `/home/deveedutta/Documents/Projects/psychic-engine/packages/server/views/partials/generic/Header.html`;
 
 const router = express.Router();
 const IS_PROD = false;
@@ -37,7 +59,7 @@ router.get("/", (req, res, next) => {
   let b;
   switch (host) {
     case "cars.localhost:4000":
-    case "http://cars.biribadi.com/":
+    case "cars.biribadi.com":
       // a = "cars";
       a = "index";
       b = {
@@ -48,6 +70,7 @@ router.get("/", (req, res, next) => {
       };
       break;
 
+    case "biribadi.com":
     case "localhost:4000":
     default:
       a = "index";
