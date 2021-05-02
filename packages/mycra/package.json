@@ -1,9 +1,6 @@
 {
-  "name": "tdp-et-al",
+  "name": "@bigfatsoftware/mycra",
   "version": "0.1.0",
-  "workspaces": [
-    "packages/*"
-  ],
   "private": true,
   "main": "./src/index.js",
   "types": "./node_modules/@types/react/index.d.ts",
