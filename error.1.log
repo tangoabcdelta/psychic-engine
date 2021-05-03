@@ -154,3 +154,49 @@ Aborted
 
 
 https://github.com/nodejs/node/issues/21951
+
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Sun May  2 16:19:59 2021 from 122.182.219.117
+Your user’s .npmrc file (${HOME}/.npmrc)
+has a `globalconfig` and/or a `prefix` setting, which are incompatible with nvm.
+Run `nvm use --delete-prefix v16.0.0 --silent` to unset it.
+
+
+your_email@instance-1:~/server$ yarn start
+yarn run v1.22.10
+$ PORT=4000 nodemon ./bin/www
+[nodemon] 2.0.7
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `node ./bin/www`
+node:internal/modules/cjs/loader:943
+  throw err;
+  ^
+
+Error: Cannot find module '@bigfatsoftware/fashion'
+Require stack:
+- /home/your_email/server/routes/resume.js
+- /home/your_email/server/app.js
+- /home/your_email/server/bin/www
+    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:940:15)
+    at Function.Module._load (node:internal/modules/cjs/loader:773:27)
+    at Module.require (node:internal/modules/cjs/loader:1012:19)
+    at require (node:internal/modules/cjs/helpers:93:18)
+    at Object.<anonymous> (/home/your_email/server/routes/resume.js:2:30)
+    at Module._compile (node:internal/modules/cjs/loader:1108:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1137:10)
+    at Module.load (node:internal/modules/cjs/loader:988:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:828:14)
+    at Module.require (node:internal/modules/cjs/loader:1012:19) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/home/your_email/server/routes/resume.js',
+    '/home/your_email/server/app.js',
+    '/home/your_email/server/bin/www'
+  ]
+}
+[nodemon] app crashed - waiting for file changes before starting...
+
