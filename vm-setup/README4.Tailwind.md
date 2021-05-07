@@ -1,4 +1,4 @@
-#Tailwind
+# Tailwind
 
 ### Creating your configuration file
 
