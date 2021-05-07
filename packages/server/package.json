@@ -15,7 +15,7 @@
     "test": "test"
   },
   "dependencies": {
-    "bcrypt": "5.0.1",
+    "axios": "~0.21.1",
     "minimist": "1.2.5",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",

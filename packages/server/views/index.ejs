@@ -1,8 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 
   <head>
     <%- include('./partials/head.html', {title, domain }); %>
+
+
+
+      <% if (show=="default" ) { %>
+        <style>
+          canvas {
+            border: 1px solid black;
+          }
+        </style>
+
+        <% } %>
   </head>
 
   <body>
@@ -41,7 +52,8 @@
 
 
 
-        <script type="text/javascript" src="/javascripts/index.js"></script>
+
+
 
         <p>tailwindcss</p>
         <pre><%= tailwindcss %></pre>
@@ -50,7 +62,7 @@
 
         <%- Main.markup %>
       </main>
-
+      <script type="module" crossorigin src="/javascripts/index.js"></script>
 
       <% } %>
 
@@ -123,6 +135,7 @@
                           <%- include('./partials/cars-footer.html', {title: title }); %>
 
                             <% } %>
+
   </body>
 
 </html>

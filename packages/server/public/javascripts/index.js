@@ -1,5 +1,9 @@
-const protocols = ["one", "two"];
-const webSocket = new WebSocket(url, protocols);
+// import axios from `https://unpkg.com/browse/axios@0.21.1/dist/axios.min.js`;
+// import axios from `https://unpkg.com/browse/axios@0.21.1/lib/axios.js`;
+// import axios from `/javascripts/axios.min.js`;
+import axios from "http://localhost:4000/javascripts/index.js";
+export const protocols = ["one", "two"];
+export const webSocket = new WebSocket(url, protocols);
 
 webSocket.onopen = (event) => {
   webSocket.send("Here's some text that the server is urgently awaiting!");
@@ -34,3 +38,8 @@ webSocket.onmessage = function(event) {
       document.getElementById("text").value = "";
   }
 };
+
+export const foobar = {};
+
+// export { axios, foobar };
+export default foobar;

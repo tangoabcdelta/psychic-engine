@@ -123,9 +123,9 @@ Here’s an example command:
 wibble > /dev/null 2>&1`
 ```
 
-- greater-thans
+- greater-than
 - ampersands
-- and numbers after the commands m
+- and numbers after the commands
 
 ###### Output redirection
 
@@ -148,8 +148,37 @@ The short explanation, therefore, is “all output from this command should be s
 
 Provide an argument of `--depth 1` to the git clone command to copy only the latest revision of a repo:
 
-```
+```bash
 git clone -–depth [depth] [remote-url]
 You can also use git shallow clone to access a single branch:
 git clone [remote-url] --branch [name] --single-branch [folder]
 ```
+
+###### `X` was compiled against a different `Node.js` version using `NODE_MODULE_VERSION` `Y`
+
+Sample error:
+
+```bash
+'/usr/share/code/resources/app/node_modules.asar.unpacked/node-pty/build/Release/pty.node' was compiled against a different Node.js version using NODE_MODULE_VERSION 87.
+```
+
+Solution: https://stackoverflow.com/questions/46384591/node-was-compiled-against-a-different-node-js-version-using-node-module-versio
+
+You need to remove the module folder (bcrypt) from the node_modules folder and reinstall it, use the following commands:
+
+```bash
+$ rm -rf node_modules/bcrypt
+$ npm install
+// or
+$ yarn
+```
+
+If the above doesn't work:
+
+1. **The first important part** - Require all dependencies you need in the `main.js` file that is run by electron.
+2. Run `npm i -D electron-rebuild` to add the [electron-rebuild][1] package
+3. Remove the `node-modules` folder, as well as the `packages-lock.json` file.
+4. Run `npm i` to install all modules.
+5. Run `./node_modules/.bin/electron-rebuild` (`.\node_modules\.bin\electron-rebuild.cmd` for Windows) to rebuild everything. It is **very important** to run `./node_modules/.bin/electron-rebuild` directly after `npm i` otherwise it won't work.
+
+[1]: https://github.com/electron/electron-rebuild
