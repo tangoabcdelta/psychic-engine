@@ -131,3 +131,54 @@ $ node example/parse.js -x 3 -y 4 -n5 -abc --beep=boop foo bar baz
   c: true,
   beep: 'boop' }
 ```
+
+##### rsync - Basic Syntax
+
+The basic syntax of rsync is very straightforward, and operates in a way that is similar to `ssh`, `scp`, and `cp`.
+
+```bash
+cd ~
+mkdir dir1
+mkdir dir2
+
+touch dir1/file{1..100}
+# We now have a directory called dir1 with 100 empty files in it.
+
+
+ls dir1
+
+# Output
+file1    file18  file27  file36  file45  file54  file63  file72  file81  file90
+file10   file19  file28  file37  file46  file55  file64  file73  file82  file91
+file100  file2   file29  file38  file47  file56  file65  file74  file83  file92
+file11   file20  file3   file39  file48  file57  file66  file75  file84  file93
+file12   file21  file30  file4   file49  file58  file67  file76  file85  file94
+file13   file22  file31  file40  file5   file59  file68  file77  file86  file95
+file14   file23  file32  file41  file50  file6   file69  file78  file87  file96
+file15   file24  file33  file42  file51  file60  file7   file79  file88  file97
+file16   file25  file34  file43  file52  file61  file70  file8   file89  file98
+file17   file26  file35  file44  file53  file62  file71  file80  file9   file99
+
+# We also have an empty directory called dir2.
+# To sync the contents of dir1 to dir2 on the same system, type:
+rsync -r dir1/ dir2
+```
+
+###### How To Use Rsync to Sync with a Remote System
+
+Syncing to a remote system is trivial if you have SSH access to the remote machine and rsync installed on both sides. Once you have SSH access verified between the two machines, you can sync the dir1 folder from earlier to a remote computer by using this syntax (note that we want to transfer the actual directory in this case, so we omit the trailing slash):
+
+This is called a “push” operation because it pushes a directory from the local system to a remote system.
+
+```bash
+rsync -a ~/dir1 username@remote_host:destination_directory
+```
+
+The opposite operation is “pull”. It is used to sync a remote directory to the local system. If the dir1 were on the remote system instead of our local system, the syntax would be:
+
+```
+
+rsync -a username@remote_host:/home/username/dir1 place_to_sync_on_local_machine
+
+
+```

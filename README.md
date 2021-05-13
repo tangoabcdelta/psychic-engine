@@ -182,3 +182,144 @@ If the above doesn't work:
 5. Run `./node_modules/.bin/electron-rebuild` (`.\node_modules\.bin\electron-rebuild.cmd` for Windows) to rebuild everything. It is **very important** to run `./node_modules/.bin/electron-rebuild` directly after `npm i` otherwise it won't work.
 
 [1]: https://github.com/electron/electron-rebuild
+
+### OpenSSH Config - Create and setup config file as shortcuts for frequently accessed servers
+
+sauce: https://www.cyberciti.biz/faq/create-ssh-config-file-on-linux-unix/
+
+- global or local configuration file for SSH client can create shortcuts for sshd server including advanced ssh client options.
+
+- System-wide OpenSSH config file client configuration
+  - `/etc/ssh/ssh_config`
+  - Default configuration for all users of OpenSSH clients on the machine
+  - Readable by all users on the system
+- User-specific OpenSSH file client configuration
+  - `~/.ssh/config`
+  - `$HOME/.ssh/config`
+  - User’s own configuration file
+  - Overrides global client configuration file `/etc/ssh/ssh_config`
+
+**`~/.ssh/config` file rules**
+
+First, we need to create `.ssh` directory
+
+```
+mkdir -p $HOME/.ssh
+chmod 0700 $HOME/.ssh
+```
+
+- per line, only one config parameter is allowed
+- `parameter name` must be followed by its `value` or `values`
+- comments start with `#`
+- values are **case-sensitive**
+- parameter names are **not case-sensitive**
+
+Syntax is:
+
+```bash
+config value
+config1 value1 value2
+```
+
+- an equal sign (=) instead of whitespace between the parameter name and the values can also be used
+
+```
+config=value
+config1=value1 value2
+```
+
+If your SSH login looks like the following:
+
+```bash
+$ ssh -i ~/.ssh/id_rsa -p 4242 nixcraft@server1.cyberciti.biz
+```
+
+Then, your config file will look like this:
+
+```bash
+Host server1
+     HostName server1.cyberciti.biz
+     User nixcraft
+     Port 4242
+     IdentityFile /nfs/shared/users/nixcraft/keys/server1/id_rsa
+```
+
+- Save and close the file in `vi/vim` by pressing `Esc` key, type `:w` and hit `Enter` key.
+- To open your new SSH session to `server1.cyberciti.biz`, type the following command:`$ ssh server1`
+
+**Add another host**
+
+```bash
+Host server1
+     HostName server1.cyberciti.biz
+     User nixcraft
+     Port 4242
+     IdentityFile /nfs/shared/users/nixcraft/keys/server1/id_rsa
+
+Host nas01
+     HostName 192.168.1.100
+     User root
+     IdentityFile ~/.ssh/nas01.key
+```
+
+Now, this is how you login
+
+```bash
+$ ssh nas01
+$ ssh server1
+```
+
+**Sample Big Config File**
+
+```bash
+### default for all ##
+Host *
+     ForwardAgent no
+     ForwardX11 no
+     ForwardX11Trusted yes
+     User nixcraft
+     Port 22
+     Protocol 2
+     ServerAliveInterval 60
+     ServerAliveCountMax 30
+
+## override as per host ##
+Host server1
+     HostName server1.cyberciti.biz
+     User nixcraft
+     Port 4242
+     IdentityFile /nfs/shared/users/nixcraft/keys/server1/id_rsa
+
+## Home nas server ##
+Host nas01
+     HostName 192.168.1.100
+     User root
+     IdentityFile ~/.ssh/nas01.key
+
+## Login AWS Cloud ##
+Host aws.apache
+     HostName 1.2.3.4
+     User wwwdata
+     IdentityFile ~/.ssh/aws.apache.key
+
+## Login to internal lan server at 192.168.0.251 via our public uk office ssh based gateway using ##
+## $ ssh uk.gw.lan ##
+Host uk.gw.lan uk.lan
+     HostName 192.168.0.251
+     User nixcraft
+     ProxyCommand  ssh nixcraft@gateway.uk.cyberciti.biz nc %h %p 2> /dev/null
+
+## Our Us Proxy Server ##
+## Forward all local port 3128 traffic to port 3128 on the remote vps1.cyberciti.biz server ##
+## $ ssh -f -N  proxyus ##
+Host proxyus
+    HostName vps1.cyberciti.biz
+    User breakfree
+    IdentityFile ~/.ssh/vps1.cyberciti.biz.key
+    LocalForward 3128 127.0.0.1:3128
+```
+
+Refer to tips:
+
+- Speed up ssh session
+- Understand `~/.ssh/config` entries
