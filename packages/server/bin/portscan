@@ -18,7 +18,10 @@ const execq = (error, stdout, stderr) => {
   });
 };
 
-const commands = ["lsof -i :80"];
+const commands = [
+  // "lsof -i :80",
+  "netstat -na -p tcp | grep LISTEN",
+];
 
 const result = await Promise.all[commands.map(execq)];
 exec("echo START", generic);

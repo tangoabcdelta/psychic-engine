@@ -1,0 +1,27 @@
+{
+  "name": "vanilla",
+  "version": "1.0.0",
+  "description": "JavaScript example starter project",
+  "main": "index.html",
+  "scripts": {
+    "start": "esbuild ./src/index.js --bundle --outfile=out.js",
+    "build": "esbuild index.html --bundle --outfile=out.js",
+    "build:qa": "esbuild index.html --bundle --minify --sourcemap --target=chrome58,firefox57,safari11,edge16",
+    "start:parcel": "parcel index.html --open",
+    "build:parcel": "parcel build index.html"
+  },
+  "dependencies": {
+    "esbuild": "0.11.0",
+    "parcel-bundler": "~1.6.1"
+  },
+  "devDependencies": {
+    "@babel/core": "7.2.0"
+  },
+  "resolutions": {
+    "@babel/preset-env": "7.13.8"
+  },
+  "keywords": [
+    "javascript",
+    "starter"
+  ]
+}

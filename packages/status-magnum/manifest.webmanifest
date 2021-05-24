@@ -1,0 +1,15 @@
+{
+  "background_color": "purple",
+  "description": "Sample Description",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "/src/image.jpeg",
+      "sizes": "225x225",
+      "type": "image/jpg"
+    }
+  ],
+  "name": "Awesome Site",
+  "short_name": "Site",
+  "start_url": "index.html"
+}

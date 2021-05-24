@@ -251,8 +251,9 @@
           }
         }
       }
-
+      add(1)(2)(3)();
     </script>
+
     <script>
       function generator(func) {
         return function (arg1) {
@@ -634,6 +635,46 @@
       // Array.Flat()
 
     </script>
+    <h3>Given an array of strings, return another array containing all of its longest strings.</h3>
+
+    <script>
+      const arr1 = ["aba", "aa", "ad", "vcd", "aba"];
+      const arr2 = ["apple", "orange", "banna", "ABCDE", "1234"];
+      const arr3 = ["123", "2", "abc", "5"];
+
+      console.log(arr1.sort((a, b) => (b.length - a.length)));
+      // > ["aba", "aba", "vcd", "aa", "ad"]
+
+
+      const sortStrinMax = (arr) => {
+        return arr.sort((a, b) => (b.length - a.length)).filter((item, index, array) => { return item.length >= array[0].length });
+      };
+
+      console.log(sortStrinMax(arr1));
+      console.log(sortStrinMax(arr2));
+      console.log(sortStrinMax(arr3));
+
+
+    </script>
+    <h3>Title</h3>
+
+    <script>
+    </script>
+    <h3>Title</h3>
+
+    <script>
+    </script>
+    <h3>Title</h3>
+
+    <script>
+    </script>
+    <h3>Title</h3>
+
+    <script>
+    </script>
+
+
+
 
 
     <h3>Title</h3>

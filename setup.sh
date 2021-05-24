@@ -52,6 +52,8 @@ bash_aliases_installed="no"
 printer_installed="no"
 wget_installed="no"
 xdotool_installed="no"
+lsof_installed="no"
+lynx_installed="no"
 
 
 # This contains the functions to provide a report for the installation script
@@ -107,6 +109,8 @@ else
            26 "Webpack" off
            27 "Grunt" off
            28 "Gulp" off)
+           29 "LSOF" off)
+           30 "Lynx" off)
           choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
           clear
 
@@ -129,6 +133,10 @@ else
   # done
 fi
 
+
+# build essentials
+
+# httpd httpd-tools php gcc glibc glibc-common gd gd-devel make net-snmp
 
 
 if [[ $EUID -ne 0 ]];
@@ -172,6 +180,9 @@ if [[ $EUID -ne 0 ]];
     printf "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
     apt install yarn
     yarn --version
+
+
+    # install lsof
 fi
 
 printf "\n"
