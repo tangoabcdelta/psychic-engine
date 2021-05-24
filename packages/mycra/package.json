@@ -91,7 +91,7 @@
     "git-release-notes": "5.0.0",
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.8",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "parcel-bundler": "^1.12.4",
     "react-is": "^17.0.1",
     "sass-loader": "^10.1.0",
