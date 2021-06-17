@@ -1,17 +1,6 @@
 #!/bin/bash
 
 
-# https://www.tutorialspoint.com/execute_bash_online.php
-
-bash ~/LOGIN.sh
-
-
-# Look for processes listening on all ports
-netstat -na -p tcp | grep LISTEN
-# lsof -ni tcp:80
-# lsof -ni tcp:4000
-
-
 # this is a built-in command
 # stops the execution of a script if a command or pipeline has an error
 # which is the opposite of the default shell behaviour,
@@ -39,13 +28,21 @@ then
   printf "This script must be run as root" 
   exit 1
 else
+
+
+  # https://www.tutorialspoint.com/execute_bash_online.php
+
+  # bash ~/LOGIN.sh
+
+
+  # Look for processes listening on all ports
+  netstat -na -p tcp | grep LISTEN
+  # lsof -ni tcp:80
+  # lsof -ni tcp:4000
+
+
   bash ./quic.2.sh
-
-
-  
-
+  #bash ./quic.2.sh
   printf "\n"
-  
- 
 fi
 

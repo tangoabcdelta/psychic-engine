@@ -17,7 +17,14 @@ else
 fi
 
 git pull --rebase
-cp -r /packages/status-magnum/ ~/
+
+
+cp mynginx.conf /etc/nginx/sites-enabled/
+
+cp -r ./packages/status-magnum/ ~/
+cp -r ./packages/server/ ~/
+cd ~/server/
+yarn install
 cd ~/status-magnum/
 yarn install
 yarn start
@@ -27,3 +34,5 @@ google-chrome ~/index.html
 
 # cp -r packages/server/ ~/
 # cd ~/server/
+
+
